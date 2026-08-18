@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/darkheader.tsx","./src/components/header.tsx","./src/components/industrialhero.tsx","./src/components/pagesplash.tsx","./src/components/ui/glassmorphism-trust-hero.tsx","./src/lib/utils.ts"],"errors":true,"version":"5.9.3"}

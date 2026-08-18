@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 20% 98%;
+    --foreground: 235 25% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 235 25% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 235 25% 14%;
+
+    --secondary: 230 15% 94%;
+    --secondary-foreground: 235 25% 18%;
+
+    --muted: 230 15% 94%;
+    --muted-foreground: 235 10% 42%;
+
+    --destructive: 0 72% 47%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 230 15% 88%;
+    --input: 230 15% 88%;
+    --ring: 238 89% 27%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 235 35% 7%;
+    --foreground: 0 0% 98%;
+
+    --card: 235 35% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 235 35% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --secondary: 235 30% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 235 30% 18%;
+    --muted-foreground: 235 10% 65%;
+
+    --destructive: 0 62% 38%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 235 30% 18%;
+    --input: 235 30% 18%;
+    --ring: 238 89% 67%;
+  }
+}
+
+:root {
+  font-family: "Poppins", "Inter", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  --brand-primary: #080A7E;
+  --brand-primary-hover: #1316a5;
+  --brand-accent: #D78034;
+  --brand-accent-hover: #e69045;
+
+  --bg-surface: #ffffff;
+  --bg-page: #F8F9FC;
+  --bg-surface-dark: #0A0C1A;
+
+  --text-primary: #1A1C2E;
+  --text-secondary: #5A5E7A;
+  --text-on-dark: #ffffff;
+
+  --border-default: #E2E5F0;
+  --border-strong: #d2d6e6;
+
+  --state-success: #2E7D4F;
+  --state-warning: #D78034;
+  --state-danger: #c03a2b;
+
+  color-scheme: light;
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg-page);
+}
+
+body {
+  display: block;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+}
