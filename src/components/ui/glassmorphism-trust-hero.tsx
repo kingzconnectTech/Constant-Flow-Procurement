@@ -146,12 +146,10 @@ export default function GlassmorphismTrustHero() {
                   "linear-gradient(180deg, black 0%, black 84%, rgba(0,0,0,0.92) 100%)",
               }}
             >
-              The Right Equipment.<br />
+              Smarter Procurement<br />
               <span className="bg-gradient-to-br from-white via-white to-[#ffd89b] bg-clip-text text-transparent">
-                The Right Source.
+                For Critical Operations.
               </span>
-              <br />
-              The Right Price.
             </h1>
 
             <p className="animate-fade-in delay-300 max-w-xl sm:max-w-2xl text-sm sm:text-base md:text-lg text-zinc-200 leading-relaxed">
@@ -184,51 +182,57 @@ export default function GlassmorphismTrustHero() {
               <div className="absolute top-0 right-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-[#D78034]/20 blur-3xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 -ml-16 -mb-16 h-56 w-56 rounded-full bg-[#080A7E]/30 blur-3xl pointer-events-none" />
 
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-7">
-                  <div className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl sm:rounded-2xl bg-white/12 ring-1 ring-white/22">
-                    <Target className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+              <div className="relative z-10 space-y-5 sm:space-y-6">
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2">
+                    <Globe2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#ffcd75]" />
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#ffcd75]">
+                      Global Sourcing
+                    </span>
                   </div>
-                  <div>
-                    <div className="text-[24px] sm:text-[28px] md:text-3xl font-bold tracking-tight text-white drop-shadow-[0_1px_10px_rgba(0,0,0,0.35)]">
-                      12,500+
-                    </div>
-                    <div className="text-[11px] sm:text-xs md:text-sm text-zinc-300">
-                      SKUs Sourced Globally
-                    </div>
-                  </div>
+                  <p className="text-sm sm:text-[15px] md:text-base font-medium text-white leading-snug">
+                    Europe · Asia · North America · Africa
+                  </p>
                 </div>
 
-                <div className="space-y-3 mb-5 sm:mb-7">
-                  <div className="flex justify-between text-xs sm:text-sm">
-                    <span className="text-zinc-300">On-Time Delivery</span>
-                    <span className="text-white font-semibold">97%</span>
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2">
+                    <Target className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#ffcd75]" />
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#ffcd75]">
+                      Industrial Expertise
+                    </span>
                   </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800/60">
-                    <div className="h-full w-[97%] rounded-full bg-gradient-to-r from-[#D78034] to-[#ffcd75] shadow-[0_0_12px_rgba(215,128,52,0.45)]" />
-                  </div>
+                  <p className="text-sm sm:text-[15px] md:text-base font-medium text-white leading-snug">
+                    Oil &amp; Gas · Heavy Equipment · Industrial Components
+                  </p>
                 </div>
 
-                <div className="h-px w-full bg-white/12 mb-5 sm:mb-6" />
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
-                <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center">
-                  <StatItem value="18+" label="Countries" />
-                  <div className="w-px h-full bg-white/12 mx-auto" />
-                  <StatItem value="24/7" label="Support" />
-                  <div className="w-px h-full bg-white/12 mx-auto" />
-                  <StatItem value="ISO" label="Certified" />
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2">
+                    <Crown className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#ffcd75]" />
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#ffcd75]">
+                      Vetted Supplier Network
+                    </span>
+                  </div>
+                  <p className="text-sm sm:text-[15px] md:text-base font-medium text-zinc-200 leading-snug">
+                    Qualified suppliers across global markets
+                  </p>
                 </div>
 
-                <div className="mt-5 sm:mt-7 flex flex-wrap gap-2">
+                <div className="pt-1 flex flex-wrap gap-2">
                   <div className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/8 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[9px] sm:text-[10px] font-medium tracking-wide text-zinc-200">
                     <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                       <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-green-500" />
                     </span>
-                    VETTED SUPPLIERS
+                    ACTIVE NETWORK
                   </div>
                   <div className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/8 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[9px] sm:text-[10px] font-medium tracking-wide text-zinc-200">
-                    <Crown className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#ffcd75]" />
+                    <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#ffcd75] fill-[#D78034]" />
                     PREMIUM SOURCING
                   </div>
                 </div>
@@ -314,68 +318,36 @@ export default function GlassmorphismTrustHero() {
           </div>
 
           <div className="lg:col-span-12 w-full animate-fade-in delay-500">
-            <div className="relative w-full px-5 sm:px-10 py-5 sm:py-7 md:px-14 md:py-9">
-              <div className="flex items-center items-baseline mb-5 sm:mb-7">
-                <div className="inline-flex items-center gap-3">
-                  <span className="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl sm:rounded-2xl bg-white/8 ring-1 ring-white/15">
-                    <Globe2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#ffcd75]" />
-                  </span>
-                  <div className="flex flex-col leading-none">
-                    <span className="text-[10px] sm:text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em] text-zinc-200">
-                      Global Procurement Hubs
-                    </span>
-                    <span className="text-[9px] sm:text-[10px] text-zinc-500 mt-1 tracking-wide">
-                      Live local times across operations
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <div className="relative w-full px-4 sm:px-6 md:px-8 py-4 sm:py-5">
+              <div className="relative flex items-center justify-between gap-3 sm:gap-5 md:gap-7 rounded-2xl sm:rounded-3xl border border-white/10 bg-white/6 backdrop-blur-xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 overflow-hidden">
+                <div className="absolute -top-24 -left-24 h-48 w-48 rounded-full bg-[#080A7E]/30 blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-24 -right-24 h-48 w-48 rounded-full bg-[#D78034]/18 blur-3xl pointer-events-none" />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
-                {HUBS.map((hub) => {
+                {HUBS.map((hub, idx) => {
                   const c = clocks[hub.zone] ?? { hhmm: "00:00", ss: "00" };
                   return (
-                    <div
-                      key={hub.zone}
-                      className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/10 bg-gradient-to-br from-white/6 via-white/[0.03] to-transparent p-4 sm:p-5 md:p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.07]"
-                    >
-                      <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[#D78034]/14 blur-2xl opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
-
-                      <div className="flex items-center justify-between mb-4 sm:mb-6">
-                        <div className="flex items-center gap-2.5 sm:gap-3">
-                          <span className="inline-flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#080A7E]/80 to-[#0A0C1A] ring-1 ring-white/12 text-white">
-                            <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.18em] text-[#ffcd75]">
-                              {hub.flag}
-                            </span>
-                          </span>
-                          <div className="flex flex-col leading-none">
-                            <span className="text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-wide text-white">
-                              {hub.name}
-                            </span>
-                            <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-zinc-400 mt-1">
-                              {hub.zone}
-                            </span>
-                          </div>
-                        </div>
+                    <div key={hub.zone} className={`relative z-10 flex items-center gap-2.5 sm:gap-3 md:gap-4 ${idx !== HUBS.length - 1 ? "pr-3 sm:pr-4 md:pr-6 border-r border-white/10" : ""}`}>
+                      <span className="shrink-0 inline-flex items-center justify-center rounded-lg sm:rounded-xl bg-white/8 ring-1 ring-white/12 w-8 h-8 sm:w-9 sm:h-9 text-[13px] sm:text-[15px] leading-none" aria-hidden="true">
+                        {hub.flag === "EU" ? "🇪🇺" : hub.flag === "SG" ? "🇸🇬" : hub.flag === "US" ? "🇺🇸" : "🇳🇬"}
+                      </span>
+                      <div className="flex flex-col leading-none min-w-[48px] sm:min-w-[56px]">
+                        <span className="text-[10px] sm:text-[11px] md:text-xs font-bold tracking-[0.18em] text-white">
+                          {hub.name}
+                        </span>
+                        <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.22em] text-zinc-500 mt-1">
+                          {hub.zone}
+                        </span>
                       </div>
-
-                      <div className="flex items-end justify-between">
-                        <time
-                          className="tabular-nums font-bold text-[28px] sm:text-[34px] md:text-[40px] leading-none text-white tracking-tight drop-shadow-[0_2px_16px_rgba(5,6,20,0.55)]"
-                          dateTime={new Date().toISOString()}
-                          style={{ fontFeatureSettings: '"tnum"' }}
-                        >
-                          {c.hhmm}
-                          <span className="mx-0.5 text-white/60">:</span>
-                          <span className="tabular-nums font-semibold text-[16px] sm:text-[20px] md:text-[22px] text-[#ffcd75] align-bottom pb-0.5 sm:pb-1 inline-block">
-                            {c.ss}
-                          </span>
-                        </time>
-                      </div>
-
-                      <div className="mt-4 sm:mt-6 h-1 w-full overflow-hidden rounded-full bg-white/[0.07]">
-                        <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-[#080A7E]/80 via-[#2d30a8]/70 to-[#D78034]" />
-                      </div>
+                      <time
+                        className="tabular-nums font-semibold text-[18px] sm:text-[22px] md:text-[26px] leading-none text-white tracking-tight"
+                        dateTime={new Date().toISOString()}
+                        style={{ fontFeatureSettings: '"tnum"' }}
+                      >
+                        {c.hhmm}
+                        <span className="tabular-nums font-semibold text-[11px] sm:text-[13px] md:text-[15px] text-[#ffcd75] align-baseline ml-0.5">
+                          :{c.ss}
+                        </span>
+                      </time>
                     </div>
                   );
                 })}

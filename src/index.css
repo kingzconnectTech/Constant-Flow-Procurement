@@ -101,6 +101,16 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: var(--bg-page);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 body {

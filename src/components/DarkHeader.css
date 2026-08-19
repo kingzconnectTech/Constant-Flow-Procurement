@@ -74,8 +74,8 @@
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  width: 50px;
-  height: 50px;
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
 }
 
@@ -96,7 +96,7 @@
 
 .dh-logo-brand {
   font-weight: 700;
-  font-size: 0.96rem;
+  font-size: 1.14rem;
   letter-spacing: -0.01em;
   color: #ffffff;
 }
@@ -109,7 +109,7 @@
 
 .dh-logo-sub {
   font-weight: 500;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(233, 237, 245, 0.7);
@@ -330,22 +330,22 @@
 
 @media (max-width: 520px) {
   .dh-logo-brand {
-    font-size: 0.84rem;
+    font-size: 0.96rem;
   }
 
   .dh-logo-sub {
-    font-size: 0.62rem;
+    font-size: 0.7rem;
     letter-spacing: 0.12em;
   }
 
   .dh-logo-mark {
-    width: 42px;
-    height: 42px;
+    width: 52px;
+    height: 52px;
   }
 
   .dh-logo-mark svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
 
   :root {
