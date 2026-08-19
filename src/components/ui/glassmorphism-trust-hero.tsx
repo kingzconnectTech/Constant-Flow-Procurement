@@ -53,15 +53,6 @@ function formatClock(tz: string): { hhmm: string; ss: string } {
 
 type ClockMap = Record<string, { hhmm: string; ss: string }>;
 
-const StatItem = ({ value, label }: { value: string; label: string }) => (
-  <div className="flex flex-col items-center justify-center transition-transform hover:-translate-y-1 cursor-default">
-    <span className="text-lg sm:text-xl md:text-2xl font-bold text-white">{value}</span>
-    <span className="text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider text-zinc-400 font-medium">
-      {label}
-    </span>
-  </div>
-);
-
 export default function GlassmorphismTrustHero() {
   const [clocks, setClocks] = useState<ClockMap>(() =>
     HUBS.reduce<ClockMap>(
