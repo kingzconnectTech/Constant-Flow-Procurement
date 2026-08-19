@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "buildCommand": "npm run build",
-  "installCommand": "npm install --foreground-scripts",
+  "buildCommand": "npm run vercel-build",
+  "installCommand": "npm install --foreground-scripts --include=dev --no-audit --no-fund --legacy-peer-deps",
   "outputDirectory": "dist",
   "build": {
     "env": {

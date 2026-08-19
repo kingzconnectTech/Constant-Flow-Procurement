@@ -4,13 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "postinstall": "node ./scripts/postinstall-repair.mjs",
+    "prebuild": "node ./scripts/postinstall-repair.mjs",
     "dev": "node ./node_modules/vite/bin/vite.js",
     "build": "node ./node_modules/typescript/lib/tsc.js -b && node ./node_modules/vite/bin/vite.js build",
-    "vercel-build": "node ./node_modules/typescript/lib/tsc.js -b && node ./node_modules/vite/bin/vite.js build",
+    "vercel-build": "node ./scripts/postinstall-repair.mjs && node ./node_modules/typescript/lib/tsc.js -b && node ./node_modules/vite/bin/vite.js build",
     "preview": "node ./node_modules/vite/bin/vite.js preview"
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "esbuild": "^0.28.2",
     "lucide-react": "^1.33.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
