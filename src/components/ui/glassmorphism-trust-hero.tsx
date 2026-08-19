@@ -168,7 +168,7 @@ export default function GlassmorphismTrustHero() {
             </div>
           </div>
 
-          <div className="lg:col-span-4 space-y-5 sm:space-y-6 lg:mt-2">
+          <div className="lg:col-span-4 space-y-5 sm:space-y-6 lg:mt-2 order-3 lg:order-none">
             <div className="animate-fade-in delay-500 relative overflow-hidden rounded-3xl border border-white/12 bg-white/8 p-5 sm:p-6 md:p-7 backdrop-blur-xl shadow-2xl">
               <div className="absolute top-0 right-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-[#D78034]/20 blur-3xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 -ml-16 -mb-16 h-56 w-56 rounded-full bg-[#080A7E]/30 blur-3xl pointer-events-none" />
@@ -308,7 +308,7 @@ export default function GlassmorphismTrustHero() {
             </div>
           </div>
 
-          <div className="lg:col-span-12 w-full animate-fade-in delay-500">
+          <div className="lg:col-span-12 w-full animate-fade-in delay-500 order-2 lg:order-none">
             <div className="relative w-full px-3 sm:px-4 md:px-8 py-3 sm:py-4">
               <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-5 rounded-2xl sm:rounded-3xl border border-white/10 bg-white/6 backdrop-blur-xl px-3 sm:px-4 md:px-8 py-3 sm:py-3.5 md:py-4 overflow-hidden">
                 <div className="absolute -top-24 -left-24 h-48 w-48 rounded-full bg-[#080A7E]/30 blur-3xl pointer-events-none" />

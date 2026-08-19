@@ -40,6 +40,20 @@ function Header() {
     return () => clearInterval(id)
   }, [])
 
+  useEffect(() => {
+    if (!menuOpen) return
+    const original = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = original
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [menuOpen])
+
   return (
     <header className="cf-header-wrapper">
       <div className="cf-global-strip">
@@ -114,30 +128,111 @@ function Header() {
           className={`cf-mobile-menu ${menuOpen ? 'is-open' : ''}`}
           aria-hidden={!menuOpen}
         >
-          <nav aria-label="Mobile">
-            <ul className="cf-mobile-list">
-              {NAV_ITEMS.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    className="cf-mobile-link"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div className="cf-mobile-cta">
+          <div
+            className="cf-mobile-backdrop"
+            onClick={() => setMenuOpen(false)}
+            aria-hidden="true"
+          />
+          <div
+            className="cf-mobile-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Main menu"
+          >
+            <div className="cf-mobile-head">
               <a
-                href="#request-rfq"
-                className="cf-cta-btn cf-cta-btn--block"
+                href="#home"
+                className="cf-mobile-head-logo"
                 onClick={() => setMenuOpen(false)}
+                aria-label="Constantflow Procurement home"
               >
-                Request an RFQ
+                <span className="cf-mobile-head-mark" aria-hidden="true">
+                  <img src={logoSrc} alt="" aria-hidden="true" />
+                </span>
+                <span className="cf-mobile-head-text">
+                  <span className="cf-mobile-head-brand">Constant-flow</span>
+                  <span className="cf-mobile-head-sub">Procurement</span>
+                </span>
               </a>
+              <button
+                type="button"
+                className="cf-mobile-close"
+                aria-label="Close menu"
+                onClick={() => setMenuOpen(false)}
+              />
             </div>
-          </nav>
+
+            <div className="cf-mobile-body">
+              <nav aria-label="Mobile">
+                <ul className="cf-mobile-list">
+                  {NAV_ITEMS.map((item, i) => (
+                    <li key={item.label}>
+                      <a
+                        href={item.href}
+                        className="cf-mobile-link"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        <span className="cf-mobile-link-label">
+                          <span className="cf-mobile-link-index">{`0${i + 1}`}</span>
+                          <span className="cf-mobile-link-text">{item.label}</span>
+                        </span>
+                        <svg
+                          className="cf-mobile-link-chevron"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M9 18l6-6-6-6" />
+                        </svg>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              <div className="cf-mobile-hubs" aria-hidden="true">
+                <div className="cf-mobile-hubs-title">
+                  <span>Global Hubs</span>
+                  <span>Sourcing Live</span>
+                </div>
+                <div className="cf-mobile-hubs-grid">
+                  {HUBS.map((hub) => (
+                    <div key={hub.zone} className="cf-mobile-hub">
+                      <div className="cf-mobile-hub-name">
+                        <strong>{hub.name}</strong>
+                        <em>{hub.zone}</em>
+                      </div>
+                      <time dateTime={new Date().toISOString()}>
+                        {times[hub.zone]}
+                      </time>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="cf-mobile-foot">
+              <div className="cf-mobile-cta-sub">
+                <span>Ready to procure?</span>
+                <span className="cf-mobile-cta-pill">
+                  <span>Sourcing live</span>
+                </span>
+              </div>
+              <div className="cf-mobile-cta">
+                <a
+                  href="#request-rfq"
+                  className="cf-cta-btn cf-cta-btn--block"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Request an RFQ
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </header>

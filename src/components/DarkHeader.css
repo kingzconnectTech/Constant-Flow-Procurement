@@ -5,6 +5,7 @@
   --dh-primary: #080A7E;
   --dh-primary-soft: rgba(8, 10, 126, 0.55);
   --dh-accent: #D78034;
+  --dh-accent-soft: rgba(215, 128, 52, 0.18);
   --dh-accent-text: #13102A;
   --dh-border: rgba(232, 235, 246, 0.08);
   --dh-pad-x: clamp(1.5rem, 5vw, 3rem);
@@ -219,24 +220,24 @@
 
 .dh-cta-btn--block {
   width: 100%;
-  --hex-pad-y: 0.95rem;
-  --hex-pad-x: 1.5rem;
-  font-size: 0.76rem;
-  letter-spacing: 0.08em;
-  clip-path: polygon(5% 0, 95% 0, 100% 50%, 95% 100%, 5% 100%, 0 50%);
-  -webkit-clip-path: polygon(5% 0, 95% 0, 100% 50%, 95% 100%, 5% 100%, 0 50%);
+  --hex-pad-y: 1.05rem;
+  --hex-pad-x: 1.75rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  clip-path: polygon(4% 0, 96% 0, 100% 50%, 96% 100%, 4% 100%, 0 50%);
+  -webkit-clip-path: polygon(4% 0, 96% 0, 100% 50%, 96% 100%, 4% 100%, 0 50%);
 }
 
 .dh-burger {
   display: none;
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   padding: 0;
   margin: 0;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--dh-border);
-  border-radius: 10px;
+  border-radius: 14px;
   cursor: pointer;
   color: #ffffff;
   align-items: center;
@@ -244,74 +245,458 @@
   flex-direction: column;
   gap: 4px;
   order: 3;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 220ms ease, border-color 220ms ease,
+    transform 180ms ease, box-shadow 220ms ease;
 }
 
 .dh-burger:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.dh-burger:active {
+  transform: scale(0.96);
+}
+
+.dh-burger.is-open {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .dh-burger-line {
   display: block;
-  width: 18px;
-  height: 1.5px;
+  width: 20px;
+  height: 1.6px;
   background: #ffffff;
-  border-radius: 1px;
-  transition: transform 0.22s ease, opacity 0.2s ease;
+  border-radius: 2px;
+  transition: transform 260ms cubic-bezier(0.7, 0, 0.2, 1),
+    opacity 200ms ease, width 240ms ease;
+  transform-origin: center;
 }
 
 .dh-burger.is-open .dh-burger-line:nth-child(1) {
   transform: translateY(5.5px) rotate(45deg);
+  width: 22px;
 }
 
 .dh-burger.is-open .dh-burger-line:nth-child(2) {
   opacity: 0;
+  width: 4px;
 }
 
 .dh-burger.is-open .dh-burger-line:nth-child(3) {
   transform: translateY(-5.5px) rotate(-45deg);
+  width: 22px;
 }
 
+/* ----------- PREMIUM MOBILE MENU: OVERLAY + RIGHT SLIDE-IN PANEL ----------- */
+
 .dh-mobile-menu {
-  display: none;
-  border-top: 1px solid var(--dh-border);
-  background: rgba(8, 14, 24, 0.94);
-  backdrop-filter: blur(14px);
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  visibility: hidden;
 }
 
 .dh-mobile-menu.is-open {
-  display: block;
+  pointer-events: auto;
+  visibility: visible;
 }
+
+.dh-mobile-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 60% at 100% 0%, rgba(215, 128, 52, 0.10) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(5, 6, 24, 0.4) 0%, rgba(5, 6, 24, 0.72) 55%, rgba(5, 6, 24, 0.86) 100%);
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  opacity: 0;
+  transition: opacity 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.dh-mobile-menu.is-open .dh-mobile-backdrop {
+  opacity: 1;
+}
+
+.dh-mobile-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(86vw, 420px);
+  max-width: 100%;
+  background:
+    radial-gradient(120% 80% at 100% 0%, rgba(215, 128, 52, 0.12) 0%, transparent 55%),
+    linear-gradient(180deg, #0B0D26 0%, #090B1F 55%, #060814 100%);
+  border-left: 1px solid rgba(130, 145, 255, 0.14);
+  box-shadow:
+    -24px 0 60px rgba(3, 5, 24, 0.65),
+    -2px 0 0 rgba(255, 255, 255, 0.03) inset;
+  transform: translateX(100%);
+  transition: transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dh-mobile-menu.is-open .dh-mobile-panel {
+  transform: translateX(0);
+}
+
+.dh-mobile-panel::before {
+  content: "";
+  position: absolute;
+  top: -140px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(215, 128, 52, 0.18) 0%, transparent 62%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.dh-mobile-panel::after {
+  content: "";
+  position: absolute;
+  bottom: -160px;
+  left: -100px;
+  width: 360px;
+  height: 360px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(8, 10, 126, 0.38) 0%, transparent 62%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.dh-mobile-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.dh-mobile-head-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: var(--dh-text);
+  min-width: 0;
+}
+
+.dh-mobile-head-logo:hover {
+  opacity: 0.9;
+}
+
+.dh-mobile-head-mark {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(8, 10, 126, 0.45), rgba(215, 128, 52, 0.12));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.dh-mobile-head-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.dh-mobile-head-text {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.05;
+  min-width: 0;
+}
+
+.dh-mobile-head-brand {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dh-mobile-head-sub {
+  font-weight: 500;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(233, 237, 245, 0.62);
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dh-mobile-close {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 180ms ease, border-color 180ms ease,
+    transform 160ms ease;
+}
+
+.dh-mobile-close:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.dh-mobile-close:active {
+  transform: scale(0.95);
+}
+
+.dh-mobile-close::before,
+.dh-mobile-close::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 1.6px;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+.dh-mobile-close::before { transform: rotate(45deg); }
+.dh-mobile-close::after  { transform: rotate(-45deg); }
+
+.dh-mobile-body {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.25rem 0.85rem 1.1rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dh-mobile-body::-webkit-scrollbar { display: none; }
 
 .dh-mobile-list {
   list-style: none;
   margin: 0;
-  padding: 0.35rem var(--dh-pad-x) 0.25rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
 .dh-mobile-list li {
-  border-bottom: 1px solid var(--dh-border);
-}
-
-.dh-mobile-list li:last-child {
-  border-bottom: none;
+  position: relative;
 }
 
 .dh-mobile-link {
-  display: block;
-  padding: 0.95rem 0.25rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 0.85rem;
+  border-radius: 14px;
   font-size: 0.92rem;
-  font-weight: 400;
-  color: var(--dh-text-dim);
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  color: rgba(232, 235, 246, 0.92);
   text-decoration: none;
+  background: transparent;
+  border: 1px solid transparent;
+  opacity: 0;
+  transform: translateX(18px);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    padding-left 220ms ease,
+    opacity 420ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: 60ms;
 }
 
+.dh-mobile-menu.is-open .dh-mobile-link {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.dh-mobile-list li:nth-child(1) .dh-mobile-link { transition-delay: 120ms; }
+.dh-mobile-list li:nth-child(2) .dh-mobile-link { transition-delay: 180ms; }
+.dh-mobile-list li:nth-child(3) .dh-mobile-link { transition-delay: 240ms; }
+.dh-mobile-list li:nth-child(4) .dh-mobile-link { transition-delay: 300ms; }
+.dh-mobile-list li:nth-child(5) .dh-mobile-link { transition-delay: 360ms; }
+
 .dh-mobile-link:hover {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0%, rgba(215, 128, 52, 0.08) 100%);
+  border-color: rgba(255, 255, 255, 0.07);
   color: #ffffff;
+  padding-left: 1.05rem;
+}
+
+.dh-mobile-link:active {
+  transform: translateX(0) scale(0.99);
+}
+
+.dh-mobile-link-label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.dh-mobile-link-index {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: rgba(255, 205, 117, 0.78);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.dh-mobile-link-text {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.dh-mobile-link-chevron {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: rgba(232, 235, 246, 0.42);
+  transition: color 200ms ease, transform 240ms ease;
+}
+
+.dh-mobile-link:hover .dh-mobile-link-chevron {
+  color: #ffcd75;
+  transform: translateX(2px);
+}
+
+.dh-mobile-trust {
+  position: relative;
+  z-index: 1;
+  margin: 1.15rem 0.85rem 0.35rem;
+  padding: 0.95rem 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(8, 10, 126, 0.18));
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 520ms ease 460ms, transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1) 460ms;
+}
+
+.dh-mobile-menu.is-open .dh-mobile-trust {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dh-mobile-trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+  min-width: 0;
+}
+
+.dh-mobile-trust-k {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.dh-mobile-trust-v {
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(232, 235, 246, 0.56);
+  white-space: nowrap;
+}
+
+.dh-mobile-foot {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 1.25rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, transparent, rgba(6, 8, 20, 0.7));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.dh-mobile-cta-sub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.dh-mobile-cta-sub span {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232, 235, 246, 0.55);
+}
+
+.dh-mobile-cta-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dh-mobile-cta-dot::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #4ade80;
+  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.14);
+}
+
+.dh-mobile-cta-dot span {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(232, 235, 246, 0.72);
+  text-transform: uppercase;
 }
 
 .dh-mobile-cta {
-  padding: 0.85rem var(--dh-pad-x) 1.25rem;
+  width: 100%;
 }
 
 @media (max-width: 900px) {

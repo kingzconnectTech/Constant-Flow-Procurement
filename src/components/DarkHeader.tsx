@@ -10,6 +10,8 @@ const NAV_ITEMS = [
   { label: 'About Us', href: '#about' },
 ] as const
 
+const pad = (n: number) => n.toString().padStart(2, '0')
+
 function DarkHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -20,6 +22,20 @@ function DarkHeader() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const original = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = original
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [menuOpen])
 
   return (
     <header
@@ -79,26 +95,106 @@ function DarkHeader() {
         className={`dh-mobile-menu ${menuOpen ? 'is-open' : ''}`}
         aria-hidden={!menuOpen}
       >
-        <nav aria-label="Mobile">
-          <ul className="dh-mobile-list">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.label}>
-                <a href={item.href} className="dh-mobile-link" onClick={() => setMenuOpen(false)}>
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div className="dh-mobile-cta">
+        <div
+          className="dh-mobile-backdrop"
+          onClick={() => setMenuOpen(false)}
+          aria-hidden="true"
+        />
+        <div
+          className="dh-mobile-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Main menu"
+        >
+          <div className="dh-mobile-head">
             <a
-              href="#request-rfq"
-              className="dh-cta-btn dh-cta-btn--block"
+              href="#home"
+              className="dh-mobile-head-logo"
               onClick={() => setMenuOpen(false)}
+              aria-label="Constantflow Procurement home"
             >
-              Request an RFQ
+              <span className="dh-mobile-head-mark" aria-hidden="true">
+                <img src={logoSrc} alt="" aria-hidden="true" />
+              </span>
+              <span className="dh-mobile-head-text">
+                <span className="dh-mobile-head-brand">Constant-flow</span>
+                <span className="dh-mobile-head-sub">Procurement</span>
+              </span>
             </a>
+            <button
+              type="button"
+              className="dh-mobile-close"
+              aria-label="Close menu"
+              onClick={() => setMenuOpen(false)}
+            />
           </div>
-        </nav>
+
+          <div className="dh-mobile-body">
+            <nav aria-label="Mobile">
+              <ul className="dh-mobile-list">
+                {NAV_ITEMS.map((item, i) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="dh-mobile-link"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      <span className="dh-mobile-link-label">
+                        <span className="dh-mobile-link-index">{`0${i + 1}`}</span>
+                        <span className="dh-mobile-link-text">{item.label}</span>
+                      </span>
+                      <svg
+                        className="dh-mobile-link-chevron"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M9 18l6-6-6-6" />
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div className="dh-mobile-trust" aria-hidden="true">
+              <div className="dh-mobile-trust-item">
+                <span className="dh-mobile-trust-k">4</span>
+                <span className="dh-mobile-trust-v">Hubs</span>
+              </div>
+              <div className="dh-mobile-trust-item">
+                <span className="dh-mobile-trust-k">97%</span>
+                <span className="dh-mobile-trust-v">On-time</span>
+              </div>
+              <div className="dh-mobile-trust-item">
+                <span className="dh-mobile-trust-k">ISO</span>
+                <span className="dh-mobile-trust-v">Certified</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="dh-mobile-foot">
+            <div className="dh-mobile-cta-sub">
+              <span>Ready to procure?</span>
+              <span className="dh-mobile-cta-dot">
+                <span>Sourcing live</span>
+              </span>
+            </div>
+            <div className="dh-mobile-cta">
+              <a
+                href="#request-rfq"
+                className="dh-cta-btn dh-cta-btn--block"
+                onClick={() => setMenuOpen(false)}
+              >
+                Request an RFQ
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
   )
