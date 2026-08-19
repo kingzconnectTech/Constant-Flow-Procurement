@@ -230,8 +230,8 @@ export default function GlassmorphismTrustHero() {
               </div>
             </div>
 
-            <div className="animate-fade-in delay-500 relative overflow-hidden rounded-3xl border border-white/12 bg-white/8 py-5 sm:py-7 backdrop-blur-xl">
-              <h3 className="mb-4 sm:mb-5 px-5 sm:px-7 text-xs sm:text-sm font-medium text-zinc-300">
+            <div className="animate-fade-in delay-500 relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/12 bg-white/8 py-3 sm:py-5 md:py-6 backdrop-blur-xl">
+              <h3 className="mb-2.5 sm:mb-4 md:mb-5 px-4 sm:px-6 md:px-7 text-[11px] sm:text-xs md:text-sm font-medium text-zinc-300">
                 Trusted by Industry Leaders
               </h3>
 
@@ -239,16 +239,16 @@ export default function GlassmorphismTrustHero() {
                 className="relative flex overflow-hidden"
                 style={{
                   maskImage:
-                    "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+                    "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
                   WebkitMaskImage:
-                    "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+                    "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
                 }}
               >
-                <div className="animate-marquee flex items-center gap-8 sm:gap-10 md:gap-14 whitespace-nowrap px-3 sm:px-4 min-h-[56px] sm:min-h-[64px]">
+                <div className="animate-marquee flex items-center gap-5 sm:gap-8 md:gap-10 whitespace-nowrap px-2 sm:px-3 md:px-4 min-h-[42px] sm:min-h-[52px] md:min-h-[60px]">
                   {[...CLIENTS, ...CLIENTS, ...CLIENTS].map((client, i) => (
                     <div
                       key={i}
-                      className="flex items-center justify-center opacity-75 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0 min-h-[48px] sm:min-h-[56px]"
+                      className="flex items-center justify-center opacity-75 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0 min-h-[36px] sm:min-h-[46px] md:min-h-[52px]"
                       title={client.name}
                     >
                       <span className="sr-only">{client.name}</span>
@@ -256,7 +256,7 @@ export default function GlassmorphismTrustHero() {
                         <img
                           src={client.logo}
                           alt={`${client.name} logo`}
-                          className="h-8 sm:h-10 md:h-11 w-auto max-w-[160px] sm:max-w-[190px] md:max-w-[220px] object-contain select-none"
+                          className="h-6 sm:h-8 md:h-10 lg:h-11 w-auto max-w-[110px] sm:max-w-[150px] md:max-w-[190px] lg:max-w-[220px] object-contain select-none"
                           loading="lazy"
                           draggable={false}
                         />
@@ -265,7 +265,7 @@ export default function GlassmorphismTrustHero() {
                           <img
                             src={`https://logo.clearbit.com/${client.domain}?size=256`}
                             alt={`${client.name} logo`}
-                            className="hidden h-8 sm:h-10 md:h-11 w-auto max-w-[160px] sm:max-w-[190px] md:max-w-[220px] object-contain select-none"
+                            className="hidden h-6 sm:h-8 md:h-10 lg:h-11 w-auto max-w-[110px] sm:max-w-[150px] md:max-w-[190px] lg:max-w-[220px] object-contain select-none"
                             loading="lazy"
                             draggable={false}
                             onLoad={(e) => {
@@ -280,12 +280,12 @@ export default function GlassmorphismTrustHero() {
                           />
                           <span
                             aria-hidden="true"
-                            className="inline-flex items-center gap-2 font-semibold tracking-tight text-white"
+                            className="inline-flex items-center gap-1.5 sm:gap-2 font-semibold tracking-tight text-white"
                           >
                             <span
-                              className="inline-flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg sm:rounded-xl bg-white/8 ring-1 ring-white/12"
+                              className="inline-flex h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 items-center justify-center rounded-lg sm:rounded-xl bg-white/8 ring-1 ring-white/12"
                             >
-                              <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.18em] text-[#ffcd75]">
+                              <span className="text-[7px] sm:text-[8px] md:text-[9px] font-bold uppercase tracking-[0.18em] text-[#ffcd75]">
                                 {client.name
                                   .replace(/[^A-Za-z0-9 ]/g, " ")
                                   .split(/\s+/)
@@ -295,7 +295,7 @@ export default function GlassmorphismTrustHero() {
                                   .join("")}
                               </span>
                             </span>
-                            <span className="text-[13px] sm:text-[15px] md:text-[16px] text-white">
+                            <span className="text-[11px] sm:text-[13px] md:text-[15px] lg:text-[16px] text-white">
                               {client.name}
                             </span>
                           </span>
@@ -309,20 +309,23 @@ export default function GlassmorphismTrustHero() {
           </div>
 
           <div className="lg:col-span-12 w-full animate-fade-in delay-500">
-            <div className="relative w-full px-4 sm:px-6 md:px-8 py-4 sm:py-5">
-              <div className="relative flex items-center justify-between gap-3 sm:gap-5 md:gap-7 rounded-2xl sm:rounded-3xl border border-white/10 bg-white/6 backdrop-blur-xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 overflow-hidden">
+            <div className="relative w-full px-3 sm:px-4 md:px-8 py-3 sm:py-4">
+              <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-5 rounded-2xl sm:rounded-3xl border border-white/10 bg-white/6 backdrop-blur-xl px-3 sm:px-4 md:px-8 py-3 sm:py-3.5 md:py-4 overflow-hidden">
                 <div className="absolute -top-24 -left-24 h-48 w-48 rounded-full bg-[#080A7E]/30 blur-3xl pointer-events-none" />
                 <div className="absolute -bottom-24 -right-24 h-48 w-48 rounded-full bg-[#D78034]/18 blur-3xl pointer-events-none" />
 
                 {HUBS.map((hub, idx) => {
                   const c = clocks[hub.zone] ?? { hhmm: "00:00", ss: "00" };
+                  const mobileColRight = idx % 2 === 1;
+                  const desktopDivider = idx !== HUBS.length - 1;
+                  const smDivider = (idx % 4 !== 3);
                   return (
-                    <div key={hub.zone} className={`relative z-10 flex items-center gap-2.5 sm:gap-3 md:gap-4 ${idx !== HUBS.length - 1 ? "pr-3 sm:pr-4 md:pr-6 border-r border-white/10" : ""}`}>
-                      <span className="shrink-0 inline-flex items-center justify-center rounded-lg sm:rounded-xl bg-white/8 ring-1 ring-white/12 w-8 h-8 sm:w-9 sm:h-9 text-[13px] sm:text-[15px] leading-none" aria-hidden="true">
+                    <div key={hub.zone} className={`relative z-10 flex items-center gap-2 sm:gap-2.5 md:gap-4 ${desktopDivider ? "md:pr-5 md:border-r md:border-white/10" : ""} ${smDivider ? "sm:pr-3 sm:border-r sm:border-white/10" : ""} ${mobileColRight ? "pl-1" : "pr-1"}`}>
+                      <span className="shrink-0 inline-flex items-center justify-center rounded-lg sm:rounded-xl bg-white/8 ring-1 ring-white/12 w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[12px] sm:text-[13px] md:text-[15px] leading-none" aria-hidden="true">
                         {hub.flag === "EU" ? "🇪🇺" : hub.flag === "SG" ? "🇸🇬" : hub.flag === "US" ? "🇺🇸" : "🇳🇬"}
                       </span>
-                      <div className="flex flex-col leading-none min-w-[48px] sm:min-w-[56px]">
-                        <span className="text-[10px] sm:text-[11px] md:text-xs font-bold tracking-[0.18em] text-white">
+                      <div className="flex flex-col leading-none min-w-0 flex-1">
+                        <span className="text-[9px] sm:text-[10px] md:text-xs font-bold tracking-[0.18em] text-white">
                           {hub.name}
                         </span>
                         <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.22em] text-zinc-500 mt-1">
@@ -330,12 +333,12 @@ export default function GlassmorphismTrustHero() {
                         </span>
                       </div>
                       <time
-                        className="tabular-nums font-semibold text-[18px] sm:text-[22px] md:text-[26px] leading-none text-white tracking-tight"
+                        className="tabular-nums font-semibold text-[15px] sm:text-[16px] md:text-[26px] leading-none text-white tracking-tight flex-shrink-0"
                         dateTime={new Date().toISOString()}
                         style={{ fontFeatureSettings: '"tnum"' }}
                       >
                         {c.hhmm}
-                        <span className="tabular-nums font-semibold text-[11px] sm:text-[13px] md:text-[15px] text-[#ffcd75] align-baseline ml-0.5">
+                        <span className="tabular-nums font-semibold text-[9px] sm:text-[10px] md:text-[15px] text-[#ffcd75] align-baseline ml-0.5">
                           :{c.ss}
                         </span>
                       </time>
