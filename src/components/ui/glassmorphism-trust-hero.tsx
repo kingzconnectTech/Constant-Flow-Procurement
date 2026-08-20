@@ -8,6 +8,7 @@ import {
   Globe2,
 } from "lucide-react";
 import heroBackground from "@/assets/hero.png";
+import mobileHeroBackground from "@/assets/mobile hero bg.png";
 import logoExxonMobil from "@/logos/exxomobil.svg";
 import logoChevron from "@/logos/Chevron.svg";
 import logoSaudiAramco from "@/logos/Saudi Aramco.svg";
@@ -100,7 +101,17 @@ export default function GlassmorphismTrustHero() {
       `}</style>
 
       <div
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-60"
+        className="absolute inset-0 z-0 bg-cover bg-center md:hidden opacity-70"
+        style={{
+          backgroundImage: `url(${mobileHeroBackground})`,
+          maskImage:
+            "linear-gradient(180deg, transparent, black 0%, black 86%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(180deg, transparent, black 0%, black 86%, transparent)",
+        }}
+      />
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center hidden md:block opacity-60"
         style={{
           backgroundImage: `url(${heroBackground})`,
           maskImage:
@@ -110,10 +121,12 @@ export default function GlassmorphismTrustHero() {
         }}
       />
 
+      <div className="absolute inset-0 z-[0.5] pointer-events-none bg-[#05060F]/55 md:bg-[#0A0C1A]/40 backdrop-blur-[2px] md:backdrop-blur-0" />
+
       <div className="absolute inset-0 z-[1] pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0C1A]/80 via-[#0A0C1A]/40 via-[38%] to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-l from-[#ffd89b]/10 via-transparent via-[70%] to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080A7E]/30 via-transparent to-[#0A0C1A]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0C1A]/88 md:from-[#0A0C1A]/80 via-[#0A0C1A]/58 md:via-[#0A0C1A]/40 via-[42%] md:via-[38%] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-l from-[#ffd89b]/18 md:from-[#ffd89b]/10 via-transparent via-[74%] md:via-[70%] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080A7E]/44 md:from-[#080A7E]/30 via-transparent to-[#0A0C1A]" />
       </div>
 
       <div className="relative z-10 w-full px-3 sm:px-6 md:px-10 lg:px-16 xl:px-20 pt-20 sm:pt-24 pb-12 sm:pb-16 md:pt-32 md:pb-24">
@@ -129,7 +142,7 @@ export default function GlassmorphismTrustHero() {
             </div>
 
             <h1
-              className="animate-fade-in delay-200 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tighter leading-[0.95] text-white drop-shadow-[0_2px_14px_rgba(5,6,20,0.6)]"
+              className="animate-fade-in delay-200 text-3xl sm:text-[44px] md:text-6xl lg:text-7xl xl:text-[88px] font-semibold tracking-tighter leading-[0.95] text-white drop-shadow-[0_2px_14px_rgba(5,6,20,0.6)]"
               style={{
                 maskImage:
                   "linear-gradient(180deg, black 0%, black 84%, rgba(0,0,0,0.92) 100%)",
@@ -309,26 +322,33 @@ export default function GlassmorphismTrustHero() {
           </div>
 
           <div className="lg:col-span-12 w-full animate-fade-in delay-500 order-2 lg:order-none">
-            <div className="relative w-full px-3 sm:px-4 md:px-8 py-3 sm:py-4">
-              <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-5 rounded-2xl sm:rounded-3xl border border-white/10 bg-white/6 backdrop-blur-xl px-3 sm:px-4 md:px-8 py-3 sm:py-3.5 md:py-4 overflow-hidden">
-                <div className="absolute -top-24 -left-24 h-48 w-48 rounded-full bg-[#080A7E]/30 blur-3xl pointer-events-none" />
-                <div className="absolute -bottom-24 -right-24 h-48 w-48 rounded-full bg-[#D78034]/18 blur-3xl pointer-events-none" />
+            <div className="relative w-full px-2 sm:px-2 md:px-8 py-2.5 sm:py-3 md:py-4">
+              <div className="relative grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-2.5 md:gap-5
+                              rounded-[22px] sm:rounded-2xl md:rounded-3xl
+                              border border-white/12 md:border-white/10
+                              bg-gradient-to-br from-white/18 via-white/8 to-white/5 md:bg-white/6
+                              backdrop-blur-2xl md:backdrop-blur-xl
+                              shadow-[0_22px_60px_rgba(4,6,30,0.55),inset_0_1px_0_rgba(255,255,255,0.18)] md:shadow-none
+                              ring-1 ring-white/10 md:ring-0
+                              px-3.5 sm:px-3 md:px-8 py-3.5 sm:py-3.5 md:py-4 overflow-hidden">
+                <div className="absolute -top-20 -left-20 h-44 w-44 rounded-full bg-[#080A7E]/35 md:bg-[#080A7E]/30 blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-20 -right-20 h-44 w-44 rounded-full bg-[#D78034]/26 md:bg-[#D78034]/18 blur-3xl pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-48 w-48 rounded-full bg-[#1a1f5b]/10 blur-3xl pointer-events-none md:hidden" />
 
                 {HUBS.map((hub, idx) => {
                   const c = clocks[hub.zone] ?? { hhmm: "00:00", ss: "00" };
-                  const mobileColRight = idx % 2 === 1;
+                  const quadColRight = idx % 2 === 1;
                   const desktopDivider = idx !== HUBS.length - 1;
-                  const smDivider = (idx % 4 !== 3);
                   return (
-                    <div key={hub.zone} className={`relative z-10 flex items-center gap-2 sm:gap-2.5 md:gap-4 ${desktopDivider ? "md:pr-5 md:border-r md:border-white/10" : ""} ${smDivider ? "sm:pr-3 sm:border-r sm:border-white/10" : ""} ${mobileColRight ? "pl-1" : "pr-1"}`}>
+                    <div key={hub.zone} className={`relative z-10 flex items-center gap-2 sm:gap-2.5 md:gap-4 ${desktopDivider ? "md:pr-5 md:border-r md:border-white/10" : ""} ${quadColRight ? "pl-1 sm:pl-1.5" : "pr-1 sm:pr-1.5"}`}>
                       <span className="shrink-0 inline-flex items-center justify-center rounded-lg sm:rounded-xl bg-white/8 ring-1 ring-white/12 w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[12px] sm:text-[13px] md:text-[15px] leading-none" aria-hidden="true">
                         {hub.flag === "EU" ? "🇪🇺" : hub.flag === "SG" ? "🇸🇬" : hub.flag === "US" ? "🇺🇸" : "🇳🇬"}
                       </span>
-                      <div className="flex flex-col leading-none min-w-0 flex-1">
-                        <span className="text-[9px] sm:text-[10px] md:text-xs font-bold tracking-[0.18em] text-white">
+                      <div className="flex flex-col leading-none min-w-0 flex-1 sm:gap-1.5 md:gap-0">
+                        <span className="text-[9px] sm:text-[10px] md:text-xs font-bold tracking-[0.18em] sm:tracking-[0.15em] text-white">
                           {hub.name}
                         </span>
-                        <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.22em] text-zinc-500 mt-1">
+                        <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.22em] sm:tracking-[0.18em] text-zinc-500 mt-1 sm:mt-0 md:mt-1">
                           {hub.zone}
                         </span>
                       </div>
@@ -338,7 +358,7 @@ export default function GlassmorphismTrustHero() {
                         style={{ fontFeatureSettings: '"tnum"' }}
                       >
                         {c.hhmm}
-                        <span className="tabular-nums font-semibold text-[9px] sm:text-[10px] md:text-[15px] text-[#ffcd75] align-baseline ml-0.5">
+                        <span className="tabular-nums font-semibold text-[9px] sm:text-[10px] md:text-[15px] text-[#ffcd75] align-baseline ml-0.5 sm:ml-1">
                           :{c.ss}
                         </span>
                       </time>

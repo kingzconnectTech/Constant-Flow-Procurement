@@ -1,6 +1,7 @@
 import DarkHeader from './components/DarkHeader'
 import PageSplash from './components/PageSplash'
 import GlassmorphismTrustHero from './components/ui/glassmorphism-trust-hero'
+import ServicesCategories from './components/ui/ServicesCategories'
 import './App.css'
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <div className="app-shell">
         <DarkHeader />
         <GlassmorphismTrustHero />
+        <ServicesCategories />
       </div>
     </>
   )
