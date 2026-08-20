@@ -111,22 +111,22 @@ export default function GlassmorphismTrustHero() {
         }}
       />
       <div
-        className="absolute inset-0 z-0 bg-cover bg-center hidden md:block opacity-60"
+        className="absolute inset-0 z-0 bg-cover bg-center hidden md:block opacity-75"
         style={{
           backgroundImage: `url(${heroBackground})`,
           maskImage:
-            "linear-gradient(180deg, transparent, black 0%, black 82%, transparent)",
+            "linear-gradient(180deg, transparent, black 0%, black 84%, transparent)",
           WebkitMaskImage:
-            "linear-gradient(180deg, transparent, black 0%, black 82%, transparent)",
+            "linear-gradient(180deg, transparent, black 0%, black 84%, transparent)",
         }}
       />
 
-      <div className="absolute inset-0 z-[0.5] pointer-events-none bg-[#05060F]/55 md:bg-[#0A0C1A]/40 backdrop-blur-[2px] md:backdrop-blur-0" />
+      <div className="absolute inset-0 z-[0.5] pointer-events-none bg-[#05060F]/55 md:bg-[#0A0C1A]/26" />
 
       <div className="absolute inset-0 z-[1] pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0C1A]/88 md:from-[#0A0C1A]/80 via-[#0A0C1A]/58 md:via-[#0A0C1A]/40 via-[42%] md:via-[38%] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0C1A]/88 md:from-[#0A0C1A]/66 via-[#0A0C1A]/58 md:via-[#0A0C1A]/24 via-[42%] md:via-[38%] to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-l from-[#ffd89b]/18 md:from-[#ffd89b]/10 via-transparent via-[74%] md:via-[70%] to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080A7E]/44 md:from-[#080A7E]/30 via-transparent to-[#0A0C1A]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080A7E]/44 md:from-[#080A7E]/20 via-transparent to-[#0A0C1A]" />
       </div>
 
       <div className="relative z-10 w-full px-3 sm:px-6 md:px-10 lg:px-16 xl:px-20 pt-20 sm:pt-24 pb-12 sm:pb-16 md:pt-32 md:pb-24">
@@ -173,7 +173,7 @@ export default function GlassmorphismTrustHero() {
 
               <a
                 href="#services"
-                className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/18 bg-white/8 px-6 py-3 sm:px-8 sm:py-4 text-xs sm:text-sm md:text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/14 hover:border-white/28"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-white/34 px-6 py-3 sm:px-8 sm:py-4 text-xs sm:text-sm md:text-base font-semibold text-white backdrop-blur-[64px] transition-colors hover:bg-white/50 shadow-[0_18px_42px_rgba(4,8,40,0.52),inset_0_1px_0_rgba(255,255,255,0.18)]"
               >
                 <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
                 Explore Services
@@ -182,7 +182,7 @@ export default function GlassmorphismTrustHero() {
           </div>
 
           <div className="lg:col-span-4 space-y-5 sm:space-y-6 lg:mt-2 order-3 lg:order-none">
-            <div className="animate-fade-in delay-500 relative overflow-hidden rounded-3xl border border-white/12 bg-white/8 p-5 sm:p-6 md:p-7 backdrop-blur-xl shadow-2xl">
+            <div className="animate-fade-in delay-500 relative overflow-hidden rounded-3xl bg-white/8 p-5 sm:p-6 md:p-7 backdrop-blur-xl shadow-2xl">
               <div className="absolute top-0 right-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-[#D78034]/20 blur-3xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 -ml-16 -mb-16 h-56 w-56 rounded-full bg-[#080A7E]/30 blur-3xl pointer-events-none" />
 
@@ -228,14 +228,14 @@ export default function GlassmorphismTrustHero() {
                 </div>
 
                 <div className="pt-1 flex flex-wrap gap-2">
-                  <div className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/8 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[9px] sm:text-[10px] font-medium tracking-wide text-zinc-200">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-white/8 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[9px] sm:text-[10px] font-medium tracking-wide text-zinc-200">
                     <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                       <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-green-500" />
                     </span>
                     ACTIVE NETWORK
                   </div>
-                  <div className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/8 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[9px] sm:text-[10px] font-medium tracking-wide text-zinc-200">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-white/8 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[9px] sm:text-[10px] font-medium tracking-wide text-zinc-200">
                     <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#ffcd75] fill-[#D78034]" />
                     PREMIUM SOURCING
                   </div>
@@ -243,7 +243,7 @@ export default function GlassmorphismTrustHero() {
               </div>
             </div>
 
-            <div className="animate-fade-in delay-500 relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/12 bg-white/8 py-3 sm:py-5 md:py-6 backdrop-blur-xl">
+            <div className="animate-fade-in delay-500 relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/8 py-3 sm:py-5 md:py-6 backdrop-blur-xl">
               <h3 className="mb-2.5 sm:mb-4 md:mb-5 px-4 sm:px-6 md:px-7 text-[11px] sm:text-xs md:text-sm font-medium text-zinc-300">
                 Trusted by Industry Leaders
               </h3>
