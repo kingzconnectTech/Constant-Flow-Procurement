@@ -10,8 +10,6 @@ const NAV_ITEMS = [
   { label: 'About Us', href: '#about' },
 ] as const
 
-const pad = (n: number) => n.toString().padStart(2, '0')
-
 function DarkHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
