@@ -398,7 +398,7 @@
 .cf-mobile-menu {
   position: fixed;
   inset: 0;
-  z-index: 60;
+  z-index: 1000;
   pointer-events: none;
   visibility: hidden;
 }

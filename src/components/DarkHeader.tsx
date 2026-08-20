@@ -38,57 +38,59 @@ function DarkHeader() {
   }, [menuOpen])
 
   return (
-    <header
-      className={`dh-wrapper ${scrolled ? 'dh-scrolled' : ''}`}
-      role="banner"
-    >
-      <div className="dh-inner">
-        <a href="#home" className="dh-logo" aria-label="Constantflow Procurement home">
-          <span className="dh-logo-mark" aria-hidden="true">
-            <img
-              className="dh-logo-image"
-              src={logoSrc}
-              alt=""
-              aria-hidden="true"
-            />
-          </span>
-          <span className="dh-logo-text">
-            <span className="dh-logo-brand">Constant-flow</span>
-            <span className="dh-logo-sub">Procurement</span>
-          </span>
-        </a>
-
-        <button
-          type="button"
-          className={`dh-burger ${menuOpen ? 'is-open' : ''}`}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          aria-controls="dh-mobile-menu"
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          <span className="dh-burger-line" aria-hidden="true" />
-          <span className="dh-burger-line" aria-hidden="true" />
-          <span className="dh-burger-line" aria-hidden="true" />
-        </button>
-
-        <nav className="dh-nav" aria-label="Primary">
-          <ul className="dh-nav-list">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.label}>
-                <a href={item.href} className="dh-nav-link">
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="dh-cta-wrap">
-          <a href="#request-rfq" className="dh-cta-btn">
-            Request an RFQ
+    <>
+      <header
+        className={`dh-wrapper ${scrolled ? 'dh-scrolled' : ''}`}
+        role="banner"
+      >
+        <div className="dh-inner">
+          <a href="#home" className="dh-logo" aria-label="Constantflow Procurement home">
+            <span className="dh-logo-mark" aria-hidden="true">
+              <img
+                className="dh-logo-image"
+                src={logoSrc}
+                alt=""
+                aria-hidden="true"
+              />
+            </span>
+            <span className="dh-logo-text">
+              <span className="dh-logo-brand">Constant-flow</span>
+              <span className="dh-logo-sub">Procurement</span>
+            </span>
           </a>
+
+          <button
+            type="button"
+            className={`dh-burger ${menuOpen ? 'is-open' : ''}`}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls="dh-mobile-menu"
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <span className="dh-burger-line" aria-hidden="true" />
+            <span className="dh-burger-line" aria-hidden="true" />
+            <span className="dh-burger-line" aria-hidden="true" />
+          </button>
+
+          <nav className="dh-nav" aria-label="Primary">
+            <ul className="dh-nav-list">
+              {NAV_ITEMS.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} className="dh-nav-link">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="dh-cta-wrap">
+            <a href="#request-rfq" className="dh-cta-btn">
+              Request an RFQ
+            </a>
+          </div>
         </div>
-      </div>
+      </header>
 
       <div
         id="dh-mobile-menu"
@@ -196,7 +198,7 @@ function DarkHeader() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   )
 }
 
