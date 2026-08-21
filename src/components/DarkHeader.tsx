@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react'
+import { RouterLink, useRouter } from '../router'
 import './DarkHeader.css'
 import logoSrc from '../assets/logo.png'
 
-const NAV_ITEMS = [
+type NavItem = { label: string; href: string; isRoute?: boolean }
+
+const NAV_ITEMS: NavItem[] = [
   { label: 'Home', href: '#home' },
   { label: 'Services', href: '#services' },
   { label: 'How It Works', href: '#how-it-works' },
   { label: 'Industries', href: '#industries' },
   { label: 'About Us', href: '#about' },
-] as const
+  { label: 'Contact', href: '/contact', isRoute: true },
+]
 
 function DarkHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -35,6 +39,8 @@ function DarkHeader() {
     }
   }, [menuOpen])
 
+  const { path, navigate: _navigate } = useRouter()
+
   return (
     <>
       <header
@@ -42,7 +48,7 @@ function DarkHeader() {
         role="banner"
       >
         <div className="dh-inner">
-          <a href="#home" className="dh-logo" aria-label="Constantflow Procurement home">
+          <a href={path === '/' ? '#home' : '/'} className="dh-logo" aria-label="Constantflow Procurement home">
             <span className="dh-logo-mark" aria-hidden="true">
               <img
                 className="dh-logo-image"
@@ -74,9 +80,15 @@ function DarkHeader() {
             <ul className="dh-nav-list">
               {NAV_ITEMS.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className="dh-nav-link">
-                    {item.label}
-                  </a>
+                  {item.isRoute ? (
+                    <RouterLink to={item.href} className="dh-nav-link">
+                      {item.label}
+                    </RouterLink>
+                  ) : (
+                    <a href={item.href} className="dh-nav-link">
+                      {item.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -134,28 +146,53 @@ function DarkHeader() {
               <ul className="dh-mobile-list">
                 {NAV_ITEMS.map((item, i) => (
                   <li key={item.label}>
-                    <a
-                      href={item.href}
-                      className="dh-mobile-link"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      <span className="dh-mobile-link-label">
-                        <span className="dh-mobile-link-index">{`0${i + 1}`}</span>
-                        <span className="dh-mobile-link-text">{item.label}</span>
-                      </span>
-                      <svg
-                        className="dh-mobile-link-chevron"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
+                    {item.isRoute ? (
+                      <RouterLink
+                        to={item.href}
+                        className="dh-mobile-link"
+                        onClick={() => setMenuOpen(false)}
                       >
-                        <path d="M9 18l6-6-6-6" />
-                      </svg>
-                    </a>
+                        <span className="dh-mobile-link-label">
+                          <span className="dh-mobile-link-index">{`0${i + 1}`}</span>
+                          <span className="dh-mobile-link-text">{item.label}</span>
+                        </span>
+                        <svg
+                          className="dh-mobile-link-chevron"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M9 18l6-6-6-6" />
+                        </svg>
+                      </RouterLink>
+                    ) : (
+                      <a
+                        href={item.href}
+                        className="dh-mobile-link"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        <span className="dh-mobile-link-label">
+                          <span className="dh-mobile-link-index">{`0${i + 1}`}</span>
+                          <span className="dh-mobile-link-text">{item.label}</span>
+                        </span>
+                        <svg
+                          className="dh-mobile-link-chevron"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M9 18l6-6-6-6" />
+                        </svg>
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

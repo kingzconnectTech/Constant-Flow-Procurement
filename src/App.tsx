@@ -1,23 +1,17 @@
-import DarkHeader from './components/DarkHeader'
-import PageSplash from './components/PageSplash'
-import GlassmorphismTrustHero from './components/ui/glassmorphism-trust-hero'
-import ServicesCategories from './components/ui/ServicesCategories'
-import ProcurementFeatureGrid from './components/ui/ProcurementFeatureGrid'
-import ProcurementProcessSteps from './components/ui/ProcurementProcessSteps'
+import { Routes } from './router'
+import HomePage from './pages/HomePage'
+import ContactPage from './pages/ContactPage'
 import './App.css'
 
 function App() {
   return (
-    <>
-      <PageSplash />
-      <div className="app-shell">
-        <DarkHeader />
-        <GlassmorphismTrustHero />
-        <ServicesCategories />
-        <ProcurementFeatureGrid />
-        <ProcurementProcessSteps />
-      </div>
-    </>
+    <Routes
+      routes={[
+        { path: '/', element: <HomePage /> },
+        { path: '/contact', element: <ContactPage /> },
+        { path: '*', element: <HomePage /> },
+      ]}
+    />
   )
 }
 

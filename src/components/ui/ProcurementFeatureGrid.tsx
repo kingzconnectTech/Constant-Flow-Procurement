@@ -58,7 +58,7 @@ const FEATURES = [
 
 export default function ProcurementFeatureGrid() {
   return (
-    <section className="relative w-full bg-brand-page overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28">
+    <section className="relative w-full bg-brand-page overflow-hidden pt-[20px] pb-[20px]">
       <div className="absolute inset-0 pointer-events-none opacity-60">
         <div className="absolute -top-24 -left-40 h-[340px] w-[340px] rounded-full bg-[#080A7E]/10 blur-3xl" />
         <div className="absolute -bottom-32 -right-40 h-[420px] w-[420px] rounded-full bg-[#D78034]/12 blur-3xl" />

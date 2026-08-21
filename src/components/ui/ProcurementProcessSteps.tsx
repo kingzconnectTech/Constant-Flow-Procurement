@@ -42,7 +42,7 @@ const STEPS: readonly StepT[] = [
     icon: Gavel,
     accent: "#2E7D4F",
     description:
-      "For eligible requirements, verified suppliers compete through our secure reverse auction platform, driving competitive pricing while maintaining strict quality standards.",
+      "Qualified suppliers submit competitive proposals based on your requirements. Our team evaluates pricing, lead times, and technical fit — ensuring you get the best value without compromising on quality or compliance.",
   },
   {
     index: "04",
@@ -82,14 +82,14 @@ const ENTER_EXIT_PX_OFFSET = 720;
 
 export default function ProcurementProcessSteps() {
   return (
-    <section className="relative w-full bg-white overflow-hidden py-16 sm:py-20 md:py-24 lg:py-0">
+    <section className="relative w-full bg-white overflow-hidden pt-[20px] pb-0">
       <div className="absolute inset-0 pointer-events-none opacity-60">
         <div className="absolute -top-32 -right-40 h-[420px] w-[420px] rounded-full bg-[#080A7E]/8 blur-3xl" />
-        <div className="absolute -bottom-24 -left-40 h-[340px] w-[340px] rounded-full bg-[#D78034]/10 blur-3xl" />
+        <div className="absolute -bottom-20 -left-40 h-[300px] w-[300px] rounded-full bg-[#D78034]/10 blur-3xl" />
       </div>
 
       <div className="relative z-10 w-full px-4 sm:px-6 md:px-10 xl:px-14 2xl:px-20 space-y-12 sm:space-y-14 lg:space-y-0">
-        <div className="py-16 sm:py-20 md:py-24 lg:pt-24 lg:pb-10">
+        <div className="pt-[12px] pb-0">
           <AnimatedContainer className="mx-auto max-w-3xl text-center space-y-5">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#080A7E]/14 bg-[#080A7E]/6 px-3 py-1.5">
               <CircleDot className="w-3.5 h-3.5 text-[#080A7E] fill-[#080A7E]" />
@@ -245,6 +245,7 @@ function ScrollPinnedHorizontalTimeline({ steps }: { steps: readonly StepT[] }) 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const viewportRef = useRef<HTMLDivElement | null>(null);
+  const firstCardAnchorRef = useRef<HTMLDivElement | null>(null);
 
   const [activeStep, setActiveStep] = useState(0);
   const [pinned, setPinned] = useState(false);
@@ -263,12 +264,18 @@ function ScrollPinnedHorizontalTimeline({ steps }: { steps: readonly StepT[] }) 
   const pendingTimeoutRef = useRef<number | null>(null);
   const setPinTimeoutRef = useRef<number | null>(null);
   const prevLayoutRef = useRef<LayoutState | null>(null);
+  const layoutRef = useRef<LayoutState>(layout);
+  const firstCardCenteredRef = useRef(false);
 
   const reduceMotion = Boolean(useReducedMotion());
   const reduceMotionRef = useRef(reduceMotion);
   useEffect(() => {
     reduceMotionRef.current = reduceMotion;
   }, [reduceMotion]);
+
+  useEffect(() => {
+    layoutRef.current = layout;
+  }, [layout]);
 
   const goToStep = useCallback(
     (nextIdx: number) => {
@@ -310,6 +317,7 @@ function ScrollPinnedHorizontalTimeline({ steps }: { steps: readonly StepT[] }) 
 
   const advance = useCallback(
     (dir: 1 | -1) => {
+      if (!firstCardCenteredRef.current) return false;
       const current = activeStepRef.current;
       if (isAnimatingRef.current) return false;
       if (dir === 1 && current >= steps.length - 1) return false;
@@ -321,6 +329,7 @@ function ScrollPinnedHorizontalTimeline({ steps }: { steps: readonly StepT[] }) 
   );
 
   const releasePinIfAtBoundary = useCallback((yDelta: number): boolean => {
+    if (!firstCardCenteredRef.current && yDelta < 0) return true;
     const atLast = activeStepRef.current === steps.length - 1;
     const atFirst = activeStepRef.current === 0;
     if (yDelta > 0 && atLast) return true;
@@ -336,19 +345,65 @@ function ScrollPinnedHorizontalTimeline({ steps }: { steps: readonly StepT[] }) 
         const entry = entries[0];
         if (!entry) return;
         const vRatio = entry.intersectionRatio;
-        const isInView = entry.isIntersecting && vRatio >= 0.35;
+        const isInView = entry.isIntersecting && vRatio >= 0.05;
         if (isInView && !isPinnedRef.current) {
           isPinnedRef.current = true;
           setPinned(true);
         }
       },
       {
-        threshold: [0, 0.1, 0.25, 0.35, 0.5, 0.75, 0.9, 1],
+        threshold: [0, 0.05, 0.1, 0.25, 0.35, 0.5, 0.75, 0.9, 1],
         root: null,
       }
     );
     io.observe(el);
     return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const anchor = firstCardAnchorRef.current;
+    if (!anchor) return;
+
+    let isFirst = true;
+    const updateVisible = (rect: DOMRect) => {
+      const vh = window.innerHeight || document.documentElement.clientHeight || 1;
+      const layoutW = layoutRef.current.cardWidth || rect.width;
+      const cardRect = {
+        top: rect.top,
+        bottom: rect.bottom,
+        left: rect.left,
+        right: rect.left + layoutW,
+      };
+      const tolerance = 4;
+      // Card is considered "ready" as soon as any part of it is on screen
+      const partiallyVisible =
+        cardRect.top <= vh + tolerance &&
+        cardRect.bottom >= -tolerance;
+      if (isFirst) {
+        isFirst = false;
+        firstCardCenteredRef.current = partiallyVisible;
+        return;
+      }
+      firstCardCenteredRef.current = partiallyVisible;
+    };
+
+    const onScroll = () => {
+      const r = anchor.getBoundingClientRect();
+      updateVisible(r);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    let ro: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(() => onScroll());
+      ro.observe(anchor);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (ro) ro.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -370,6 +425,25 @@ function ScrollPinnedHorizontalTimeline({ steps }: { steps: readonly StepT[] }) 
         prevLayoutRef.current = prev;
         return newLayout;
       });
+      const anchor = firstCardAnchorRef.current;
+      if (anchor) {
+        const vh = window.innerHeight || document.documentElement.clientHeight || 1;
+        const vw = window.innerWidth || document.documentElement.clientWidth || 1;
+        const rect = anchor.getBoundingClientRect();
+        const layoutW = newLayout.cardWidth || rect.width;
+        const cardRect = {
+          top: rect.top,
+          bottom: rect.bottom,
+          left: rect.left,
+          right: rect.left + layoutW,
+        };
+        const tolerance = 4;
+        firstCardCenteredRef.current =
+          cardRect.top >= -tolerance &&
+          cardRect.bottom <= vh + tolerance &&
+          cardRect.left >= -tolerance &&
+          cardRect.right <= vw + tolerance;
+      }
     };
     measure();
     window.addEventListener("resize", measure);
@@ -510,7 +584,7 @@ function ScrollPinnedHorizontalTimeline({ steps }: { steps: readonly StepT[] }) 
             "w-full transition-[opacity] duration-300",
             pinned ? "lg:sticky lg:top-0" : ""
           )}
-          style={{ height: "100vh", maxHeight: "980px", minHeight: "760px" }}
+          style={{ height: "68vh", maxHeight: "620px", minHeight: "480px" }}
         >
           <div className="relative w-full h-full">
             <div className="absolute inset-0 flex flex-col items-start justify-start pt-0 pb-0 px-0">
@@ -531,6 +605,7 @@ function ScrollPinnedHorizontalTimeline({ steps }: { steps: readonly StepT[] }) 
                   style={{ padding: `0 ${INNER_PAD}px` }}
                 >
                   <div className="relative w-full h-full">
+                    <div ref={firstCardAnchorRef} className="pointer-events-none absolute h-full w-[1px] opacity-0 left-0 top-0" />
                     {steps.map((step, i) => {
                       const rs = cardRenderStates[i];
                       const isJustEntered = justEnteredIndex === i;
