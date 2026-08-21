@@ -39,7 +39,7 @@ function DarkHeader() {
     }
   }, [menuOpen])
 
-  const { path, navigate: _navigate } = useRouter()
+  const { path } = useRouter()
 
   return (
     <>

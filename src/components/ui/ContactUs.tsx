@@ -6,9 +6,7 @@ import {
   CircleDot,
   Mail,
   Phone,
-  MapPin,
   Briefcase,
-  ArrowRight,
   CheckCircle2,
   Send,
   Building2,
@@ -165,7 +163,7 @@ export default function ContactUs() {
 
           {/* ── Contact info cards ── */}
           <AnimatedContainer delay={0} className="mb-14 sm:mb-16">
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
               {CONTACT_ITEMS.map((item, i) => {
                 const Icon = item.icon;
                 return (
@@ -182,7 +180,7 @@ export default function ContactUs() {
                     }}
                     className="group relative flex flex-col gap-3.5 rounded-2xl border border-[#0A0C1A]/8 bg-white p-6 shadow-[0_8px_28px_rgba(10,12,26,0.07)] transition-all duration-300 hover:-translate-y-1 hover:border-[#D78034]/30 hover:shadow-[0_18px_42px_rgba(215,128,52,0.13)]"
                   >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#D78034]/16 via-[#080A7E]/8 to-transparent ring-1 ring-[#0A0C1A]/6 transition-all duration-300 group-hover:from-[#D78034]/24">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#D78034]/16 via-[#080A7E]/8 to-transparent ring-1 ring-[#0A0C1A]/6 transition-all duration-300 group-hover:from-[#D78034]/24 group-hover:scale-105">
                       <Icon
                         className="h-5 w-5 text-[#D78034]"
                         strokeWidth={1.9}
@@ -206,7 +204,7 @@ export default function ContactUs() {
           </AnimatedContainer>
 
           {/* ── Two-column: form + side panel ── */}
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] gap-10 lg:gap-14 xl:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] gap-10 lg:gap-14 xl:gap-16 items-start">
 
             {/* Contact form */}
             <AnimatedContainer delay={0.1}>
@@ -331,16 +329,25 @@ export default function ContactUs() {
                       />
                     </div>
 
-                    {/* Submit */}
-                    <button
-                      type="submit"
-                      id="contact-submit-btn"
-                      className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-full bg-[#D78034] px-8 py-4 text-[14.5px] font-bold text-white shadow-[0_16px_38px_rgba(215,128,52,0.38),inset_0_1px_0_rgba(255,255,255,0.22)] transition-all duration-300 hover:bg-[#C97328] hover:shadow-[0_20px_48px_rgba(215,128,52,0.44)] active:scale-[0.98]"
-                    >
-                      <Send className="w-4 h-4 transition-transform duration-300 group-hover:-rotate-6" />
-                      Send Message
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </button>
+                    {/* Submit Button */}
+                    <div className="pt-2">
+                      <button
+                        type="submit"
+                        id="contact-submit-btn"
+                        className="group relative inline-flex w-full sm:w-auto items-center justify-between sm:justify-center gap-4 rounded-2xl bg-gradient-to-r from-[#D78034] via-[#df8b42] to-[#c77226] px-7 py-4 text-[15px] font-bold text-white shadow-[0_14px_34px_rgba(215,128,52,0.32),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all duration-300 hover:shadow-[0_20px_46px_rgba(215,128,52,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] overflow-hidden"
+                      >
+                        {/* Subtle background glow effect */}
+                        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full pointer-events-none" />
+
+                        <div className="flex items-center gap-2.5">
+                          <span className="tracking-wide">Send Message</span>
+                        </div>
+
+                        <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/18 ring-1 ring-white/30 backdrop-blur-sm transition-all duration-300 group-hover:bg-white group-hover:text-[#D78034] group-hover:scale-105">
+                          <Send className="w-3.5 h-3.5 text-white group-hover:text-[#D78034] transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </span>
+                      </button>
+                    </div>
 
                     <p className="text-[12.5px] text-[#5A5E7A] leading-[1.6]">
                       We typically respond within one business day. For urgent
@@ -422,36 +429,6 @@ export default function ContactUs() {
                     </ul>
                   </div>
                 </div>
-              </div>
-
-              {/* Global offices card */}
-              <div className="rounded-2xl border border-[#0A0C1A]/8 bg-white p-6 shadow-[0_8px_28px_rgba(10,12,26,0.06)] space-y-4">
-                <div className="flex items-center gap-2">
-                  <span className="h-px w-6 bg-[#D78034] rounded-full" />
-                  <span className="text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#0A0C1A]/50">
-                    Global Offices
-                  </span>
-                </div>
-                {[
-                  { city: "Houston, TX", role: "Americas HQ", flag: "🇺🇸" },
-                  { city: "Singapore", role: "Asia Pacific HQ", flag: "🇸🇬" },
-                  { city: "Seoul", role: "Korea Office", flag: "🇰🇷" },
-                ].map((office) => (
-                  <div
-                    key={office.city}
-                    className="flex items-center gap-3.5 py-2.5 border-b border-[#0A0C1A]/6 last:border-0"
-                  >
-                    <span className="text-2xl leading-none">{office.flag}</span>
-                    <div>
-                      <div className="text-[14.5px] font-semibold text-[#0A0C1A]">
-                        {office.city}
-                      </div>
-                      <div className="text-[12.5px] text-[#5A5E7A]">
-                        {office.role}
-                      </div>
-                    </div>
-                  </div>
-                ))}
               </div>
             </AnimatedContainer>
           </div>
