@@ -82,7 +82,10 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#08090B] pt-[20px] pb-[48px] sm:pt-10 sm:pb-16 md:pt-14 md:pb-20 lg:pt-16 lg:pb-24">
+    <section
+      id="newsletter"
+      className="relative w-full overflow-hidden bg-[#08090B] pt-[20px] pb-[48px] sm:pt-10 sm:pb-16 md:pt-14 md:pb-20 lg:pt-16 lg:pb-24"
+    >
       <div className="absolute inset-0 pointer-events-none opacity-100">
         <div className="absolute -top-24 -left-32 h-[420px] w-[420px] rounded-full bg-[#D78034]/18 blur-3xl" />
         <div className="absolute -bottom-28 right-0 h-[460px] w-[460px] rounded-full bg-[#080A7E]/22 blur-3xl" />

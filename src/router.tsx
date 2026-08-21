@@ -20,9 +20,20 @@ export function RouterProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   const navigate = useCallback((to: string) => {
+    const [targetPath, hash] = to.split('#')
+    const finalPath = targetPath || '/'
     window.history.pushState({}, '', to)
-    setPath(to)
-    window.scrollTo({ top: 0, behavior: 'instant' })
+    setPath(finalPath)
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash)
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 50)
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+    }
   }, [])
 
   return (

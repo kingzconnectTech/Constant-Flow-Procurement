@@ -1,5 +1,6 @@
 import { ArrowRight, CircleDot } from "lucide-react";
 import { GradientCard } from "@/components/ui/gradient-card";
+import { RouterLink } from "@/router";
 
 import condenserAsset from "@/assets/condenser.png";
 import excavatorAsset from "@/assets/excavator.png";
@@ -105,13 +106,13 @@ export default function ServicesCategories() {
               </p>
             </div>
 
-            <a
-              href="#request-rfq"
+            <RouterLink
+              to="/categories"
               className="group mt-10 lg:mt-14 inline-flex w-fit items-center gap-2.5 rounded-full border border-[#0A0C1A]/12 bg-white px-5 py-3 text-[13px] sm:text-sm font-bold uppercase tracking-[0.16em] text-[#0A0C1A] shadow-[0_8px_22px_rgba(10,12,26,0.06)] transition-all hover:-translate-y-0.5 hover:border-[#D78034]/40 hover:shadow-[0_12px_30px_rgba(215,128,52,0.14)]"
             >
               VIEW ALL CATEGORIES
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-[#D78034]" />
-            </a>
+            </RouterLink>
           </div>
 
           <div className="lg:col-span-9 xl:col-span-9 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6 lg:gap-5 xl:gap-6 2xl:gap-7">

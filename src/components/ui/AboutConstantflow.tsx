@@ -95,7 +95,7 @@ function CapabilityChip({
 
 export default function AboutConstantflow() {
   return (
-    <section className="relative w-full bg-white overflow-hidden py-[28px] sm:py-14 md:py-18 lg:py-20">
+    <section id="about" className="relative w-full bg-white overflow-hidden py-[28px] sm:py-14 md:py-18 lg:py-20">
       <div className="absolute inset-0 pointer-events-none opacity-70">
         <div className="absolute -top-28 right-0 h-[380px] w-[380px] rounded-full bg-[#D78034]/10 blur-3xl" />
         <div className="absolute -bottom-32 -left-40 h-[420px] w-[420px] rounded-full bg-[#080A7E]/10 blur-3xl" />

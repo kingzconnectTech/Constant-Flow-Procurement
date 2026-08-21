@@ -82,7 +82,7 @@ const ENTER_EXIT_PX_OFFSET = 720;
 
 export default function ProcurementProcessSteps() {
   return (
-    <section className="relative w-full bg-white overflow-hidden pt-[20px] pb-0">
+    <section id="how-it-works" className="relative w-full bg-white overflow-hidden pt-[20px] pb-0">
       <div className="absolute inset-0 pointer-events-none opacity-60">
         <div className="absolute -top-32 -right-40 h-[420px] w-[420px] rounded-full bg-[#080A7E]/8 blur-3xl" />
         <div className="absolute -bottom-20 -left-40 h-[300px] w-[300px] rounded-full bg-[#D78034]/10 blur-3xl" />

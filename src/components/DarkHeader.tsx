@@ -9,7 +9,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Home', href: '#home' },
   { label: 'Services', href: '#services' },
   { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Industries', href: '#industries' },
+  { label: 'Categories', href: '/categories', isRoute: true },
   { label: 'About Us', href: '#about' },
   { label: 'Contact', href: '/contact', isRoute: true },
 ]
@@ -39,7 +39,22 @@ function DarkHeader() {
     }
   }, [menuOpen])
 
-  const { path } = useRouter()
+  const { path, navigate } = useRouter()
+
+  const handleSectionClick = (e: React.MouseEvent, href: string) => {
+    if (path === '/') {
+      const hash = href.replace('#', '')
+      const el = document.getElementById(hash)
+      if (el) {
+        e.preventDefault()
+        el.scrollIntoView({ behavior: 'smooth' })
+      }
+    } else {
+      e.preventDefault()
+      navigate(`/${href}`)
+    }
+    setMenuOpen(false)
+  }
 
   return (
     <>
@@ -48,7 +63,17 @@ function DarkHeader() {
         role="banner"
       >
         <div className="dh-inner">
-          <a href={path === '/' ? '#home' : '/'} className="dh-logo" aria-label="Constantflow Procurement home">
+          <a
+            href={path === '/' ? '#home' : '/'}
+            onClick={(e) => {
+              if (path !== '/') {
+                e.preventDefault()
+                navigate('/')
+              }
+            }}
+            className="dh-logo"
+            aria-label="Constantflow Procurement home"
+          >
             <span className="dh-logo-mark" aria-hidden="true">
               <img
                 className="dh-logo-image"
@@ -85,7 +110,11 @@ function DarkHeader() {
                       {item.label}
                     </RouterLink>
                   ) : (
-                    <a href={item.href} className="dh-nav-link">
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleSectionClick(e, item.href)}
+                      className="dh-nav-link"
+                    >
                       {item.label}
                     </a>
                   )}
@@ -95,9 +124,9 @@ function DarkHeader() {
           </nav>
 
           <div className="dh-cta-wrap">
-            <a href="#request-rfq" className="dh-cta-btn">
+            <RouterLink to="/contact" className="dh-cta-btn">
               Request an RFQ
-            </a>
+            </RouterLink>
           </div>
         </div>
       </header>
@@ -120,9 +149,15 @@ function DarkHeader() {
         >
           <div className="dh-mobile-head">
             <a
-              href="#home"
+              href={path === '/' ? '#home' : '/'}
               className="dh-mobile-head-logo"
-              onClick={() => setMenuOpen(false)}
+              onClick={(e) => {
+                setMenuOpen(false)
+                if (path !== '/') {
+                  e.preventDefault()
+                  navigate('/')
+                }
+              }}
               aria-label="Constantflow Procurement home"
             >
               <span className="dh-mobile-head-mark" aria-hidden="true">
@@ -173,7 +208,7 @@ function DarkHeader() {
                       <a
                         href={item.href}
                         className="dh-mobile-link"
-                        onClick={() => setMenuOpen(false)}
+                        onClick={(e) => handleSectionClick(e, item.href)}
                       >
                         <span className="dh-mobile-link-label">
                           <span className="dh-mobile-link-index">{`0${i + 1}`}</span>
