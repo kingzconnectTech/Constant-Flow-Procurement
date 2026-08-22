@@ -16,7 +16,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbynpLc3tI7pgYBqHl41VBpBYEwDorp3XYdPazJ6H5tCWDCONO4e5P_5r3sgLSDWJt83/exec";
+  "https://script.google.com/macros/s/AKfycbwH1JPnExDdpFJi8tWXBRpGj0Gf8kV49tfdADntgjKoCZ2YkI39lmZH2iRML1p2Dv0A/exec";
 
 type AnimatedContainerProps = {
   children: React.ReactNode;
@@ -79,7 +79,9 @@ export default function Newsletter() {
   const [email, setEmail] = useState<string>("");
   const [role, setRole] = useState<Role>("buyer");
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "duplicate" | "error"
+  >("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -98,24 +100,52 @@ export default function Newsletter() {
     setStatus("loading");
 
     try {
-      const params = new URLSearchParams();
-      params.append("email", email);
-      params.append("role", role);
-      params.append("timestamp", new Date().toISOString());
+      let isHandled = false;
 
-      const urlWithParams = `${APPS_SCRIPT_URL}?${params.toString()}`;
+      // 1. Try Vercel Serverless API Route
+      try {
+        const res = await fetch("/api/newsletter-signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email.trim().toLowerCase(), role }),
+        });
 
-      await fetch(urlWithParams, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: params.toString(),
-      });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.status === "success" || data.result === "success") {
+            setStatus("success");
+            setSubmitted(true);
+            isHandled = true;
+          } else if (data.status === "duplicate") {
+            setStatus("duplicate");
+            isHandled = true;
+          } else {
+            setStatus("error");
+            setErrorMsg(
+              data.message || "Something went wrong. Please try again."
+            );
+            isHandled = true;
+          }
+        }
+      } catch {
+        // Fallback below if serverless API route is unavailable
+      }
 
-      setStatus("success");
-      setSubmitted(true);
+      // 2. Direct Webhook Fallback (if running locally without Vercel serverless)
+      if (!isHandled) {
+        await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain" },
+          body: JSON.stringify({
+            email: email.trim().toLowerCase(),
+            role,
+          }),
+        });
+
+        setStatus("success");
+        setSubmitted(true);
+      }
     } catch {
       setStatus("error");
       setErrorMsg("Something went wrong. Please try again.");
@@ -298,6 +328,13 @@ export default function Newsletter() {
                         })}
                       </div>
                     </div>
+
+                    {status === "duplicate" && (
+                      <div className="flex items-center gap-2 rounded-2xl bg-amber-500/15 border border-amber-500/35 px-4 py-3 text-[13px] text-amber-200">
+                        <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+                        <span>This email is already registered on our waitlist.</span>
+                      </div>
+                    )}
 
                     {status === "error" && errorMsg && (
                       <div className="flex items-center gap-2 rounded-2xl bg-red-500/15 border border-red-500/30 px-4 py-3 text-[13px] text-red-200">
