@@ -98,11 +98,20 @@ export default function Newsletter() {
     setStatus("loading");
 
     try {
-      await fetch(APPS_SCRIPT_URL, {
+      const params = new URLSearchParams();
+      params.append("email", email);
+      params.append("role", role);
+      params.append("timestamp", new Date().toISOString());
+
+      const urlWithParams = `${APPS_SCRIPT_URL}?${params.toString()}`;
+
+      await fetch(urlWithParams, {
         method: "POST",
         mode: "no-cors",
-        headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ email, role }),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: params.toString(),
       });
 
       setStatus("success");
