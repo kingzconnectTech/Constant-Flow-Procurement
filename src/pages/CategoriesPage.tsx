@@ -1635,16 +1635,7 @@ export default function CategoriesPage() {
                           {item.standards[0]}
                         </span>
                       </div>
-                      <div className="flex items-center justify-between border-b border-[#F0F2F7] pb-1">
-                        <span className="truncate">Status:</span>
-                        <span className="font-semibold text-[#2E7D4F] truncate max-w-[70px] sm:max-w-[120px] text-right">
-                          {item.availability === "Ex-Stock Warehouse"
-                            ? "In-Stock"
-                            : item.availability === "Rapid Dispatch (1-2 Weeks)"
-                            ? "1-2 Wks"
-                            : "Engineered"}
-                        </span>
-                      </div>
+
                     </div>
                   </div>
 

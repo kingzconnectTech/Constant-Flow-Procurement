@@ -96,7 +96,7 @@ export default function IndustrialHero() {
             </p>
 
             <div className="ih-actions">
-              <a href="#request-rfq" className="ih-btn ih-btn--primary">
+              <a href="#contact" className="ih-btn ih-btn--primary">
                 Start Your Procurement
               </a>
               <a href="#services" className="ih-btn ih-btn--ghost">

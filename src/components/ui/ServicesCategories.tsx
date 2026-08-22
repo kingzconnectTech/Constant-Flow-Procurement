@@ -108,10 +108,10 @@ export default function ServicesCategories() {
 
             <RouterLink
               to="/categories"
-              className="group mt-10 lg:mt-14 inline-flex w-fit items-center gap-2.5 rounded-full border border-[#0A0C1A]/12 bg-white px-5 py-3 text-[13px] sm:text-sm font-bold uppercase tracking-[0.16em] text-[#0A0C1A] shadow-[0_8px_22px_rgba(10,12,26,0.06)] transition-all hover:-translate-y-0.5 hover:border-[#D78034]/40 hover:shadow-[0_12px_30px_rgba(215,128,52,0.14)]"
+              className="group mt-6 sm:mt-8 lg:mt-12 inline-flex w-fit items-center gap-2 rounded-full border border-[#0A0C1A]/12 bg-white px-4 py-2.5 sm:px-5 sm:py-3 text-[11.5px] sm:text-xs md:text-[13px] font-bold uppercase tracking-[0.12em] sm:tracking-[0.16em] text-[#0A0C1A] shadow-[0_4px_16px_rgba(10,12,26,0.06)] sm:shadow-[0_8px_22px_rgba(10,12,26,0.06)] transition-all hover:-translate-y-0.5 hover:border-[#D78034]/40 hover:shadow-[0_12px_30px_rgba(215,128,52,0.14)]"
             >
-              VIEW ALL CATEGORIES
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-[#D78034]" />
+              <span>VIEW ALL CATEGORIES</span>
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1 text-[#D78034] shrink-0" />
             </RouterLink>
           </div>
 

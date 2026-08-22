@@ -164,7 +164,7 @@ export default function GlassmorphismTrustHero() {
 
             <div className="animate-fade-in delay-400 flex flex-col sm:flex-row gap-3 sm:gap-4">
               <a
-                href="#newsletter"
+                href="#contact"
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#D78034] px-6 py-3 sm:px-8 sm:py-4 text-xs sm:text-sm md:text-base font-semibold text-[#0c0917] transition-all hover:scale-[1.02] hover:brightness-105 active:scale-[0.98] shadow-[0_10px_32px_rgba(215,128,52,0.34)]"
               >
                 Start Your Procurement
