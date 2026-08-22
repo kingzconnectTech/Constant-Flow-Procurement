@@ -33,13 +33,14 @@ interface FooterSection {
 
 const footerLinks: readonly FooterSection[] = [
   {
-    label: "Services",
+    label: "Categories",
     links: [
-      { title: "Oil & Gas Equipment", href: "#procure" },
-      { title: "Heavy Equipment", href: "#procure" },
-      { title: "Steel Pipes & Fittings", href: "#procure" },
-      { title: "Electrical Equipment", href: "#procure" },
-      { title: "Spare Parts & Tools", href: "#procure" },
+      { title: "Valves & Actuation", href: "/categories" },
+      { title: "Pumps & Compressors", href: "/categories" },
+      { title: "Piping, Fittings & Tubing", href: "/categories" },
+      { title: "Instrumentation & Control", href: "/categories" },
+      { title: "Heavy Machinery & Earth-Moving", href: "/categories" },
+      { title: "View All 10 Categories →", href: "/categories" },
     ],
   },
   {

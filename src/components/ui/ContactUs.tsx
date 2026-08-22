@@ -69,16 +69,20 @@ const CONTACT_ITEMS = [
   },
 ] as const;
 
-/* ─── Enquiry subjects ─── */
 const SUBJECTS = [
   "General Enquiry",
   "Request an RFQ",
   "Supplier Onboarding",
-  "Oil & Gas Equipment",
-  "Heavy Equipment",
-  "Steel Pipes & Fittings",
-  "Electrical Equipment",
-  "Spare Parts & Tools",
+  "Valves & Actuation",
+  "Pumps, Compressors & Blowers",
+  "Piping, Fittings & Tubing",
+  "Instrumentation & Control",
+  "Heat Transfer & Process Equipment",
+  "Electrical & Power Equipment",
+  "Material Handling Equipment",
+  "Heavy Machinery & Earth-Moving Equipment",
+  "Specialized Oil & Gas / Process Packages",
+  "Safety, Structural & Consumables",
   "Other",
 ] as const;
 
