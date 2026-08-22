@@ -18,6 +18,7 @@ import {
 import DarkHeader from "../components/DarkHeader";
 import Footer from "../components/ui/Footer";
 import { RouterLink } from "../router";
+import { useSEO } from "../hooks/useSEO";
 
 import ballValveImg from "@/assets/Equipments/Ball Valves.jpg";
 import butterflyValveImg from "@/assets/Equipments/Butterfly Valves.jpg";
@@ -1361,6 +1362,15 @@ const AVAILABILITY_OPTIONS = [
 
 /* ─── Main Categories Page Component ─── */
 export default function CategoriesPage() {
+  useSEO({
+    title: 'Industrial Equipment Categories | Valves, Pumps, Piping, Instrumentation & More — Constantflow Procurement',
+    description:
+      'Browse 11 categories of industrial equipment: valves & actuation, pumps & compressors, piping & fittings, instrumentation, heat exchangers, electrical equipment, heavy machinery, oil & gas packages, storage, and more. Request a quote from Constantflow Procurement.',
+    canonical: 'https://constantflow-procurement.com/categories',
+    ogTitle: 'Industrial Equipment Categories | Constantflow Procurement Nigeria',
+    ogDescription:
+      'Shop 11 categories of industrial equipment: ball valves, centrifugal pumps, heat exchangers, flow meters, excavators, wellhead assemblies, and more. Constantflow Procurement — Nigeria & West Africa.',
+  })
   const [selectedCategory, setSelectedCategory] = useState<string>("All Categories");
   const [selectedCapacity, setSelectedCapacity] = useState<string>("All Capacities");
   const [selectedAvailability, setSelectedAvailability] = useState<string>("All Availability");
