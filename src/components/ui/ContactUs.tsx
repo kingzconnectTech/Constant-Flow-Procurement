@@ -9,8 +9,12 @@ import {
   CheckCircle2,
   Send,
   Building2,
+  Loader2,
+  AlertCircle,
 } from "lucide-react";
 import bannerImage from "@/assets/About_bg.png";
+
+const WEB3FORMS_KEY = "416814c8-d0c6-4a5b-a56b-98411cbbb560";
 
 /* ─── Animation wrapper ─── */
 type AnimatedContainerProps = {
@@ -100,10 +104,44 @@ export default function ContactUs() {
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!name.trim() || !email.trim() || !message.trim()) return;
-    setSubmitted(true);
+
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      const formData = new FormData();
+      formData.append("access_key", WEB3FORMS_KEY);
+      formData.append("name", name.trim());
+      formData.append("email", email.trim());
+      formData.append("company", company.trim() || "Not specified");
+      formData.append("subject", `[Constantflow Procurement] ${subject} from ${name.trim()}`);
+      formData.append("message", message.trim());
+      formData.append("from_name", "Constantflow Procurement Website");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("success");
+        setSubmitted(true);
+      } else {
+        setStatus("error");
+        setErrorMsg(data.message || "Failed to send message. Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg("Network error. Please check your connection or email us directly at Mgt@constantflow-procurement.com.");
+    }
   };
 
   return (
@@ -359,22 +397,37 @@ export default function ContactUs() {
                       />
                     </div>
 
+                    {/* Error message alert */}
+                    {status === "error" && errorMsg && (
+                      <div className="flex items-center gap-2.5 rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-[13.5px] text-red-700">
+                        <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
+                        <span>{errorMsg}</span>
+                      </div>
+                    )}
+
                     {/* Submit Button */}
                     <div className="pt-2">
                       <button
                         type="submit"
                         id="contact-submit-btn"
-                        className="group relative inline-flex w-full sm:w-auto items-center justify-between sm:justify-center gap-4 rounded-2xl bg-gradient-to-r from-[#D78034] via-[#df8b42] to-[#c77226] px-7 py-4 text-[15px] font-bold text-white shadow-[0_14px_34px_rgba(215,128,52,0.32),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all duration-300 hover:shadow-[0_20px_46px_rgba(215,128,52,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] overflow-hidden"
+                        disabled={status === "loading"}
+                        className="group relative inline-flex w-full sm:w-auto items-center justify-between sm:justify-center gap-4 rounded-2xl bg-gradient-to-r from-[#D78034] via-[#df8b42] to-[#c77226] px-7 py-4 text-[15px] font-bold text-white shadow-[0_14px_34px_rgba(215,128,52,0.32),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all duration-300 hover:shadow-[0_20px_46px_rgba(215,128,52,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 cursor-pointer overflow-hidden"
                       >
                         {/* Subtle background glow effect */}
                         <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full pointer-events-none" />
 
                         <div className="flex items-center gap-2.5">
-                          <span className="tracking-wide">Send Message</span>
+                          <span className="tracking-wide">
+                            {status === "loading" ? "Sending Message..." : "Send Message"}
+                          </span>
                         </div>
 
                         <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/18 ring-1 ring-white/30 backdrop-blur-sm transition-all duration-300 group-hover:bg-white group-hover:text-[#D78034] group-hover:scale-105">
-                          <Send className="w-3.5 h-3.5 text-white group-hover:text-[#D78034] transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          {status === "loading" ? (
+                            <Loader2 className="w-4 h-4 text-white animate-spin" />
+                          ) : (
+                            <Send className="w-3.5 h-3.5 text-white group-hover:text-[#D78034] transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          )}
                         </span>
                       </button>
                     </div>
