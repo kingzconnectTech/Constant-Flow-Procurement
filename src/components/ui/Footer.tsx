@@ -6,7 +6,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   Factory,
   Boxes,
-  Briefcase,
   CircleDot,
   Globe2,
   Mail,
