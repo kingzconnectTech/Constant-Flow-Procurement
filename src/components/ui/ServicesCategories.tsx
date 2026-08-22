@@ -2,10 +2,10 @@ import { ArrowRight, CircleDot } from "lucide-react";
 import { GradientCard } from "@/components/ui/gradient-card";
 import { RouterLink } from "@/router";
 
-import ballValveImg from "@/assets/Equipments/Ball Valves.jpg";
-import excavatorImg from "@/assets/Equipments/excavator.png";
-import transformerImg from "@/assets/Equipments/transformer.png";
-import alloyPipeImg from "@/assets/Equipments/Alloy Pipes.jpg";
+import condenserAsset from "@/assets/condenser.png";
+import excavatorAsset from "@/assets/excavator.png";
+import transformerAsset from "@/assets/transformer.png";
+import pipeAsset from "@/assets/pipe.png";
 
 type Category = {
   title: string;
@@ -22,7 +22,7 @@ const CATEGORIES: Category[] = [
     title: "Oil & Gas Equipment",
     badgeColor: "#D78034",
     gradient: "navy",
-    imageUrl: ballValveImg,
+    imageUrl: condenserAsset,
     ctaText: "EXPLORE OIL & GAS",
     ctaHref: "/categories",
     bullets: [
@@ -35,7 +35,7 @@ const CATEGORIES: Category[] = [
     title: "Heavy Equipment",
     badgeColor: "#080A7E",
     gradient: "gold",
-    imageUrl: excavatorImg,
+    imageUrl: excavatorAsset,
     ctaText: "EXPLORE HEAVY EQUIPMENT",
     ctaHref: "/categories",
     bullets: [
@@ -48,7 +48,7 @@ const CATEGORIES: Category[] = [
     title: "Industrial Components",
     badgeColor: "#FFD89B",
     gradient: "navy-alt",
-    imageUrl: alloyPipeImg,
+    imageUrl: pipeAsset,
     ctaText: "EXPLORE INDUSTRIAL COMPONENTS",
     ctaHref: "/categories",
     bullets: [
@@ -61,7 +61,7 @@ const CATEGORIES: Category[] = [
     title: "Power Equipment",
     badgeColor: "#0A0C3A",
     gradient: "gold-alt",
-    imageUrl: transformerImg,
+    imageUrl: transformerAsset,
     ctaText: "EXPLORE POWER EQUIPMENT",
     ctaHref: "/categories",
     bullets: [
