@@ -18,7 +18,7 @@ export default function ContactPage() {
     <div className="app-shell">
       <DarkHeader />
       <main>
-        <ContactUs />
+        <ContactUs showBanner={true} />
       </main>
       <Footer />
     </div>
