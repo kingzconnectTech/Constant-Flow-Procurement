@@ -2,10 +2,10 @@ import { ArrowRight, CircleDot } from "lucide-react";
 import { GradientCard } from "@/components/ui/gradient-card";
 import { RouterLink } from "@/router";
 
-import condenserAsset from "@/assets/condenser.png";
-import excavatorAsset from "@/assets/excavator.png";
-import transformerAsset from "@/assets/transformer.png";
-import pipeAsset from "@/assets/pipe.png";
+import ballValveImg from "@/assets/Equipments/Ball Valves.jpg";
+import excavatorImg from "@/assets/Equipments/excavator.png";
+import transformerImg from "@/assets/Equipments/transformer.png";
+import alloyPipeImg from "@/assets/Equipments/Alloy Pipes.jpg";
 
 type Category = {
   title: string;
@@ -22,9 +22,9 @@ const CATEGORIES: Category[] = [
     title: "Oil & Gas Equipment",
     badgeColor: "#D78034",
     gradient: "navy",
-    imageUrl: condenserAsset,
+    imageUrl: ballValveImg,
     ctaText: "EXPLORE OIL & GAS",
-    ctaHref: "#request-rfq",
+    ctaHref: "/categories",
     bullets: [
       "Pumps & Compressors",
       "Valves & Actuators",
@@ -35,9 +35,9 @@ const CATEGORIES: Category[] = [
     title: "Heavy Equipment",
     badgeColor: "#080A7E",
     gradient: "gold",
-    imageUrl: excavatorAsset,
+    imageUrl: excavatorImg,
     ctaText: "EXPLORE HEAVY EQUIPMENT",
-    ctaHref: "#request-rfq",
+    ctaHref: "/categories",
     bullets: [
       "Construction Machinery",
       "Cranes & Hoisting",
@@ -48,9 +48,9 @@ const CATEGORIES: Category[] = [
     title: "Industrial Components",
     badgeColor: "#FFD89B",
     gradient: "navy-alt",
-    imageUrl: pipeAsset,
+    imageUrl: alloyPipeImg,
     ctaText: "EXPLORE INDUSTRIAL COMPONENTS",
-    ctaHref: "#request-rfq",
+    ctaHref: "/categories",
     bullets: [
       "Mechanical Components",
       "Electrical Equipment",
@@ -61,9 +61,9 @@ const CATEGORIES: Category[] = [
     title: "Power Equipment",
     badgeColor: "#0A0C3A",
     gradient: "gold-alt",
-    imageUrl: transformerAsset,
+    imageUrl: transformerImg,
     ctaText: "EXPLORE POWER EQUIPMENT",
-    ctaHref: "#request-rfq",
+    ctaHref: "/categories",
     bullets: [
       "Transformers & Switchgear",
       "Generators & Turbines",

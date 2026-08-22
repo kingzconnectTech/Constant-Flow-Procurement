@@ -3,7 +3,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
-  ChevronRight,
   Search,
   ArrowRight,
   ShieldCheck,
@@ -20,10 +19,61 @@ import DarkHeader from "../components/DarkHeader";
 import Footer from "../components/ui/Footer";
 import { RouterLink } from "../router";
 
-import condenserAsset from "@/assets/condenser.png";
-import excavatorAsset from "@/assets/excavator.png";
-import transformerAsset from "@/assets/transformer.png";
-import pipeAsset from "@/assets/pipe.png";
+import ballValveImg from "@/assets/Equipments/Ball Valves.jpg";
+import butterflyValveImg from "@/assets/Equipments/Butterfly Valves.jpg";
+import checkValveImg from "@/assets/Equipments/Check Valves.jpg";
+import chokeValveImg from "@/assets/Equipments/Choke Valves.jpg";
+import controlValveImg from "@/assets/Equipments/Control Valves.jpg";
+import centrifugalPumpImg from "@/assets/Equipments/Centrifugal Pumps.jpg";
+import posDispPumpImg from "@/assets/Equipments/Positive Displacement Pumps.jpg";
+import reciproPumpImg from "@/assets/Equipments/Reciprocating Pumps.jpg";
+import chemInjPumpImg from "@/assets/Equipments/Chemical Injection  Dosing Pumps.jpg";
+import vacuumPumpImg from "@/assets/Equipments/Vacuum Pumps.jpg";
+import alloyPipeImg from "@/assets/Equipments/Alloy Pipes.jpg";
+import drillPipeImg from "@/assets/Equipments/Drill Pipe.jpg";
+import flangesImg from "@/assets/Equipments/Flanges (Weld Neck, Slip-on, Blind, RTJ).jpg";
+import pipeFittingsImg from "@/assets/Equipments/Pipe Fittings.jpg";
+import screwFittingsImg from "@/assets/Equipments/Screwed  Socket Weld Fittings.jpg";
+import pressureTransmittersImg from "@/assets/Equipments/Pressure Transmitters & Gauges.jpg";
+import tempTransmittersImg from "@/assets/Equipments/Temperature Transmitters, RTDs, Thermocouples.jpg";
+import flowMetersImg from "@/assets/Equipments/Flow Meters.jpg";
+import levelTransmittersImg from "@/assets/Equipments/Level Transmitters.jpg";
+import flowComputersImg from "@/assets/Equipments/Flow Computers.jpg";
+import heatExchangersImg from "@/assets/Equipments/Heat Exchangers.jpg";
+import tubeBundlesImg from "@/assets/Equipments/Tube Bundles.jpg";
+import condenserImg from "@/assets/Equipments/condenser.png";
+import coolingTowersImg from "@/assets/Equipments/Cooling Towers.jpg";
+import boilersImg from "@/assets/Equipments/Boilers  HRSG.jpg";
+import electricMotorImg from "@/assets/Equipments/Electric Motor.jpg";
+import transformerImg from "@/assets/Equipments/transformer.png";
+import generatorsImg from "@/assets/Equipments/Generators.jpg";
+import circuitBreakersImg from "@/assets/Equipments/Circuit Breakers.jpg";
+import switchgearImg from "@/assets/Equipments/Switchgear.jpg";
+import chainPulleyImg from "@/assets/Equipments/Chain Pulley Blocks.jpg";
+import electricChainHoistImg from "@/assets/Equipments/Electric Chain Hoists.jpg";
+import wireRopeHoistImg from "@/assets/Equipments/Wire Rope Hoists.jpg";
+import eotCranesImg from "@/assets/Equipments/Overhead  EOT Cranes.jpg";
+import gantryCranesImg from "@/assets/Equipments/Gantry Cranes.jpg";
+import excavatorImg from "@/assets/Equipments/excavator.png";
+import bulldozersImg from "@/assets/Equipments/Bulldozers.jpg";
+import wheelLoadersImg from "@/assets/Equipments/Wheel Loaders.jpg";
+import backhoeLoadersImg from "@/assets/Equipments/Backhoe Loaders.jpg";
+import skidSteerImg from "@/assets/Equipments/Skid Steer Loaders.jpg";
+import motorGradersImg from "@/assets/Equipments/Motor Graders.jpg";
+import wellheadImg from "@/assets/Equipments/Wellhead Assemblies.jpg";
+import pigLaunchersImg from "@/assets/Equipments/Pig Launchers.jpg";
+import meteringSkidsImg from "@/assets/Equipments/Metering Skids.jpg";
+import fuelGasSkidsImg from "@/assets/Equipments/Fuel Gas Skids.jpg";
+import safetyBarriersImg from "@/assets/Equipments/Safety Barriers.jpg";
+import flameArrestorsImg from "@/assets/Equipments/Flame Arrestors.jpg";
+import scaffoldingImg from "@/assets/Equipments/Scaffolding Systems.jpg";
+import structuralSteelImg from "@/assets/Equipments/Structural Steel Sections.jpg";
+import anchorBoltsImg from "@/assets/Equipments/Anchor Bolts.jpg";
+import storageTankImg from "@/assets/Equipments/Storage Tank.png";
+import pressureVesselImg from "@/assets/Equipments/Pressure Vessel.png";
+import chemicalStorageImg from "@/assets/Equipments/Chemical Storage.png";
+import waterStorageImg from "@/assets/Equipments/Water Storge.png";
+import gasStorageImg from "@/assets/Equipments/Gas Storage.png";
 
 /* ─── Types ─── */
 type EquipmentItem = {
@@ -42,7 +92,7 @@ type EquipmentItem = {
   leadTime: string;
 };
 
-/* ─── 10 Official Categories (Clean, No Numeric Prefixes) ─── */
+/* ─── 11 Official Categories (Clean, No Numeric Prefixes) ─── */
 const CATEGORIES_LIST = [
   "Valves & Actuation",
   "Pumps, Compressors & Blowers",
@@ -54,6 +104,7 @@ const CATEGORIES_LIST = [
   "Heavy Machinery & Earth-Moving Equipment",
   "Specialized Oil & Gas / Process Packages",
   "Safety, Structural & Consumables",
+  "Storage",
 ] as const;
 
 /* ─── Comprehensive Equipment Catalog (All 50 Items Without Omission) ─── */
@@ -67,7 +118,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Cameron / Flowserve / Kitz Spec",
     capacity: "Severe Service / High Pressure",
     availability: "Ex-Stock Warehouse",
-    images: [condenserAsset, pipeAsset],
+    images: [ballValveImg, checkValveImg],
     description: "Trunnion mounted and floating ball valves with fire-safe sealing, double block and bleed (DBB), and anti-blowout stem design.",
     overview: "Manufactured to API 6D and ASME B16.34 standards for high-pressure pipeline transmission, topsides, and refinery isolation. Available with metal-to-metal and soft seats.",
     specs: [
@@ -89,7 +140,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Vanessa / Keystone / Bray Spec",
     capacity: "Severe Service / High Pressure",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [condenserAsset, pipeAsset],
+    images: [butterflyValveImg, ballValveImg],
     description: "Concentric, double-offset, and triple-offset metal-to-metal seated butterfly valves for zero-leakage throttling and isolation.",
     overview: "Non-rubbing triple eccentric geometry eliminates seat wear during quarter-turn travel, engineered for extreme temperatures, steam lines, and cryogenic LNG systems.",
     specs: [
@@ -111,7 +162,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Crane / Goodwin / Velan Spec",
     capacity: "Standard Duty",
     availability: "Ex-Stock Warehouse",
-    images: [condenserAsset, pipeAsset],
+    images: [checkValveImg, ballValveImg],
     description: "Dual plate wafer check valves, swing check valves, non-slam nozzle check valves, and piston check valves for backflow prevention.",
     overview: "Rapid spring-assisted closure prevents hydraulic water hammer and protects rotating equipment in crude oil, steam, and water injection headers.",
     specs: [
@@ -133,7 +184,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Master Flo / Cameron / Mokveld Spec",
     capacity: "Severe Service / High Pressure",
     availability: "Factory Built / Engineered",
-    images: [condenserAsset, transformerAsset],
+    images: [chokeValveImg, controlValveImg],
     description: "Adjustable needle and external sleeve production choke valves engineered for erosive sand-laden wellhead fluids.",
     overview: "Built to API 6A with solid tungsten carbide wear trims, precise flow throttling characteristics, and options for manual micrometer or automated stepping actuators.",
     specs: [
@@ -155,7 +206,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Fisher Emerson / Masoneilan Spec",
     capacity: "Heavy Duty",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [condenserAsset, transformerAsset],
+    images: [controlValveImg, chokeValveImg],
     description: "Globe and rotary cage-guided control valves equipped with smart digital HART/Fieldbus positioners and anti-cavitation trims.",
     overview: "High-precision automated flow and pressure modulating valves featuring multi-stage pressure reduction trims to eliminate noise, cavitation, and flashing in severe process services.",
     specs: [
@@ -179,7 +230,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Sulzer / Flowserve / KSB Spec",
     capacity: "Heavy Duty",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [condenserAsset, transformerAsset],
+    images: [centrifugalPumpImg, posDispPumpImg],
     description: "API 610 overhung (OH2), between-bearing (BB2, BB3), and vertically suspended (VS4) centrifugal process pumps.",
     overview: "Centerline mounted heavy-duty casing designed for continuous operation at high temperatures and discharge heads, fitted with API 682 dual cartridge mechanical seals.",
     specs: [
@@ -201,7 +252,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "PCM / Netzsch / Roper Spec",
     capacity: "Standard Duty",
     availability: "Ex-Stock Warehouse",
-    images: [condenserAsset, transformerAsset],
+    images: [posDispPumpImg, centrifugalPumpImg],
     description: "Progressive cavity pumps, rotary gear pumps, and twin-screw pumps for highly viscous crude oils, sludges, and emulsions.",
     overview: "Constant non-pulsating flow with low shear rate and high self-priming suction lift, ideal for heavy crude oil transfer, bitumens, and multiphase fluid handling.",
     specs: [
@@ -223,7 +274,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "National Oilwell Varco / FMC Spec",
     capacity: "Severe Service / High Pressure",
     availability: "Factory Built / Engineered",
-    images: [condenserAsset, transformerAsset],
+    images: [reciproPumpImg, centrifugalPumpImg],
     description: "API 674 triplex and quintuplex heavy plunger pumps for high-pressure water injection, pipeline hydrotesting, and descaling.",
     overview: "Built with forged fluid cylinders, ceramic/tungsten plungers, and pressurized power-end lubrication for long service life under continuous extreme pressure.",
     specs: [
@@ -245,7 +296,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Milton Roy / Lewa / Prominent Spec",
     capacity: "Standard Duty",
     availability: "Ex-Stock Warehouse",
-    images: [condenserAsset, transformerAsset],
+    images: [chemInjPumpImg, posDispPumpImg],
     description: "Hydraulic diaphragm and packed plunger chemical dosing pumps for exact additive injection, odorization, and methanol service.",
     overview: "Hermetically sealed leak-proof double PTFE diaphragms with integrated rupture alert sensors and micrometer stroke adjustment per API 675 standards.",
     specs: [
@@ -267,7 +318,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Nash / Busch / Gardner Denver Spec",
     capacity: "Heavy Duty",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [condenserAsset, transformerAsset],
+    images: [vacuumPumpImg, centrifugalPumpImg],
     description: "Single and two-stage liquid ring vacuum pumps and rotary vane vacuum systems for vacuum distillation and flare gas recovery.",
     overview: "Capable of handling wet gas mixtures, condensable vapors, and carryover liquids without internal damage, operating isothermally for maximum plant safety.",
     specs: [
@@ -291,7 +342,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Vallourec / Tenaris / JFE Spec",
     capacity: "Severe Service / High Pressure",
     availability: "Ex-Stock Warehouse",
-    images: [pipeAsset, condenserAsset],
+    images: [alloyPipeImg, drillPipeImg],
     description: "Seamless (SMLS) and welded (ERW, LSAW, SSAW) line pipes in carbon, low-temp alloy, stainless, duplex, and CRA clad grades.",
     overview: "100% non-destructive tested with full material traceability, Charpy impact tested down to -46°C, and certified to EN 10204 3.1 / 3.2 third-party inspection.",
     specs: [
@@ -313,7 +364,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "NOV Grant Prideco / Vallourec Spec",
     capacity: "Severe Service / High Pressure",
     availability: "Ex-Stock Warehouse",
-    images: [pipeAsset, condenserAsset],
+    images: [drillPipeImg, alloyPipeImg],
     description: "API Spec 5DP and proprietary high-torque double-shoulder tool joint drill pipes, heavy-weight drill pipes (HWDP), and drill collars.",
     overview: "Engineered for extended-reach drilling (ERD), high-angle directional wells, and deepwater exploration with smooth hardbanding and internal plastic coating.",
     specs: [
@@ -335,7 +386,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Melesi / Galperti / ULMA Spec",
     capacity: "Severe Service / High Pressure",
     availability: "Ex-Stock Warehouse",
-    images: [pipeAsset, condenserAsset],
+    images: [flangesImg, alloyPipeImg],
     description: "High-yield forged steel Weld Neck, Slip-On, Blind, Socket Weld, Lap Joint, and RTJ ring joint flanges per ASME B16.5 & B16.47.",
     overview: "Manufactured from normalized forged billets with precision CNC machined facings, high impact properties, and strict dimensional tolerances for leak-free flanged spool connections.",
     specs: [
@@ -357,7 +408,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "TK Corporation / Mega / Benkan Spec",
     capacity: "Heavy Duty",
     availability: "Ex-Stock Warehouse",
-    images: [pipeAsset, condenserAsset],
+    images: [pipeFittingsImg, flangesImg],
     description: "Seamless and welded factory-made wrought carbon, alloy, and stainless steel butt-weld pipe fittings per ASME B16.9 and MSS-SP-75.",
     overview: "Includes 45° and 90° long/short radius elbows, straight and reducing tees, concentric and eccentric reducers, and weld caps with beveled ends for pressure piping.",
     specs: [
@@ -379,7 +430,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Both-Well / Bonney Forge Spec",
     capacity: "Severe Service / High Pressure",
     availability: "Ex-Stock Warehouse",
-    images: [pipeAsset, condenserAsset],
+    images: [screwFittingsImg, pipeFittingsImg],
     description: "Forged high-pressure 3000#, 6000#, and 9000# socket weld and NPT threaded couplings, elbows, unions, swage nipples, and weldolets.",
     overview: "Precision forged branch connections, sockolets, threadolets, and unions manufactured from solid forgings for high-integrity small-bore piping connections.",
     specs: [
@@ -403,7 +454,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Emerson Rosemount / Yokogawa / ABB Spec",
     capacity: "Standard Duty",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [transformerAsset, condenserAsset],
+    images: [pressureTransmittersImg, levelTransmittersImg],
     description: "Digital HART and Foundation Fieldbus gauge, absolute, and differential pressure transmitters with integrated digital indicators.",
     overview: "0.04% reference accuracy with ultra-low thermal drift, SIL 2/3 functional safety certification, and Hastelloy/Monel isolation diaphragms for corrosive process monitoring.",
     specs: [
@@ -425,7 +476,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Emerson Rosemount / WIKA Spec",
     capacity: "Standard Duty",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [transformerAsset, condenserAsset],
+    images: [tempTransmittersImg, pressureTransmittersImg],
     description: "Head-mounted and field-mount smart temperature transmitters paired with duplex Pt100 RTDs, Type K/J thermocouples, and drilled barstock thermowells.",
     overview: "Sensor backup and drift alert redundancy with wake frequency calculation per ASME PTC 19.3 TW for thermowell resonance safety in high-velocity steam and gas headers.",
     specs: [
@@ -447,7 +498,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Micro Motion / Krohne / Endress+Hauser Spec",
     capacity: "High Capacity",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [transformerAsset, pipeAsset],
+    images: [flowMetersImg, flowComputersImg],
     description: "Direct Coriolis mass flowmeters, multipath ultrasonic custody transfer meters, electromagnetic flowmeters, and ASME orifice plate meter runs.",
     overview: "Certified for fiscal custody transfer of crude oil, natural gas, LNG, and industrial chemical dosing with OIML R117 and API MPMS international approvals.",
     specs: [
@@ -469,7 +520,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Magnetrol / VEGA / Rosemount Spec",
     capacity: "Standard Duty",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [transformerAsset, condenserAsset],
+    images: [levelTransmittersImg, pressureTransmittersImg],
     description: "Non-contact 80GHz radar, guided wave radar (GWR), torque tube displacer transmitters, magnetic level gauges, and vibrating tuning fork switches.",
     overview: "Reliable level and interface measurement in high-pressure separators, knockout drums, and chemical tanks unaffected by changing density, foaming, or turbulence.",
     specs: [
@@ -491,7 +542,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "OMNI / Dynamic / Emerson FloBoss Spec",
     capacity: "Standard Duty",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [transformerAsset, condenserAsset],
+    images: [flowComputersImg, flowMetersImg],
     description: "Dedicated multi-stream fiscal custody-transfer flow computers for gas and liquid metering skids with audit trail logging.",
     overview: "Executes real-time calculations according to AGA 3/7/8/9/11, API MPMS, ISO 5167, and GPA 2172 standards with secure tamper-proof audit trails and prover interface.",
     specs: [
@@ -515,7 +566,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Alfa Laval / Koch Heat / Tranter Spec",
     capacity: "Heavy Duty",
     availability: "Factory Built / Engineered",
-    images: [condenserAsset, pipeAsset],
+    images: [heatExchangersImg, tubeBundlesImg],
     description: "TEMA R shell & tube, gasketed plate, and welded bloc heat exchangers designed for high thermal loads and refinery service.",
     overview: "Built to ASME Section VIII Div 1 and TEMA R with high heat transfer coefficients, removable tube bundles, and metallurgy tailored for sour crude and corrosive acids.",
     specs: [
@@ -537,7 +588,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Thermal Engineering Specialty Supply",
     capacity: "Heavy Duty",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [condenserAsset, pipeAsset],
+    images: [tubeBundlesImg, heatExchangersImg],
     description: "Custom engineered replacement U-tube and straight-tube bundles for existing heat exchangers and process condensers.",
     overview: "Supplied with precision drilled and grooved tubesheets, carbon/stainless baffles, seal-welded or hydraulic roller-expanded tube-to-tubesheet joints, and hydrostatic testing.",
     specs: [
@@ -559,7 +610,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "GEA / SPX / Graham Spec",
     capacity: "High Capacity",
     availability: "Factory Built / Engineered",
-    images: [condenserAsset, transformerAsset],
+    images: [condenserImg, tubeBundlesImg],
     description: "Main turbine surface condensers, overhead hydrocarbon vapor condensers, and vacuum steam condensation modules.",
     overview: "High-vacuum steam surface condensers engineered for combined-cycle power plants and refinery distillation overheads with integrated non-condensable gas evacuation ejectors.",
     specs: [
@@ -581,7 +632,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Marley SPX / Baltimore Aircoil Spec",
     capacity: "High Capacity",
     availability: "Factory Built / Engineered",
-    images: [condenserAsset, excavatorAsset],
+    images: [coolingTowersImg, condenserImg],
     description: "Counterflow and crossflow induced-draft industrial cooling towers with non-corrosive FRP structure and high-efficiency film fill.",
     overview: "Designed for extreme ambient heat and industrial plant heat rejection with low-drift droplet eliminators, variable speed fan drives, and epoxy/FRP corrosion protection.",
     specs: [
@@ -603,7 +654,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Babcock & Wilcox / Cleaver-Brooks Spec",
     capacity: "High Capacity",
     availability: "Factory Built / Engineered",
-    images: [condenserAsset, transformerAsset],
+    images: [boilersImg, coolingTowersImg],
     description: "Industrial package water-tube steam boilers, firetube utility boilers, and Heat Recovery Steam Generators (HRSG).",
     overview: "Complete packaged steam generation plants equipped with low-NOx dual-fuel burners, economizers, deaerators, and burner management systems (BMS) for petrochemical utilities.",
     specs: [
@@ -627,7 +678,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Siemens / ABB / WEG Spec",
     capacity: "Heavy Duty",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [transformerAsset, excavatorAsset],
+    images: [electricMotorImg, switchgearImg],
     description: "Low and medium voltage squirrel-cage induction motors in flameproof (Ex-d) and increased safety (Ex-eb) enclosures.",
     overview: "Heavy cast iron ribbed frame with Class H insulation, IP66 sealing, insulated bearings for inverter duty (VFD), and integrated PT100 temperature monitoring.",
     specs: [
@@ -649,7 +700,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Schneider / ABB / Siemens Spec",
     capacity: "High Capacity",
     availability: "Factory Built / Engineered",
-    images: [transformerAsset, condenserAsset],
+    images: [transformerImg, electricMotorImg],
     description: "Cast resin dry-type transformers, hermetically sealed oil-immersed distribution transformers, and substation power transformers.",
     overview: "Engineered for harsh offshore platforms and utility substations with low loss cores, step-lap silicon steel laminations, and on-load tap changers (OLTC).",
     specs: [
@@ -671,7 +722,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Cummins / Caterpillar / MTU Spec",
     capacity: "High Capacity",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [transformerAsset, excavatorAsset],
+    images: [generatorsImg, transformerImg],
     description: "Containerized prime and continuous industrial diesel generator sets, natural gas gen-sets, and steam turbine generators.",
     overview: "Heavy-duty sound-attenuated ISO containerized generator packages equipped with digital paralleling switchgear, automatic transfer switches (ATS), and remote telemetry.",
     specs: [
@@ -693,7 +744,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "ABB / Schneider / Siemens Spec",
     capacity: "Heavy Duty",
     availability: "Ex-Stock Warehouse",
-    images: [transformerAsset, condenserAsset],
+    images: [circuitBreakersImg, switchgearImg],
     description: "Medium-voltage vacuum circuit breakers (VCB), low-voltage air circuit breakers (ACB), and molded case circuit breakers (MCCB).",
     overview: "Withdrawable high breaking capacity circuit breakers equipped with electronic microprocessor trip units (LSI/LSIG), arc flash reduction maintenance switches, and Modbus communications.",
     specs: [
@@ -715,7 +766,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Schneider / ABB / Siemens Spec",
     capacity: "High Capacity",
     availability: "Factory Built / Engineered",
-    images: [transformerAsset, condenserAsset],
+    images: [switchgearImg, circuitBreakersImg],
     description: "Arc-resistant metal-clad MV switchgear panels and intelligent Low-Voltage Motor Control Centers (iMCC) Form 4b.",
     overview: "Engineered for maximum operator safety with internal arc classification (IAC AFLR), withdrawable functional units, integrated VFD modules, and Ethernet SCADA communications.",
     specs: [
@@ -739,7 +790,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Yale / Harrington / Vital Spec",
     capacity: "Standard Duty",
     availability: "Ex-Stock Warehouse",
-    images: [excavatorAsset, pipeAsset],
+    images: [chainPulleyImg, electricChainHoistImg],
     description: "Heavy-duty manual chain pulley blocks and lever hoists with overload protection and ATEX spark-proof bronze alloy hooks.",
     overview: "Impact-resistant steel housing, double-pawl automatic mechanical brake, Grade 80/100 alloy load chain, and copper/bronze coated hooks for Zone 1 offshore maintenance.",
     specs: [
@@ -761,7 +812,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Demag / Konecranes / Stahl Spec",
     capacity: "Heavy Duty",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [excavatorAsset, pipeAsset],
+    images: [electricChainHoistImg, wireRopeHoistImg],
     description: "Dual-speed and variable speed electric chain hoists with motorized monorail trolleys for workstation and shop-floor lifting.",
     overview: "Equipped with precision helical gearboxes, low-voltage 24V ergonomic push-button pendants, thermal motor overload protection, and upper/lower safety limit switches.",
     specs: [
@@ -783,7 +834,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Konecranes / Demag / SWF Spec",
     capacity: "High Capacity",
     availability: "Rapid Dispatch (1-2 Weeks)",
-    images: [excavatorAsset, pipeAsset],
+    images: [wireRopeHoistImg, electricChainHoistImg],
     description: "Low-headroom and standard-headroom modular electric wire rope hoists for overhead bridge cranes and monorails.",
     overview: "Compact design maximizing hook lift height with high-tensile rotation-resistant wire ropes, DC disc brakes, integrated load cell telemetry, and variable frequency drive (VFD).",
     specs: [
@@ -805,7 +856,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Konecranes / Demag / Street Spec",
     capacity: "High Capacity",
     availability: "Factory Built / Engineered",
-    images: [excavatorAsset, condenserAsset],
+    images: [eotCranesImg, gantryCranesImg],
     description: "Single and double girder Electric Overhead Traveling (EOT) cranes with auxiliary hoists and operator cab/radio control.",
     overview: "Engineered for turbine halls, heavy fabrication yards, and pipe mills with anti-sway software, box-girder structural rigidity, and full runway conductor rail electrification.",
     specs: [
@@ -827,7 +878,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Liebherr / Konecranes / ZPMC Spec",
     capacity: "High Capacity",
     availability: "Factory Built / Engineered",
-    images: [excavatorAsset, pipeAsset],
+    images: [gantryCranesImg, eotCranesImg],
     description: "Rail-Mounted Gantry (RMG) cranes, Rubber-Tyred Gantry (RTG) cranes, and semi-gantry workshop outdoor cranes.",
     overview: "Heavy outdoor stockyard and shipyard gantry cranes featuring storm anchoring wind clamps, motorized cable reels, and precision spreader/hook attachments.",
     specs: [
@@ -851,7 +902,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Caterpillar / Komatsu / Hitachi OEM",
     capacity: "Heavy Duty",
     availability: "Ex-Stock Warehouse",
-    images: [excavatorAsset, condenserAsset],
+    images: [excavatorImg, wheelLoadersImg],
     description: "Medium and heavy hydraulic crawler excavators and wheeled excavators with severe-duty rock buckets and auxiliary piping.",
     overview: "Equipped with Tier 4 Final / Stage V clean diesel engines, electro-hydraulic load-sensing hydraulics, ROPS/FOPS reinforced soundproof cabins, and factory GPS telematics.",
     specs: [
@@ -873,7 +924,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Caterpillar / Komatsu OEM",
     capacity: "Heavy Duty",
     availability: "Ex-Stock Warehouse",
-    images: [excavatorAsset, transformerAsset],
+    images: [bulldozersImg, excavatorImg],
     description: "Heavy track-type crawler tractors with Semi-Universal (SU) blades, single/multi-shank rippers, and elevated sprockets.",
     overview: "Built for heavy pipeline right-of-way site grading, mining haul roads, and bulk rock ripping with automated blade assist and heavy-duty sealed track undercarriages.",
     specs: [
@@ -895,7 +946,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Caterpillar / Komatsu / Volvo OEM",
     capacity: "Heavy Duty",
     availability: "Ex-Stock Warehouse",
-    images: [excavatorAsset, pipeAsset],
+    images: [wheelLoadersImg, bulldozersImg],
     description: "Heavy-duty articulated four-wheel drive wheel loaders with high breakout force for aggregate quarries and bulk loading.",
     overview: "Z-bar linkage kinematics, automatic power-shift transmissions, ride control suspension, and heavy rock spade buckets for rapid truck loading and stockpile handling.",
     specs: [
@@ -917,7 +968,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Caterpillar / JCB / Case OEM",
     capacity: "Standard Duty",
     availability: "Ex-Stock Warehouse",
-    images: [excavatorAsset, condenserAsset],
+    images: [backhoeLoadersImg, wheelLoadersImg],
     description: "Versatile four-wheel drive backhoe loaders with extendable dippers, 4-in-1 multi-purpose front buckets, and auxiliary tool hydraulics.",
     overview: "Compact multi-purpose utility earthmover featuring pilot excavator joystick controls, powershift transmission, and heavy side-shift or center-pivot outriggers.",
     specs: [
@@ -939,7 +990,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Bobcat / Caterpillar / Kubota OEM",
     capacity: "Standard Duty",
     availability: "Ex-Stock Warehouse",
-    images: [excavatorAsset, transformerAsset],
+    images: [skidSteerImg, backhoeLoadersImg],
     description: "Compact wheeled and rubber-tracked skid steer loaders (CTL) with high-flow auxiliary hydraulics for trenching, sweeping, and lifting.",
     overview: "High-torque compact loader capable of 360-degree zero-radius turning, vertical lift path loader arms, enclosed pressurized cabin, and universal quick-tach attachment coupler.",
     specs: [
@@ -961,7 +1012,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Caterpillar / Komatsu OEM",
     capacity: "Heavy Duty",
     availability: "Ex-Stock Warehouse",
-    images: [excavatorAsset, pipeAsset],
+    images: [motorGradersImg, bulldozersImg],
     description: "All-wheel drive motor graders with 14ft/16ft moldboards, front scarifiers, and rear rippers for precision pipeline road grading.",
     overview: "Equipped with advanced electro-hydraulic joystick controls, automated 3D cross-slope grade control, differential lock, and circle-drive slip clutch protection.",
     specs: [
@@ -985,7 +1036,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Cameron / SLB / Baker Hughes Spec",
     capacity: "Severe Service / High Pressure",
     availability: "Factory Built / Engineered",
-    images: [condenserAsset, pipeAsset],
+    images: [wellheadImg, pigLaunchersImg],
     description: "API Spec 6A surface wellhead systems, casing heads, tubing spools, and complete Christmas tree valve assemblies.",
     overview: "Engineered for high-pressure sour gas (H2S), CO2 flooding, and water injection with metal-to-metal sealing, gate valves, choke valves, and PR2 qualification testing.",
     specs: [
@@ -1007,7 +1058,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Pipeline Engineering Specialty Supply",
     capacity: "Severe Service / High Pressure",
     availability: "Factory Built / Engineered",
-    images: [pipeAsset, condenserAsset],
+    images: [pigLaunchersImg, wellheadImg],
     description: "ASME Section VIII coded pipeline pig launcher and receiver scraper traps with Quick Opening Closures (QOC).",
     overview: "Supplied as complete skid-mounted packages with pig signallers, bypass piping, kicker lines, pressure safety relief, and interlocked safety bleed systems.",
     specs: [
@@ -1029,7 +1080,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Constantflow Engineered Package",
     capacity: "High Capacity",
     availability: "Factory Built / Engineered",
-    images: [condenserAsset, transformerAsset],
+    images: [meteringSkidsImg, fuelGasSkidsImg],
     description: "Turnkey multi-stream fiscal custody-transfer gas and liquid hydrocarbon metering skids with integrated master meter / bidirectional prover loop.",
     overview: "Factory acceptance tested (FAT) modular skid featuring ultrasonic / Coriolis flowmeters, online gas chromatographs, flow computers, and motor-operated valves.",
     specs: [
@@ -1051,7 +1102,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Constantflow Engineered Package",
     capacity: "Severe Service / High Pressure",
     availability: "Factory Built / Engineered",
-    images: [condenserAsset, pipeAsset],
+    images: [fuelGasSkidsImg, meteringSkidsImg],
     description: "Custom packaged fuel gas conditioning, electric/water-bath heating, coalescing filtration, and dual pressure reduction skids.",
     overview: "Protects high-efficiency gas turbines and power plant engines by eliminating aerosols and liquid droplets, maintaining superheat dew point margin, and regulating pressure.",
     specs: [
@@ -1075,7 +1126,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "MTL / Pepperl+Fuchs / Armco Spec",
     capacity: "Standard Duty",
     availability: "Ex-Stock Warehouse",
-    images: [pipeAsset, transformerAsset],
+    images: [safetyBarriersImg, flameArrestorsImg],
     description: "Intrinsically safe galvanic isolators, zener safety barriers, and heavy galvanized industrial vehicle crash/perimeter barriers.",
     overview: "Complete plant safety line spanning electrical intrinsic safety signal isolators for explosive Zone 0/1 areas, and hot-dip galvanized structural crash protection barriers.",
     specs: [
@@ -1097,7 +1148,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Protectoseal / Elmac / Groth Spec",
     capacity: "Severe Service / High Pressure",
     availability: "Ex-Stock Warehouse",
-    images: [pipeAsset, condenserAsset],
+    images: [flameArrestorsImg, safetyBarriersImg],
     description: "In-line deflagration and detonation flame arrestors and atmospheric end-of-line breather vent flame arrestors.",
     overview: "Crimp ribbon stainless steel matrix element quenches high-velocity supersonic detonation flame fronts in flare lines, vapor recovery units (VRU), and storage tank vents.",
     specs: [
@@ -1119,7 +1170,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "Layher / PERI / Altrad Spec",
     capacity: "Heavy Duty",
     availability: "Ex-Stock Warehouse",
-    images: [pipeAsset, excavatorAsset],
+    images: [scaffoldingImg, structuralSteelImg],
     description: "Modular Ringlock, Cuplock, and tube-and-clamp hot-dip galvanized heavy-duty industrial scaffolding systems.",
     overview: "Pre-engineered for refinery shutdown maintenance and offshore platform access with high load capacity, steel plank walkboards, toe boards, and drop-forged couplers.",
     specs: [
@@ -1141,7 +1192,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "ArcelorMittal / Dillinger / POSCO Spec",
     capacity: "Heavy Duty",
     availability: "Ex-Stock Warehouse",
-    images: [pipeAsset, excavatorAsset],
+    images: [structuralSteelImg, scaffoldingImg],
     description: "Wide-flange beams (HEB, HEA, IPE, UB/UC), hollow structural sections (HSS), and heavy structural steel plates with Z35 ductility.",
     overview: "Thermo-mechanically rolled structural steel with Charpy V-notch toughness tested down to -50°C for offshore module jackets, refinery pipe racks, and crane runway girders.",
     specs: [
@@ -1163,7 +1214,7 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     brand: "High-Tensile Fasteners Specialist Supply",
     capacity: "Heavy Duty",
     availability: "Ex-Stock Warehouse",
-    images: [pipeAsset, condenserAsset],
+    images: [anchorBoltsImg, structuralSteelImg],
     description: "High-strength foundation anchor bolts, L-type & J-type bent bolts, sleeve anchor assemblies, and heavy hex structural stud bolts.",
     overview: "Engineered for vessel skirts, heavy equipment baseplates, and structural steel column footings with hot-dip galvanized and fluoropolymer PTFE anti-corrosion coatings.",
     specs: [
@@ -1177,58 +1228,121 @@ const EQUIPMENT_CATALOG: EquipmentItem[] = [
     standards: ["ASTM F1554", "ASTM A193 / A194", "ISO 898-1", "ASTM F436"],
     leadTime: "Immediate Warehouse Supply",
   },
+
+  // ── 11. Storage ──
+  {
+    id: "stg-storage-tanks",
+    name: "Storage Tanks",
+    modelNumber: "TNK-ATMOS-API650-VS",
+    category: "Storage",
+    brand: "Constantflow Engineered Package",
+    capacity: "High Capacity",
+    availability: "Factory Built / Engineered",
+    images: [storageTankImg, pressureVesselImg],
+    description: "Atmospheric and low-pressure above-ground storage tanks for crude oil, refined products, chemicals, and water — designed to API 650 / API 620 standards.",
+    overview: "Fabricated from carbon steel, stainless steel, or FRP with epoxy linings, cathodic protection systems, floating roofs, fixed cone roofs, and internal coatings per product compatibility requirements.",
+    specs: [
+      { label: "Tank Types", value: "Vertical Cylindrical (Fixed / Floating Roof), Horizontal, Underground (UST)" },
+      { label: "Capacity Range", value: "1,000 Litres to 50,000 m³ (1 KL – 50,000 KL)" },
+      { label: "Shell Material", value: "Carbon Steel (A36 / A516 Gr.70), Stainless Steel (304L / 316L), Duplex, FRP" },
+      { label: "Design Pressure", value: "Atmospheric to 1.0 barg (Low-Pressure API 620 up to 15 psig)" },
+      { label: "Corrosion Protection", value: "Internal Lining (Epoxy / Rubber), External Coating + Cathodic Protection" },
+      { label: "Accessories", value: "Manways, Vents, Level Gauges, Heating Coils, Mixers, Foam Chambers" },
+    ],
+    standards: ["API 650", "API 620", "API 653", "AWWA D100"],
+    leadTime: "Factory Fabricated – 10 to 20 Weeks",
+  },
+  {
+    id: "stg-pressure-vessels",
+    name: "Pressure Vessels",
+    modelNumber: "PV-ASME-VIII-DIV1-CRN",
+    category: "Storage",
+    brand: "Constantflow Engineered Package",
+    capacity: "Severe Service / High Pressure",
+    availability: "Factory Built / Engineered",
+    images: [pressureVesselImg, storageTankImg],
+    description: "ASME Section VIII Div. 1 & Div. 2 pressure vessels for process storage, separation, and reaction services across oil & gas, petrochemical, and power industries.",
+    overview: "Engineered with full ASME U-stamp certification, NDE (RT/UT/PT/MT), nozzle scheduling, lifting lugs, and third-party inspection by TÜV, Bureau Veritas, or Lloyds. Material traceability maintained per EN 10204 3.1/3.2 MTRs.",
+    specs: [
+      { label: "Vessel Types", value: "Horizontal, Vertical, Spherical (Bullets), Reactors, Separators, Accumulators" },
+      { label: "Design Pressure", value: "Full Vacuum to 350 barg (5,000 psig)" },
+      { label: "Design Temperature", value: "-196°C to +600°C (Cryogenic to High-Temp Service)" },
+      { label: "Shell Material", value: "CS (SA516-70), SS (SA240 304L/316L), Duplex, Inconel, Titanium, Clad" },
+      { label: "NDE Requirements", value: "RT / UT / PT / MT per ASME Section VIII UW-11" },
+      { label: "Certification", value: "ASME U-Stamp, CRN (Canada), PED (EU), EAC (Russia/CIS)" },
+    ],
+    standards: ["ASME Section VIII Div. 1 / Div. 2", "PD 5500", "EN 13445", "API 510"],
+    leadTime: "Engineered-to-Order – 8 to 18 Weeks",
+  },
+  {
+    id: "stg-chemical-storage",
+    name: "Chemical Storage",
+    modelNumber: "CHM-STGTNK-FRP-PE-SS",
+    category: "Storage",
+    brand: "Constantflow Engineered Package",
+    capacity: "Standard Duty",
+    availability: "Factory Built / Engineered",
+    images: [chemicalStorageImg, storageTankImg],
+    description: "Dedicated chemical storage systems including FRP tanks, polyethylene (HDPE) tanks, and stainless steel vessels for acids, caustics, solvents, and hazardous chemicals.",
+    overview: "Fully bunded systems with secondary containment, chemical-resistant linings, overfill protection, level monitoring, and spill management accessories. Compliant with COSHH / ATEX / IEC 61511 functional safety requirements.",
+    specs: [
+      { label: "Tank Materials", value: "FRP (Fiberglass), HDPE / XLPE Polyethylene, Stainless Steel (316L / 904L), Hastelloy" },
+      { label: "Capacity Range", value: "100 Litres to 200,000 Litres (0.1 KL to 200 KL)" },
+      { label: "Chemical Compatibility", value: "Acids (HCl, H₂SO₄, HNO₃), Caustics (NaOH, KOH), Bleach, Solvents, Chlorine" },
+      { label: "Secondary Containment", value: "Integral Bunding ≥ 110% Capacity, Impermeable Membrane Liner" },
+      { label: "Safety Features", value: "High-Level Alarms, Overflow Protection, Earthing / Bonding, Vent Scrubbers" },
+      { label: "Regulatory Compliance", value: "COSHH, EPA 40 CFR 112, ATEX Zone Classification, IEC 61511" },
+    ],
+    standards: ["BS EN 13341", "ASTM D1998", "ISO 16486", "NFPA 30"],
+    leadTime: "Stock FRP/HDPE Units – 2 to 4 Weeks; Custom SS – 8 to 14 Weeks",
+  },
+  {
+    id: "stg-water-storage",
+    name: "Water Storage",
+    modelNumber: "WTR-STGTANK-GLS-STEEL-PE",
+    category: "Storage",
+    brand: "Constantflow Engineered Package",
+    capacity: "High Capacity",
+    availability: "Factory Built / Engineered",
+    images: [waterStorageImg, storageTankImg],
+    description: "Bolted steel, GLS (Glass-Lined Steel), polyethylene, and concrete water storage tanks for potable water, fire water, irrigation, and industrial process water applications.",
+    overview: "NSF/ANSI 61 certified for potable water contact, with UV-stabilized or galvanized steel outer shells, food-grade inner linings, and optional insulation. Roof options include dome, flat, or geodesic designs.",
+    specs: [
+      { label: "Tank Types", value: "Bolted GLS (Glasscoat), Welded Steel, Polyethylene, Sectional GRP, Concrete" },
+      { label: "Capacity Range", value: "5,000 Litres to 5,000,000 Litres (5 KL to 5,000 KL)" },
+      { label: "Inner Lining", value: "Glass Fused to Steel (GLS), NSF-61 Epoxy, Food-Grade PE, EPDM Rubber" },
+      { label: "Water Types", value: "Potable (Drinking) Water, Fire Fighting, Process, Cooling Tower Make-up, Irrigation" },
+      { label: "Structural Options", value: "Above Ground, Elevated (On Supports), Below Ground, Sectional Panel" },
+      { label: "Accessories", value: "Access Hatches, Overflow Pipes, Inlet/Outlet Nozzles, Ladders, Float Valves" },
+    ],
+    standards: ["NSF/ANSI 61", "AWWA D100", "BS EN 13280", "NFPA 22"],
+    leadTime: "Standard Sizes – 3 to 6 Weeks; Large Custom – 10 to 16 Weeks",
+  },
+  {
+    id: "stg-gas-storage",
+    name: "Gas Storage",
+    modelNumber: "GAS-BLTVESSEL-LPG-NG-SCUBA",
+    category: "Storage",
+    brand: "Constantflow Engineered Package",
+    capacity: "Severe Service / High Pressure",
+    availability: "Factory Built / Engineered",
+    images: [gasStorageImg, pressureVesselImg],
+    description: "High-pressure gas storage solutions including LPG bullets, compressed natural gas (CNG) cascades, nitrogen accumulators, and hydrogen storage vessels to ASME VIII / PED standards.",
+    overview: "Engineered for safe, long-term containment of flammable and inert gases under high pressure. All vessels supplied with pressure relief valves, pressure gauges, isolation valves, and hydrostatic test certification with ASME U-stamp.",
+    specs: [
+      { label: "Gas Types", value: "LPG (Propane / Butane), CNG, Nitrogen (N₂), Oxygen (O₂), Hydrogen (H₂), CO₂" },
+      { label: "Vessel Types", value: "Horizontal Bullets, Vertical Cylinders, Mounded Vessels, Sphere Tanks" },
+      { label: "Design Pressure", value: "17 barg to 350 barg (250 psig to 5,000 psig)" },
+      { label: "Material Grade", value: "SA516-70 / SA537 Cl.1 Carbon Steel; SA240 304/316L Stainless for H₂ / O₂" },
+      { label: "Safety Equipment", value: "PRV (API 520/526), Excess Flow Valves, Flame Arrestors, Earthing Bosses" },
+      { label: "Inspection & Cert.", value: "ASME U-Stamp, PED 2014/68/EU, EN 13445, Hydrostatic Test at 1.5× MAWP" },
+    ],
+    standards: ["ASME Section VIII Div. 1", "EN 13445", "NFPA 58", "ADR / IMDG (Transport)"],
+    leadTime: "Engineered-to-Order – 10 to 20 Weeks",
+  },
 ];
 
-/* ─── Filter Options ─── */
-const BRAND_OPTIONS = [
-  "All Brands",
-  "Cameron / Flowserve / Kitz Spec",
-  "Vanessa / Keystone / Bray Spec",
-  "Master Flo / Cameron / Mokveld Spec",
-  "Sulzer / Flowserve / KSB Spec",
-  "PCM / Netzsch / Roper Spec",
-  "National Oilwell Varco / FMC Spec",
-  "Milton Roy / Lewa / Prominent Spec",
-  "Nash / Busch / Gardner Denver Spec",
-  "Vallourec / Tenaris / JFE Spec",
-  "NOV Grant Prideco / Vallourec Spec",
-  "Melesi / Galperti / ULMA Spec",
-  "TK Corporation / Mega / Benkan Spec",
-  "Both-Well / Bonney Forge Spec",
-  "Emerson Rosemount / Yokogawa / ABB Spec",
-  "Emerson Rosemount / WIKA Spec",
-  "Micro Motion / Krohne / Endress+Hauser Spec",
-  "Magnetrol / VEGA / Rosemount Spec",
-  "OMNI / Dynamic / Emerson FloBoss Spec",
-  "Alfa Laval / Koch Heat / Tranter Spec",
-  "Thermal Engineering Specialty Supply",
-  "GEA / SPX / Graham Spec",
-  "Marley SPX / Baltimore Aircoil Spec",
-  "Babcock & Wilcox / Cleaver-Brooks Spec",
-  "Siemens / ABB / WEG Spec",
-  "Schneider / ABB / Siemens Spec",
-  "Cummins / Caterpillar / MTU Spec",
-  "ABB / Schneider / Siemens Spec",
-  "Schneider / ABB / Siemens Spec",
-  "Yale / Harrington / Vital Spec",
-  "Demag / Konecranes / Stahl Spec",
-  "Konecranes / Demag / SWF Spec",
-  "Konecranes / Demag / Street Spec",
-  "Liebherr / Konecranes / ZPMC Spec",
-  "Caterpillar / Komatsu / Hitachi OEM",
-  "Caterpillar / Komatsu OEM",
-  "Caterpillar / Komatsu / Volvo OEM",
-  "Caterpillar / JCB / Case OEM",
-  "Bobcat / Caterpillar / Kubota OEM",
-  "Cameron / SLB / Baker Hughes Spec",
-  "Pipeline Engineering Specialty Supply",
-  "Constantflow Engineered Package",
-  "MTL / Pepperl+Fuchs / Armco Spec",
-  "Protectoseal / Elmac / Groth Spec",
-  "Layher / PERI / Altrad Spec",
-  "ArcelorMittal / Dillinger / POSCO Spec",
-  "High-Tensile Fasteners Specialist Supply",
-];
+
 
 const CAPACITY_OPTIONS = [
   "All Capacities",
@@ -1248,7 +1362,6 @@ const AVAILABILITY_OPTIONS = [
 /* ─── Main Categories Page Component ─── */
 export default function CategoriesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All Categories");
-  const [selectedBrand, setSelectedBrand] = useState<string>("All Brands");
   const [selectedCapacity, setSelectedCapacity] = useState<string>("All Capacities");
   const [selectedAvailability, setSelectedAvailability] = useState<string>("All Availability");
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -1268,13 +1381,11 @@ export default function CategoriesPage() {
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
 
-  // Filter Logic across all 50 items
+  // Filter Logic across all 50 items (without brand)
   const filteredEquipment = useMemo(() => {
     return EQUIPMENT_CATALOG.filter((item) => {
       const matchCat =
         selectedCategory === "All Categories" || item.category === selectedCategory;
-      const matchBrand =
-        selectedBrand === "All Brands" || item.brand === selectedBrand;
       const matchCapacity =
         selectedCapacity === "All Capacities" || item.capacity === selectedCapacity;
       const matchAvail =
@@ -1288,9 +1399,9 @@ export default function CategoriesPage() {
         item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.standards.some((s) => s.toLowerCase().includes(searchQuery.toLowerCase()));
 
-      return matchCat && matchBrand && matchCapacity && matchAvail && matchSearch;
+      return matchCat && matchCapacity && matchAvail && matchSearch;
     });
-  }, [selectedCategory, selectedBrand, selectedCapacity, selectedAvailability, searchQuery]);
+  }, [selectedCategory, selectedCapacity, selectedAvailability, searchQuery]);
 
   // Related equipment in modal
   const relatedItems = useMemo(() => {
@@ -1302,27 +1413,25 @@ export default function CategoriesPage() {
 
   const hasActiveFilters =
     selectedCategory !== "All Categories" ||
-    selectedBrand !== "All Brands" ||
     selectedCapacity !== "All Capacities" ||
     selectedAvailability !== "All Availability" ||
     searchQuery !== "";
 
   const resetFilters = () => {
     setSelectedCategory("All Categories");
-    setSelectedBrand("All Brands");
     setSelectedCapacity("All Capacities");
     setSelectedAvailability("All Availability");
     setSearchQuery("");
   };
 
   return (
-    <div className="app-shell bg-[#FAFBFD] text-[#1A1C2E] min-h-screen">
+    <div className="app-shell bg-[#FAFBFD] text-[#1A1C2E] min-h-screen w-full">
       <DarkHeader />
 
-      <main className="relative">
-        {/* ── 1. Hero Banner (Corporate Minimalist Design) ── */}
-        <section className="relative w-full overflow-hidden bg-[#0A0C1A] text-white pt-28 pb-14 sm:pt-36 sm:pb-18 md:pt-40 md:pb-20">
-          {/* Subtle Ambient Industrial Lighting */}
+      <main className="relative w-full">
+        {/* ── 1. Hero Banner (Full-Width Minimal Corporate) ── */}
+        <section className="relative w-full overflow-hidden bg-[#0A0C1A] text-white pt-28 pb-12 sm:pt-34 sm:pb-16 md:pt-36 md:pb-18">
+          {/* Ambient Lighting */}
           <div className="absolute inset-0 pointer-events-none opacity-40">
             <div className="absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-[#D78034]/25 blur-3xl" />
             <div className="absolute -bottom-36 right-0 h-[480px] w-[480px] rounded-full bg-[#080A7E]/35 blur-3xl" />
@@ -1330,31 +1439,8 @@ export default function CategoriesPage() {
 
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D78034]/40 to-transparent" />
 
-          <div className="relative z-10 w-full px-4 sm:px-6 md:px-10 xl:px-14 2xl:px-20 max-w-7xl mx-auto">
-            {/* Breadcrumb Navigation */}
-            <nav
-              aria-label="Breadcrumb"
-              className="flex items-center gap-2 text-[12.5px] font-medium text-white/60 mb-5"
-            >
-              <RouterLink
-                to="/"
-                className="hover:text-[#D78034] transition-colors"
-              >
-                Home
-              </RouterLink>
-              <ChevronRight className="w-3.5 h-3.5 text-white/40" />
-              <span className="text-white/90">Equipment Categories</span>
-              {selectedCategory !== "All Categories" && (
-                <>
-                  <ChevronRight className="w-3.5 h-3.5 text-white/40" />
-                  <span className="text-[#ffd89b] font-semibold">
-                    {selectedCategory}
-                  </span>
-                </>
-              )}
-            </nav>
-
-            <div className="space-y-4 max-w-3xl">
+          <div className="relative z-10 w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+            <div className="space-y-3.5 max-w-4xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-3.5 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#ffd89b]">
                 <Sparkles className="w-3.5 h-3.5 text-[#D78034]" />
                 Industrial Equipment Catalog
@@ -1366,20 +1452,20 @@ export default function CategoriesPage() {
                   : selectedCategory}
               </h1>
 
-              <p className="text-[15px] sm:text-base md:text-[17px] text-zinc-300 leading-relaxed max-w-2xl">
-                Procure certified industrial equipment, valves, rotating machinery,
-                structural tubulars, instrumentation, and engineered packages verified
-                to API, ASME, and ISO standards with complete traceability.
+              <p className="text-[14.5px] sm:text-base text-zinc-300 leading-relaxed max-w-3xl">
+                Procure mission-critical valves, rotating equipment, structural
+                tubulars, instrumentation, and engineered packages verified to
+                API, ASME, and ISO standards with full mill test certificates.
               </p>
             </div>
           </div>
         </section>
 
-        {/* ── 2. Sticky Filter Bar (Clean Corporate Dropdowns) ── */}
-        <section className="sticky top-0 z-30 w-full bg-white/95 backdrop-blur-md border-b border-[#E2E5F0] shadow-sm py-3.5 px-4 sm:px-6 md:px-10 xl:px-14 2xl:px-20 transition-all">
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4">
+        {/* ── 2. Sticky Filter Bar (Full-Width, Brand Filter Removed) ── */}
+        <section className="lg:sticky top-0 z-30 w-full bg-white/95 backdrop-blur-md border-b border-[#E2E5F0] shadow-sm py-3 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 transition-all">
+          <div className="w-full flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
             {/* Search Input */}
-            <div className="relative w-full lg:w-72 shrink-0">
+            <div className="relative w-full lg:w-80 shrink-0">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#5A5E7A]" />
               <input
                 type="text"
@@ -1399,9 +1485,9 @@ export default function CategoriesPage() {
               )}
             </div>
 
-            {/* Dropdowns Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 flex-1 max-w-4xl">
-              {/* Category Dropdown (Clean, No Numbers) */}
+            {/* Dropdowns Grid (3 Clean Dropdowns) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 flex-1 max-w-3xl">
+              {/* Category Dropdown */}
               <div className="relative">
                 <select
                   value={selectedCategory}
@@ -1412,22 +1498,6 @@ export default function CategoriesPage() {
                   {CATEGORIES_LIST.map((cat) => (
                     <option key={cat} value={cat}>
                       {cat}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#5A5E7A] pointer-events-none" />
-              </div>
-
-              {/* Brand Dropdown */}
-              <div className="relative">
-                <select
-                  value={selectedBrand}
-                  onChange={(e) => setSelectedBrand(e.target.value)}
-                  className="w-full appearance-none rounded-xl border border-[#E2E5F0] bg-[#F8F9FC] px-3 py-2 text-[12.5px] sm:text-[13px] font-semibold text-[#1A1C2E] outline-none transition-all focus:border-[#D78034] focus:bg-white pr-8 truncate cursor-pointer hover:border-[#CBD0E1]"
-                >
-                  {BRAND_OPTIONS.map((b) => (
-                    <option key={b} value={b}>
-                      {b}
                     </option>
                   ))}
                 </select>
@@ -1469,7 +1539,7 @@ export default function CategoriesPage() {
 
             {/* Clear Filters / Count */}
             {hasActiveFilters && (
-              <div className="flex items-center gap-2 self-end lg:self-auto">
+              <div className="flex items-center gap-2 self-end lg:self-auto shrink-0">
                 <button
                   type="button"
                   onClick={resetFilters}
@@ -1483,19 +1553,19 @@ export default function CategoriesPage() {
           </div>
         </section>
 
-        {/* ── 3. Equipment Grid (4 cols Desktop, 2 cols Tablet, 1 col Mobile) ── */}
-        <section className="w-full px-4 sm:px-6 md:px-10 xl:px-14 2xl:px-20 py-10 sm:py-14 max-w-7xl mx-auto">
-          {/* Header row: count & status */}
-          <div className="flex items-center justify-between pb-6 mb-6 border-b border-[#E2E5F0]">
-            <div className="text-[13.5px] text-[#5A5E7A]">
+        {/* ── 3. Full-Width Equipment Grid (2x2 on Mobile, 2 on Tablet, 3/4/5 on Desktop) ── */}
+        <section className="w-full px-3 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-8 sm:py-12">
+          {/* Header row */}
+          <div className="flex items-center justify-between pb-4 mb-5 sm:mb-6 border-b border-[#E2E5F0]">
+            <div className="text-xs sm:text-[13.5px] text-[#5A5E7A]">
               Showing{" "}
               <span className="font-bold text-[#1A1C2E]">
                 {filteredEquipment.length}
               </span>{" "}
               equipment items across {CATEGORIES_LIST.length} categories
             </div>
-            <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#2E7D4F]">
-              <span className="h-2 w-2 rounded-full bg-[#2E7D4F] animate-pulse" />
+            <div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-[#2E7D4F]">
+              <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#2E7D4F] animate-pulse" />
               Procurement Desk Active
             </div>
           </div>
@@ -1519,7 +1589,7 @@ export default function CategoriesPage() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-5 lg:gap-6">
               {filteredEquipment.map((item) => (
                 <motion.div
                   key={item.id}
@@ -1527,62 +1597,66 @@ export default function CategoriesPage() {
                   initial={reduceMotion ? undefined : { opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                  className="group relative flex flex-col justify-between rounded-2xl border border-[#E2E5F0] bg-white p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_36px_rgba(10,12,26,0.08)] hover:border-[#D78034]/40"
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative flex flex-col justify-between rounded-xl sm:rounded-2xl border border-[#E2E5F0] bg-white p-3 sm:p-4 md:p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(10,12,26,0.08)] hover:border-[#D78034]/40"
                 >
-                  <div className="space-y-3.5">
-                    {/* Photo with subtle hover zoom */}
-                    <div className="relative w-full h-44 sm:h-48 rounded-xl bg-[#F8F9FC] border border-[#E2E5F0]/60 p-4 flex items-center justify-center overflow-hidden">
+                  <div className="space-y-2 sm:space-y-3">
+                    {/* Photo Container with subtle hover zoom */}
+                    <div className="relative w-full h-28 sm:h-40 md:h-44 rounded-lg sm:rounded-xl bg-[#F8F9FC] border border-[#E2E5F0]/60 p-2 sm:p-3.5 flex items-center justify-center overflow-hidden">
                       <img
                         src={item.images[0]}
                         alt={item.name}
                         className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-108"
                       />
                       {/* Category Tag */}
-                      <span className="absolute top-2.5 left-2.5 rounded-md bg-white/95 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#080A7E] shadow-sm border border-[#E2E5F0] max-w-[130px] truncate">
+                      <span className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 rounded bg-white/95 px-1.5 py-0.5 text-[8.5px] sm:text-[9.5px] font-bold uppercase tracking-wider text-[#080A7E] shadow-sm border border-[#E2E5F0] max-w-[100px] sm:max-w-[125px] truncate">
                         {item.category}
                       </span>
                     </div>
 
                     {/* Meta info */}
-                    <div className="space-y-1.5">
-                      <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#5A5E7A]">
+                    <div className="space-y-0.5 sm:space-y-1">
+                      <div className="text-[9.5px] sm:text-[10.5px] font-bold uppercase tracking-[0.12em] text-[#5A5E7A] truncate">
                         {item.modelNumber}
                       </div>
-                      <h2 className="text-[15px] sm:text-base font-bold text-[#1A1C2E] leading-snug line-clamp-2">
+                      <h2 className="text-[12.5px] sm:text-[14.5px] md:text-[15px] font-bold text-[#1A1C2E] leading-snug line-clamp-2">
                         {item.name}
                       </h2>
                     </div>
 
                     {/* Key Specs tags */}
-                    <div className="space-y-1.5 pt-1 text-[12px] text-[#5A5E7A]">
+                    <div className="space-y-1 pt-0.5 text-[10px] sm:text-[11.5px] text-[#5A5E7A]">
                       <div className="flex items-center justify-between border-b border-[#F0F2F7] pb-1">
-                        <span>Brand / OEM:</span>
-                        <span className="font-semibold text-[#1A1C2E] truncate max-w-[130px]">
-                          {item.brand.split(" ")[0]}
+                        <span className="truncate">Standard:</span>
+                        <span className="font-semibold text-[#1A1C2E] truncate max-w-[70px] sm:max-w-[120px] text-right">
+                          {item.standards[0]}
                         </span>
                       </div>
                       <div className="flex items-center justify-between border-b border-[#F0F2F7] pb-1">
-                        <span>Design Standard:</span>
-                        <span className="font-semibold text-[#1A1C2E] truncate max-w-[130px]">
-                          {item.standards[0]}
+                        <span className="truncate">Status:</span>
+                        <span className="font-semibold text-[#2E7D4F] truncate max-w-[70px] sm:max-w-[120px] text-right">
+                          {item.availability === "Ex-Stock Warehouse"
+                            ? "In-Stock"
+                            : item.availability === "Rapid Dispatch (1-2 Weeks)"
+                            ? "1-2 Wks"
+                            : "Engineered"}
                         </span>
                       </div>
                     </div>
                   </div>
 
                   {/* View Details Button */}
-                  <div className="pt-4 mt-2">
+                  <div className="pt-2 sm:pt-3 mt-1">
                     <button
                       type="button"
                       onClick={() => {
                         setActiveItem(item);
                         setActiveImageIndex(0);
                       }}
-                      className="group/btn w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#0A0C1A] py-2.5 px-4 text-[13px] font-bold text-white transition-all duration-200 hover:bg-[#D78034] hover:shadow-[0_6px_18px_rgba(215,128,52,0.28)]"
+                      className="group/btn w-full inline-flex items-center justify-center gap-1 rounded-lg sm:rounded-xl bg-[#0A0C1A] py-1.5 sm:py-2 px-2 sm:px-3.5 text-[11px] sm:text-[12.5px] font-bold text-white transition-all duration-200 hover:bg-[#D78034] hover:shadow-[0_4px_14px_rgba(215,128,52,0.25)]"
                     >
                       View Details
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
+                      <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform group-hover/btn:translate-x-1" />
                     </button>
                   </div>
                 </motion.div>
@@ -1591,35 +1665,35 @@ export default function CategoriesPage() {
           )}
         </section>
 
-        {/* ── 4. Detail Layout (Modal) ── */}
+        {/* ── 4. Compact & Proportionate Detail Modal ── */}
         <AnimatePresence>
           {activeItem && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-8 overflow-y-auto">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
               {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setActiveItem(null)}
-                className="fixed inset-0 bg-[#0A0C1A]/70 backdrop-blur-sm"
+                className="fixed inset-0 bg-[#0A0C1A]/75 backdrop-blur-sm"
               />
 
-              {/* Modal Card */}
+              {/* Modal Card (Compact & Proportionate) */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.96, y: 16 }}
+                initial={{ opacity: 0, scale: 0.96, y: 12 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: 16 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="relative z-10 w-full max-w-5xl rounded-3xl bg-white shadow-2xl border border-[#E2E5F0] overflow-hidden my-auto max-h-[92vh] flex flex-col"
+                exit={{ opacity: 0, scale: 0.96, y: 12 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="relative z-10 w-full max-w-2xl rounded-2xl bg-white shadow-2xl border border-[#E2E5F0] overflow-hidden my-auto max-h-[78vh] flex flex-col"
               >
                 {/* Header */}
-                <div className="flex items-center justify-between px-6 py-4 border-b border-[#E2E5F0] bg-[#FAFBFD] shrink-0">
-                  <div className="flex items-center gap-2 text-xs font-semibold text-[#5A5E7A]">
-                    <span className="rounded-md bg-[#080A7E]/8 text-[#080A7E] px-2.5 py-1 font-bold">
+                <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#E2E5F0] bg-[#FAFBFD] shrink-0">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-[#5A5E7A] truncate">
+                    <span className="rounded-md bg-[#080A7E]/8 text-[#080A7E] px-2.5 py-0.5 font-bold truncate">
                       {activeItem.category}
                     </span>
                     <span>•</span>
-                    <span className="font-mono text-[#1A1C2E]">
+                    <span className="font-mono text-[#1A1C2E] truncate">
                       {activeItem.modelNumber}
                     </span>
                   </div>
@@ -1627,38 +1701,38 @@ export default function CategoriesPage() {
                     type="button"
                     onClick={() => setActiveItem(null)}
                     aria-label="Close detail modal"
-                    className="rounded-full p-1.5 text-zinc-500 hover:text-black hover:bg-zinc-100 transition-colors"
+                    className="rounded-full p-1 text-zinc-500 hover:text-black hover:bg-zinc-100 transition-colors shrink-0 ml-2"
                   >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
 
                 {/* Body */}
-                <div className="overflow-y-auto p-6 sm:p-8 space-y-8 flex-1">
-                  {/* Two-column layout: Gallery on Left, Specs on Right */}
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                    {/* Left Gallery */}
-                    <div className="lg:col-span-5 space-y-3.5">
-                      <div className="relative h-64 sm:h-80 w-full rounded-2xl bg-[#F8F9FC] border border-[#E2E5F0] p-6 flex items-center justify-center overflow-hidden">
+                <div className="overflow-y-auto p-4 space-y-3 flex-1">
+                  {/* Two-column layout */}
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
+                    {/* Left: Gallery & Quality Card */}
+                    <div className="md:col-span-5 space-y-2">
+                      <div className="relative h-36 w-full rounded-xl bg-[#F8F9FC] border border-[#E2E5F0] p-3 flex items-center justify-center overflow-hidden">
                         <img
                           src={activeItem.images[activeImageIndex] || activeItem.images[0]}
                           alt={activeItem.name}
                           className="h-full w-full object-contain"
                         />
-                        <span className="absolute bottom-3 right-3 rounded-md bg-white/90 px-2.5 py-1 text-[11px] font-bold text-[#1A1C2E] border border-[#E2E5F0] shadow-sm">
-                          Verified OEM Spec
+                        <span className="absolute bottom-2 right-2 rounded bg-white/90 px-2 py-0.5 text-[10px] font-bold text-[#1A1C2E] border border-[#E2E5F0] shadow-sm">
+                          Verified Spec
                         </span>
                       </div>
 
                       {/* Thumbnails */}
                       {activeItem.images.length > 1 && (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5">
                           {activeItem.images.map((img, idx) => (
                             <button
                               key={idx}
                               type="button"
                               onClick={() => setActiveImageIndex(idx)}
-                              className={`h-16 w-16 rounded-xl border p-2 bg-[#F8F9FC] transition-all ${
+                              className={`h-9 w-9 rounded-md border p-0.5 bg-[#F8F9FC] transition-all ${
                                 activeImageIndex === idx
                                   ? "border-[#D78034] ring-2 ring-[#D78034]/20 shadow-sm"
                                   : "border-[#E2E5F0] hover:border-zinc-400"
@@ -1674,49 +1748,45 @@ export default function CategoriesPage() {
                         </div>
                       )}
 
-                      {/* Quality Assurance Card */}
-                      <div className="rounded-xl border border-[#E2E5F0] bg-[#FAFBFD] p-4 text-xs space-y-2 text-[#5A5E7A]">
-                        <div className="flex items-center gap-1.5 font-bold text-[#1A1C2E]">
-                          <ShieldCheck className="w-4 h-4 text-[#2E7D4F]" />
-                          Procurement Quality Assurance
-                        </div>
-                        <p className="leading-relaxed">
-                          All orders include 100% factory acceptance test (FAT) reports,
-                          traceable material test certificates (MTC EN 10204 3.1/3.2), and
-                          third-party inspection options (DNV, BV, SGS, Lloyd&apos;s).
+                      {/* Compact Quality Card */}
+                      <div className="rounded-lg border border-[#E2E5F0] bg-[#FAFBFD] px-3 py-2 text-[10.5px] flex items-start gap-2 text-[#5A5E7A]">
+                        <ShieldCheck className="w-3 h-3 text-[#2E7D4F] mt-0.5 shrink-0" />
+                        <p className="leading-snug">
+                          <span className="font-bold text-[#1A1C2E]">Quality Guarantee — </span>
+                          100% FAT records, traceable MTC EN 10204 3.1/3.2 certs, DNV/BV inspection.
                         </p>
                       </div>
                     </div>
 
-                    {/* Right Specs & Actions */}
-                    <div className="lg:col-span-7 space-y-6">
+                    {/* Right: Specs & Action */}
+                    <div className="md:col-span-7 space-y-3">
                       <div>
-                        <div className="text-xs font-bold uppercase tracking-[0.2em] text-[#D78034]">
+                        <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#D78034]">
                           {activeItem.brand}
                         </div>
-                        <h2 className="text-2xl sm:text-3xl font-bold text-[#1A1C2E] tracking-tight mt-1">
+                        <h2 className="text-lg font-bold text-[#1A1C2E] tracking-tight mt-0.5">
                           {activeItem.name}
                         </h2>
-                        <p className="text-sm text-[#5A5E7A] leading-relaxed mt-2.5">
+                        <p className="text-[11.5px] text-[#5A5E7A] leading-relaxed mt-1 line-clamp-3">
                           {activeItem.overview}
                         </p>
                       </div>
 
-                      {/* Specs Info Cards Grid */}
-                      <div className="space-y-2.5">
-                        <div className="text-xs font-bold uppercase tracking-[0.16em] text-[#1A1C2E]/60">
+                      {/* Compact Specs Grid */}
+                      <div className="space-y-1">
+                        <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#1A1C2E]/60">
                           Engineering Specifications
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <div className="grid grid-cols-2 gap-1.5">
                           {activeItem.specs.map((spec) => (
                             <div
                               key={spec.label}
-                              className="rounded-xl border border-[#E2E5F0] bg-[#FAFBFD] p-3 text-xs"
+                              className="rounded-md border border-[#E2E5F0] bg-[#FAFBFD] px-2 py-1.5 text-[10px]"
                             >
-                              <div className="text-[#5A5E7A] font-medium">
+                              <div className="text-[#5A5E7A] font-medium truncate">
                                 {spec.label}
                               </div>
-                              <div className="text-[#1A1C2E] font-bold text-[13px] mt-0.5">
+                              <div className="text-[#1A1C2E] font-bold text-[10.5px] mt-0.5 truncate">
                                 {spec.value}
                               </div>
                             </div>
@@ -1725,68 +1795,59 @@ export default function CategoriesPage() {
                       </div>
 
                       {/* Standards */}
-                      <div className="flex flex-wrap items-center gap-2 pt-1">
+                      <div className="flex flex-wrap items-center gap-1 pt-0.5">
                         {activeItem.standards.map((std) => (
                           <span
                             key={std}
-                            className="rounded-lg bg-[#080A7E]/6 text-[#080A7E] border border-[#080A7E]/12 px-2.5 py-1 text-[11px] font-bold"
+                            className="rounded bg-[#080A7E]/6 text-[#080A7E] border border-[#080A7E]/12 px-1.5 py-0.5 text-[9.5px] font-bold"
                           >
                             {std}
                           </span>
                         ))}
                       </div>
 
-                      {/* Highlighted Note Card */}
-                      <div className="rounded-2xl border-2 border-[#D78034]/35 bg-[#FFF9F3] p-4 sm:p-5 flex items-start gap-3.5 shadow-sm">
-                        <div className="p-2 rounded-xl bg-[#D78034]/15 text-[#D78034] shrink-0 mt-0.5">
-                          <FileText className="w-5 h-5" />
-                        </div>
-                        <div className="space-y-1">
-                          <div className="text-sm font-bold text-[#1A1C2E]">
-                            Need pricing? Submit an inquiry.
-                          </div>
-                          <p className="text-xs text-[#5A5E7A] leading-relaxed">
-                            Pricing for {activeItem.name} varies based on pressure
-                            ratings, quantities, material grades, and destination port.
-                            Our sourcing desk will provide a formal commercial proposal within 24 hours.
+                      {/* Compact Highlighted Note + CTA row */}
+                      <div className="rounded-lg border border-[#D78034]/35 bg-[#FFF9F3] px-3 py-2 flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <FileText className="w-3.5 h-3.5 text-[#D78034] shrink-0" />
+                          <p className="text-[10.5px] text-[#5A5E7A] leading-snug">
+                            <span className="font-bold text-[#1A1C2E]">Need pricing? </span>
+                            Proposals within 24 hours.
                           </p>
                         </div>
-                      </div>
-
-                      {/* CTA Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                        <RouterLink
-                          to="/contact"
-                          className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-[#D78034] px-6 py-3.5 text-sm font-bold text-white shadow-[0_10px_28px_rgba(215,128,52,0.32)] transition-all hover:bg-[#c97328] hover:-translate-y-0.5"
-                        >
-                          <Mail className="w-4 h-4" />
-                          Request a Quote
-                        </RouterLink>
-
-                        <RouterLink
-                          to="/contact"
-                          className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#1A1C2E]/20 bg-white px-6 py-3.5 text-sm font-bold text-[#1A1C2E] hover:bg-[#F8F9FC] hover:border-[#1A1C2E] transition-all"
-                        >
-                          <Phone className="w-4 h-4 text-[#5A5E7A]" />
-                          Contact Procurement Team
-                        </RouterLink>
+                        <div className="flex gap-1.5 shrink-0">
+                          <RouterLink
+                            to="/contact"
+                            className="inline-flex items-center gap-1 rounded-lg bg-[#D78034] px-3 py-1.5 text-[11px] font-bold text-white transition-all hover:bg-[#c97328]"
+                          >
+                            <Mail className="w-3 h-3" />
+                            Quote
+                          </RouterLink>
+                          <RouterLink
+                            to="/contact"
+                            className="inline-flex items-center gap-1 rounded-lg border border-[#1A1C2E]/20 bg-white px-3 py-1.5 text-[11px] font-bold text-[#1A1C2E] hover:bg-[#F8F9FC] transition-all"
+                          >
+                            <Phone className="w-3 h-3 text-[#5A5E7A]" />
+                            Contact
+                          </RouterLink>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Related Equipment Section */}
+                  {/* Related Equipment Section (Compact) */}
                   {relatedItems.length > 0 && (
-                    <div className="pt-6 border-t border-[#E2E5F0] space-y-4">
+                    <div className="pt-3 border-t border-[#E2E5F0] space-y-2">
                       <div className="flex items-center justify-between">
-                        <h3 className="text-base font-bold text-[#1A1C2E]">
-                          Related Equipment in {activeItem.category}
+                        <h3 className="text-[10px] font-bold text-[#1A1C2E] uppercase tracking-wider">
+                          Related Equipment
                         </h3>
-                        <span className="text-xs font-semibold text-[#5A5E7A]">
-                          Similar Engineering Class
+                        <span className="text-[10px] text-[#5A5E7A]">
+                          In {activeItem.category}
                         </span>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         {relatedItems.map((rel) => (
                           <div
                             key={rel.id}
@@ -1794,24 +1855,21 @@ export default function CategoriesPage() {
                               setActiveItem(rel);
                               setActiveImageIndex(0);
                             }}
-                            className="group/rel rounded-xl border border-[#E2E5F0] bg-[#FAFBFD] p-3.5 cursor-pointer hover:border-[#D78034] hover:bg-white hover:shadow-md transition-all flex items-center gap-3"
+                            className="group/rel rounded-lg border border-[#E2E5F0] bg-[#FAFBFD] p-2.5 cursor-pointer hover:border-[#D78034] hover:bg-white transition-all flex items-center gap-2.5"
                           >
-                            <div className="h-14 w-14 rounded-lg bg-white border border-[#E2E5F0] p-1.5 shrink-0 flex items-center justify-center overflow-hidden">
+                            <div className="h-10 w-10 rounded bg-white border border-[#E2E5F0] p-1 shrink-0 flex items-center justify-center overflow-hidden">
                               <img
                                 src={rel.images[0]}
                                 alt={rel.name}
-                                className="h-full w-full object-contain group-hover/rel:scale-110 transition-transform"
+                                className="h-full w-full object-contain group-hover/rel:scale-105 transition-transform"
                               />
                             </div>
                             <div className="min-w-0 flex-1">
-                              <div className="text-[10px] font-bold text-[#5A5E7A] uppercase truncate">
+                              <div className="text-[9.5px] font-bold text-[#5A5E7A] uppercase truncate">
                                 {rel.modelNumber}
                               </div>
-                              <div className="text-xs font-bold text-[#1A1C2E] truncate">
+                              <div className="text-[11.5px] font-bold text-[#1A1C2E] truncate">
                                 {rel.name}
-                              </div>
-                              <div className="text-[11px] text-[#D78034] font-semibold flex items-center gap-1 mt-0.5">
-                                View Specs <ArrowRight className="w-2.5 h-2.5" />
                               </div>
                             </div>
                           </div>
@@ -1826,14 +1884,14 @@ export default function CategoriesPage() {
         </AnimatePresence>
 
         {/* ── 5. Full-Width Sourcing CTA Section ── */}
-        <section className="relative w-full overflow-hidden bg-[#0A0C1A] text-white py-16 sm:py-20">
+        <section className="relative w-full overflow-hidden bg-[#0A0C1A] text-white py-14 sm:py-18 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
           <div className="absolute inset-0 pointer-events-none opacity-50">
             <div className="absolute -top-24 right-0 h-96 w-96 rounded-full bg-[#D78034]/20 blur-3xl" />
             <div className="absolute -bottom-24 -left-20 h-96 w-96 rounded-full bg-[#080A7E]/30 blur-3xl" />
           </div>
 
-          <div className="relative z-10 w-full px-4 sm:px-6 md:px-10 xl:px-14 2xl:px-20 max-w-5xl mx-auto text-center space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#ffd89b]">
+          <div className="relative z-10 w-full max-w-4xl mx-auto text-center space-y-5">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-[#ffd89b]">
               <Building2 className="w-3.5 h-3.5 text-[#D78034]" />
               Global Procurement Network
             </div>
@@ -1852,10 +1910,10 @@ export default function CategoriesPage() {
               OEM network across North America, Europe, and Asia.
             </p>
 
-            <div className="pt-3">
+            <div className="pt-2">
               <RouterLink
                 to="/contact"
-                className="inline-flex items-center gap-2.5 rounded-full bg-[#D78034] px-8 py-4 text-sm font-bold text-white shadow-[0_14px_36px_rgba(215,128,52,0.38)] transition-all hover:bg-[#c97328] hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-2 rounded-full bg-[#D78034] px-7 py-3.5 text-sm font-bold text-white shadow-[0_12px_32px_rgba(215,128,52,0.35)] transition-all hover:bg-[#c97328] hover:scale-105 active:scale-95"
               >
                 Submit Custom Sourcing Request
                 <ArrowRight className="w-4 h-4" />
@@ -1870,3 +1928,4 @@ export default function CategoriesPage() {
     </div>
   );
 }
+

@@ -6,7 +6,6 @@ import {
   CircleDot,
   Mail,
   Phone,
-  Briefcase,
   CheckCircle2,
   Send,
   Building2,
@@ -47,31 +46,34 @@ function AnimatedContainer({
 
 const CONTACT_ITEMS = [
   {
+    icon: Building2,
+    label: "Management Desk",
+    value: "Mgt@constantflow-procurement.com",
+    href: "mailto:Mgt@constantflow-procurement.com",
+    sub: "Corporate & Executive Inquiries",
+    highlight: true,
+  },
+  {
     icon: Mail,
-    label: "Email Us",
-    value: "hello@constantflow.com",
-    href: "mailto:hello@constantflow.com",
-    sub: "We respond within 24 hours",
+    label: "General Procurement",
+    value: "Constantflowprocurement@gmail.com",
+    href: "mailto:Constantflowprocurement@gmail.com",
+    sub: "General Inquiries & Inbound Orders",
+    highlight: false,
   },
   {
     icon: Phone,
-    label: "Call Us",
-    value: "+1 (409) 555-0188",
-    href: "tel:+14095550188",
-    sub: "Mon – Fri, 8 AM – 6 PM (CST)",
-  },
-  {
-    icon: Briefcase,
-    label: "Request an RFQ",
-    value: "Submit a procurement request",
-    href: "#request-rfq",
-    sub: "Get a competitive quote",
+    label: "Direct Phone Line",
+    value: "08108386859",
+    href: "tel:+2348108386859",
+    sub: "+234 810 838 6859 (Mon – Sat)",
+    highlight: false,
   },
 ] as const;
 
 const SUBJECTS = [
   "General Enquiry",
-  "Request an RFQ",
+  "Product Quotation",
   "Supplier Onboarding",
   "Valves & Actuation",
   "Pumps, Compressors & Blowers",
@@ -83,6 +85,7 @@ const SUBJECTS = [
   "Heavy Machinery & Earth-Moving Equipment",
   "Specialized Oil & Gas / Process Packages",
   "Safety, Structural & Consumables",
+  "Storage",
   "Other",
 ] as const;
 
@@ -182,19 +185,42 @@ export default function ContactUs() {
                       ease: [0.22, 1, 0.36, 1],
                       delay: 0.08 + i * 0.07,
                     }}
-                    className="group relative flex flex-col gap-3.5 rounded-2xl border border-[#0A0C1A]/8 bg-white p-6 shadow-[0_8px_28px_rgba(10,12,26,0.07)] transition-all duration-300 hover:-translate-y-1 hover:border-[#D78034]/30 hover:shadow-[0_18px_42px_rgba(215,128,52,0.13)]"
+                    className={`group relative flex flex-col justify-between gap-3.5 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 ${
+                      item.highlight
+                        ? "border-2 border-[#D78034]/40 bg-gradient-to-b from-[#FFFDF9] to-white shadow-[0_12px_32px_rgba(215,128,52,0.12)] hover:border-[#D78034] hover:shadow-[0_20px_48px_rgba(215,128,52,0.2)]"
+                        : "border border-[#0A0C1A]/8 bg-white shadow-[0_8px_28px_rgba(10,12,26,0.07)] hover:border-[#D78034]/30 hover:shadow-[0_18px_42px_rgba(215,128,52,0.13)]"
+                    }`}
                   >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#D78034]/16 via-[#080A7E]/8 to-transparent ring-1 ring-[#0A0C1A]/6 transition-all duration-300 group-hover:from-[#D78034]/24 group-hover:scale-105">
-                      <Icon
-                        className="h-5 w-5 text-[#D78034]"
-                        strokeWidth={1.9}
-                      />
-                    </span>
+                    <div className="flex items-center justify-between">
+                      <span
+                        className={`flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-105 ${
+                          item.highlight
+                            ? "bg-[#D78034] text-white shadow-[0_4px_14px_rgba(215,128,52,0.35)]"
+                            : "bg-gradient-to-br from-[#D78034]/16 via-[#080A7E]/8 to-transparent ring-1 ring-[#0A0C1A]/6 text-[#D78034] group-hover:from-[#D78034]/24"
+                        }`}
+                      >
+                        <Icon
+                          className={`h-5 w-5 ${
+                            item.highlight ? "text-white" : "text-[#D78034]"
+                          }`}
+                          strokeWidth={1.9}
+                        />
+                      </span>
+                      {item.highlight && (
+                        <span className="rounded-full bg-[#D78034]/12 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#B35E14] border border-[#D78034]/25">
+                          Direct
+                        </span>
+                      )}
+                    </div>
                     <div className="min-w-0">
                       <div className="text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#0A0C1A]/45 mb-1">
                         {item.label}
                       </div>
-                      <div className="text-[14.5px] font-semibold text-[#0A0C1A] leading-snug">
+                      <div
+                        className={`text-[14.5px] font-bold leading-snug break-all ${
+                          item.highlight ? "text-[#080A7E]" : "text-[#0A0C1A]"
+                        }`}
+                      >
                         {item.value}
                       </div>
                       <div className="mt-1 text-[12.5px] text-[#5A5E7A]">

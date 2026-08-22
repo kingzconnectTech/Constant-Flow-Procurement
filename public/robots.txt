@@ -1,0 +1,15 @@
+# robots.txt for Constantflow Procurement
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*?*query=
+
+# Specific bot settings for Google and Bing
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap location
+Sitemap: https://constantflow-procurement.com/sitemap.xml

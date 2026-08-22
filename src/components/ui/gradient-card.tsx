@@ -3,6 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { RouterLink } from "@/router";
 
 const cardVariants = cva(
   "relative flex flex-col justify-end h-full w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_10px_34px_rgba(10,12,26,0.08)] transition-shadow duration-300 hover:shadow-[0_26px_66px_rgba(10,12,26,0.18)]",
@@ -132,15 +133,27 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
               </ul>
             )}
 
-            <a
-              href={ctaHref}
-              className={`group mt-5 inline-flex items-center gap-2 text-[12.5px] font-bold uppercase tracking-[0.16em] ${
-                isDark ? "text-[#FFD89B]" : "text-[#080A7E]"
-              }`}
-            >
-              {ctaText}
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
+            {ctaHref.startsWith("/") ? (
+              <RouterLink
+                to={ctaHref}
+                className={`group mt-5 inline-flex items-center gap-2 text-[12.5px] font-bold uppercase tracking-[0.16em] ${
+                  isDark ? "text-[#FFD89B]" : "text-[#080A7E]"
+                }`}
+              >
+                {ctaText}
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </RouterLink>
+            ) : (
+              <a
+                href={ctaHref}
+                className={`group mt-5 inline-flex items-center gap-2 text-[12.5px] font-bold uppercase tracking-[0.16em] ${
+                  isDark ? "text-[#FFD89B]" : "text-[#080A7E]"
+                }`}
+              >
+                {ctaText}
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
+            )}
           </div>
         </div>
       </motion.div>

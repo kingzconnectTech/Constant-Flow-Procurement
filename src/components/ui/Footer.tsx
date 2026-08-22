@@ -10,7 +10,6 @@ import {
   CircleDot,
   Globe2,
   Mail,
-  MapPin,
   Phone,
   X,
   Rss,
@@ -24,6 +23,7 @@ interface FooterLink {
   readonly title: string;
   readonly href: string;
   readonly icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  readonly highlight?: boolean;
 }
 
 interface FooterSection {
@@ -40,7 +40,7 @@ const footerLinks: readonly FooterSection[] = [
       { title: "Piping, Fittings & Tubing", href: "/categories" },
       { title: "Instrumentation & Control", href: "/categories" },
       { title: "Heavy Machinery & Earth-Moving", href: "/categories" },
-      { title: "View All 10 Categories →", href: "/categories" },
+      { title: "Categories", href: "/categories" },
     ],
   },
   {
@@ -57,24 +57,20 @@ const footerLinks: readonly FooterSection[] = [
     label: "Contact",
     links: [
       {
-        title: "hello@constantflow.com",
-        href: "mailto:hello@constantflow.com",
+        title: "Mgt@constantflow-procurement.com",
+        href: "mailto:Mgt@constantflow-procurement.com",
+        icon: Mail,
+        highlight: true,
+      },
+      {
+        title: "Constantflowprocurement@gmail.com",
+        href: "mailto:Constantflowprocurement@gmail.com",
         icon: Mail,
       },
       {
-        title: "+1 (409) 555-0188",
-        href: "tel:+14095550188",
+        title: "08108386859",
+        href: "tel:+2348108386859",
         icon: Phone,
-      },
-      {
-        title: "Houston, TX · Singapore · Seoul",
-        href: "#global",
-        icon: MapPin,
-      },
-      {
-        title: "Request an RFQ",
-        href: "#request-rfq",
-        icon: Briefcase,
       },
     ],
   },
@@ -265,17 +261,25 @@ export default function Footer() {
                                   <li key={link.title}>
                                     <a
                                       href={link.href}
-                                      className="group inline-flex items-start gap-2.5 text-[14.5px] leading-[1.55] text-white transition-colors duration-300 hover:text-white"
+                                      className={`group inline-flex items-start gap-2.5 text-[14.5px] leading-[1.55] transition-colors duration-300 ${
+                                        link.highlight
+                                          ? "text-[#ffd89b] font-bold hover:text-white"
+                                          : "text-white/90 hover:text-white"
+                                      }`}
                                     >
                                       {RowIcon && (
                                         <span className="mt-[2px] shrink-0">
                                           <RowIcon
-                                            className="h-4 w-4 text-white transition-colors duration-300 group-hover:text-[#ffd89b]"
+                                            className={`h-4 w-4 transition-colors duration-300 ${
+                                              link.highlight
+                                                ? "text-[#D78034] group-hover:text-[#ffd89b]"
+                                                : "text-white/70 group-hover:text-[#ffd89b]"
+                                            }`}
                                             strokeWidth={1.9}
                                           />
                                         </span>
                                       )}
-                                      <span className="inline-flex items-center gap-1">
+                                      <span className="inline-flex items-center gap-1.5 break-all">
                                         {link.title}
                                         {!RowIcon && (
                                           <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 -translate-y-0.5 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 text-[#ffd89b]" />
