@@ -1566,14 +1566,7 @@ export default function CategoriesPage() {
         {/* ── 3. Full-Width Equipment Grid (2x2 on Mobile, 2 on Tablet, 3/4/5 on Desktop) ── */}
         <section className="w-full px-3 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-8 sm:py-12">
           {/* Header row */}
-          <div className="flex items-center justify-between pb-4 mb-5 sm:mb-6 border-b border-[#E2E5F0]">
-            <div className="text-xs sm:text-[13.5px] text-[#5A5E7A]">
-              Showing{" "}
-              <span className="font-bold text-[#1A1C2E]">
-                {filteredEquipment.length}
-              </span>{" "}
-              equipment items across {CATEGORIES_LIST.length} categories
-            </div>
+          <div className="flex items-center justify-end pb-4 mb-5 sm:mb-6 border-b border-[#E2E5F0]">
             <div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-[#2E7D4F]">
               <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#2E7D4F] animate-pulse" />
               Procurement Desk Active

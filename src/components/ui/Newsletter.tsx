@@ -9,9 +9,14 @@ import {
   Users,
   Building2,
   CheckCircle2,
+  Loader2,
+  AlertCircle,
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
+
+const APPS_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbynpLc3tI7pgYBqHl41VBpBYEwDorp3XYdPazJ6H5tCWDCONO4e5P_5r3sgLSDWJt83/exec";
 
 type AnimatedContainerProps = {
   children: React.ReactNode;
@@ -74,11 +79,38 @@ export default function Newsletter() {
   const [email, setEmail] = useState<string>("");
   const [role, setRole] = useState<Role>("buyer");
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    setSubmitted(true);
+    setErrorMsg("");
+
+    const validateEmail = (value: string) =>
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+    if (!validateEmail(email)) {
+      setStatus("error");
+      setErrorMsg("Please enter a valid email address.");
+      return;
+    }
+
+    setStatus("loading");
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({ email, role }),
+      });
+
+      setStatus("success");
+      setSubmitted(true);
+    } catch {
+      setStatus("error");
+      setErrorMsg("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -258,15 +290,32 @@ export default function Newsletter() {
                       </div>
                     </div>
 
+                    {status === "error" && errorMsg && (
+                      <div className="flex items-center gap-2 rounded-2xl bg-red-500/15 border border-red-500/30 px-4 py-3 text-[13px] text-red-200">
+                        <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
+                        <span>{errorMsg}</span>
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="group relative w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-[#D78034] px-6 py-4 sm:py-4.5 text-[14.5px] sm:text-[15px] font-bold text-white backdrop-blur-[64px] transition-all duration-300 shadow-[0_18px_42px_rgba(4,8,40,0.58),inset_0_1px_0_rgba(255,255,255,0.20)] hover:bg-[#C97328] hover:shadow-[0_22px_52px_rgba(4,8,40,0.62),inset_0_1px_0_rgba(255,255,255,0.28),0_0_0_4px_rgba(215,128,52,0.14)]"
+                      disabled={status === "loading"}
+                      className="group relative w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-[#D78034] px-6 py-4 sm:py-4.5 text-[14.5px] sm:text-[15px] font-bold text-white backdrop-blur-[64px] transition-all duration-300 shadow-[0_18px_42px_rgba(4,8,40,0.58),inset_0_1px_0_rgba(255,255,255,0.20)] hover:bg-[#C97328] hover:shadow-[0_22px_52px_rgba(4,8,40,0.62),inset_0_1px_0_rgba(255,255,255,0.28),0_0_0_4px_rgba(215,128,52,0.14)] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                     >
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/30">
-                        <Bell className="w-3.5 h-3.5 text-white" />
-                      </span>
-                      Notify Me When It Goes Live
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 translate-x-0 group-hover:translate-x-1" />
+                      {status === "loading" ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin text-white" />
+                          <span>Submitting...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/30">
+                            <Bell className="w-3.5 h-3.5 text-white" />
+                          </span>
+                          Notify Me When It Goes Live
+                          <ArrowRight className="w-4 h-4 transition-transform duration-300 translate-x-0 group-hover:translate-x-1" />
+                        </>
+                      )}
                     </button>
 
                     <p className="text-center text-[12.5px] text-white leading-[1.6]">
