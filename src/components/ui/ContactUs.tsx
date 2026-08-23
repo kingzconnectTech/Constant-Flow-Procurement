@@ -104,6 +104,7 @@ type Subject = (typeof SUBJECTS)[number];
 export default function ContactUs({ showBanner = false }: ContactUsProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [subject, setSubject] = useState<Subject>("General Enquiry");
   const [message, setMessage] = useState("");
@@ -124,6 +125,9 @@ export default function ContactUs({ showBanner = false }: ContactUsProps) {
       formData.append("access_key", WEB3FORMS_KEY);
       formData.append("name", name.trim());
       formData.append("email", email.trim());
+      if (phone.trim()) {
+        formData.append("phone", phone.trim());
+      }
       formData.append("company", company.trim() || "Not specified");
       formData.append("subject", `[Constantflow Procurement] ${subject} from ${name.trim()}`);
       formData.append("message", message.trim());
@@ -352,7 +356,7 @@ export default function ContactUs({ showBanner = false }: ContactUsProps) {
                     </div>
                   </div>
 
-                  {/* Email + Subject */}
+                  {/* Email + Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label
@@ -375,21 +379,41 @@ export default function ContactUs({ showBanner = false }: ContactUsProps) {
                     </div>
                     <div className="space-y-1.5">
                       <label
-                        htmlFor="contact-subject"
+                        htmlFor="contact-phone"
                         className="flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-[#0A0C1A]/55"
                       >
-                        Subject
+                        <Phone className="w-3 h-3 text-[#D78034]" />
+                        Phone Number
                       </label>
-                      <select
-                        id="contact-subject"
-                        value={subject}
-                        onChange={(e) => setSubject(e.target.value as Subject)}
-                        className="w-full rounded-xl border border-[#0A0C1A]/10 bg-[#F8F9FC] px-4 py-3.5 text-[14.5px] font-medium text-[#0A0C1A] outline-none transition-all duration-200 focus:border-[#D78034]/55 focus:bg-white focus:shadow-[0_0_0_3px_rgba(215,128,52,0.12)] hover:border-[#0A0C1A]/18 cursor-pointer">
-                        {SUBJECTS.map((s) => (
-                          <option key={s} value={s}>{s}</option>
-                        ))}
-                      </select>
+                      <input
+                        id="contact-phone"
+                        type="tel"
+                        autoComplete="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="+234 810 000 0000"
+                        className="w-full rounded-xl border border-[#0A0C1A]/10 bg-[#F8F9FC] px-4 py-3.5 text-[14.5px] font-medium text-[#0A0C1A] placeholder:text-[#0A0C1A]/30 outline-none transition-all duration-200 focus:border-[#D78034]/55 focus:bg-white focus:shadow-[0_0_0_3px_rgba(215,128,52,0.12)] hover:border-[#0A0C1A]/18"
+                      />
                     </div>
+                  </div>
+
+                  {/* Subject */}
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="contact-subject"
+                      className="flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-[#0A0C1A]/55"
+                    >
+                      Subject
+                    </label>
+                    <select
+                      id="contact-subject"
+                      value={subject}
+                      onChange={(e) => setSubject(e.target.value as Subject)}
+                      className="w-full rounded-xl border border-[#0A0C1A]/10 bg-[#F8F9FC] px-4 py-3.5 text-[14.5px] font-medium text-[#0A0C1A] outline-none transition-all duration-200 focus:border-[#D78034]/55 focus:bg-white focus:shadow-[0_0_0_3px_rgba(215,128,52,0.12)] hover:border-[#0A0C1A]/18 cursor-pointer">
+                      {SUBJECTS.map((s) => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
+                    </select>
                   </div>
 
                   {/* Message */}
