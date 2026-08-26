@@ -9,7 +9,14 @@
       "NODE_OPTIONS": "--max-old-space-size=6144"
     }
   },
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "routes": [
+    { "src": "/sitemap.xml", "dest": "/sitemap.xml" },
+    { "src": "/robots.txt", "dest": "/robots.txt" },
+    { "src": "/google1de2cf4279ab42cc.html", "dest": "/google1de2cf4279ab42cc.html" },
+    { "src": "/site.webmanifest", "dest": "/site.webmanifest" },
+    { "src": "/favicon.png", "dest": "/favicon.png" },
+    { "src": "/apple-touch-icon.png", "dest": "/apple-touch-icon.png" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
+
