@@ -7,6 +7,10 @@ Disallow: /api/
 User-agent: Googlebot
 Allow: /
 
+# Googlebot Image & Favicon crawler
+User-agent: Googlebot-Image
+Allow: /
+
 # Bing
 User-agent: Bingbot
 Allow: /

@@ -1,5 +1,4 @@
 import DarkHeader from '../components/DarkHeader'
-import PageSplash from '../components/PageSplash'
 import GlassmorphismTrustHero from '../components/ui/glassmorphism-trust-hero'
 import ServicesCategories from '../components/ui/ServicesCategories'
 import ProcurementFeatureGrid from '../components/ui/ProcurementFeatureGrid'
@@ -20,23 +19,21 @@ export default function HomePage() {
     ogTitle: 'Constantflow Procurement | Global Industrial Equipment Supplier',
     ogDescription:
       "Your global procurement partner for oil & gas, heavy machinery, valves, pumps, piping, instrumentation, and process packages. Worldwide sourcing, competitive pricing.",
+    ogImage: 'https://constantflow-procurement.com/apple-touch-icon.png',
   })
 
   return (
-    <>
-      <PageSplash />
-      <div className="app-shell">
-        <DarkHeader />
-        <GlassmorphismTrustHero />
-        <ServicesCategories />
-        <ProcurementFeatureGrid />
-        <ProcurementProcessSteps />
-        <GlobalPresence />
-        <AboutConstantflow />
-        <ContactUs />
-        <Newsletter />
-        <Footer />
-      </div>
-    </>
+    <div className="app-shell">
+      <DarkHeader />
+      <GlassmorphismTrustHero />
+      <ServicesCategories />
+      <ProcurementFeatureGrid />
+      <ProcurementProcessSteps />
+      <GlobalPresence />
+      <AboutConstantflow />
+      <ContactUs />
+      <Newsletter />
+      <Footer />
+    </div>
   )
 }

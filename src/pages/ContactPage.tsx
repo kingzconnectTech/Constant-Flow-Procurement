@@ -12,6 +12,7 @@ export default function ContactPage() {
     ogTitle: 'Contact Constantflow Procurement | Global Industrial Equipment Quote',
     ogDescription:
       'Reach Constantflow Procurement for valves, pumps, piping, instrumentation, and heavy machinery inquiries. Fast response, competitive quotes worldwide.',
+    ogImage: 'https://constantflow-procurement.com/apple-touch-icon.png',
   })
 
   return (

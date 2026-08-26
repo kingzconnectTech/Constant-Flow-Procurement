@@ -1370,6 +1370,7 @@ export default function CategoriesPage() {
     ogTitle: 'Industrial Equipment Categories | Constantflow Procurement — Global',
     ogDescription:
       'Browse 11 categories of industrial equipment: ball valves, centrifugal pumps, heat exchangers, flow meters, excavators, wellhead assemblies, and more. Constantflow Procurement — Global Supply.',
+    ogImage: 'https://constantflow-procurement.com/apple-touch-icon.png',
   })
   const [selectedCategory, setSelectedCategory] = useState<string>("All Categories");
   const [selectedCapacity, setSelectedCapacity] = useState<string>("All Capacities");
