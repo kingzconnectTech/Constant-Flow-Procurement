@@ -1367,9 +1367,9 @@ export default function CategoriesPage() {
     description:
       'Browse 11 categories of industrial equipment: valves & actuation, pumps & compressors, piping & fittings, instrumentation, heat exchangers, electrical equipment, heavy machinery, oil & gas packages, storage, and more. Request a quote from Constantflow Procurement.',
     canonical: 'https://constantflow-procurement.com/categories',
-    ogTitle: 'Industrial Equipment Categories | Constantflow Procurement Nigeria',
+    ogTitle: 'Industrial Equipment Categories | Constantflow Procurement — Global',
     ogDescription:
-      'Shop 11 categories of industrial equipment: ball valves, centrifugal pumps, heat exchangers, flow meters, excavators, wellhead assemblies, and more. Constantflow Procurement — Nigeria & West Africa.',
+      'Browse 11 categories of industrial equipment: ball valves, centrifugal pumps, heat exchangers, flow meters, excavators, wellhead assemblies, and more. Constantflow Procurement — Global Supply.',
   })
   const [selectedCategory, setSelectedCategory] = useState<string>("All Categories");
   const [selectedCapacity, setSelectedCapacity] = useState<string>("All Capacities");
