@@ -14,8 +14,6 @@ import {
 } from "lucide-react";
 import bannerImage from "@/assets/About_bg.png";
 
-const WEB3FORMS_KEY = "416814c8-d0c6-4a5b-a56b-98411cbbb560";
-
 export interface ContactUsProps {
   showBanner?: boolean;
 }
@@ -115,32 +113,38 @@ export default function ContactUs({ showBanner = false }: ContactUsProps) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Email validation
+    const validateEmail = (value: string) =>
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
     if (!name.trim() || !email.trim() || !message.trim()) return;
+    if (!validateEmail(email.trim())) {
+      setStatus("error");
+      setErrorMsg("Please enter a valid email address.");
+      return;
+    }
 
     setStatus("loading");
     setErrorMsg("");
 
     try {
-      const formData = new FormData();
-      formData.append("access_key", WEB3FORMS_KEY);
-      formData.append("name", name.trim());
-      formData.append("email", email.trim());
-      if (phone.trim()) {
-        formData.append("phone", phone.trim());
-      }
-      formData.append("company", company.trim() || "Not specified");
-      formData.append("subject", `[Constantflow Procurement] ${subject} from ${name.trim()}`);
-      formData.append("message", message.trim());
-      formData.append("from_name", "Constantflow Procurement Website");
-
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact-submit", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          company: company.trim(),
+          subject: subject,
+          message: message.trim(),
+        }),
       });
 
       const data = await response.json();
 
-      if (data.success) {
+      if (data.status === "success") {
         setStatus("success");
         setSubmitted(true);
       } else {
