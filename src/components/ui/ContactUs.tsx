@@ -107,12 +107,26 @@ export default function ContactUs({ showBanner = false }: ContactUsProps) {
   const [subject, setSubject] = useState<Subject>("General Enquiry");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [honeypot, setHoneypot] = useState(""); // Honeypot field for spam protection
+  
+  // Generate security token on component mount
+  const [securityToken] = useState(() => {
+    const timestamp = Date.now();
+    const random = Math.random().toString(36).substring(2, 15);
+    return btoa(`${timestamp}:${random}`);
+  });
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Honeypot check - if filled, it's a bot
+    if (honeypot.trim() !== "") {
+      console.log("Bot detected via honeypot");
+      return; // Silently fail for bots
+    }
     
     // Email validation
     const validateEmail = (value: string) =>
@@ -139,6 +153,9 @@ export default function ContactUs({ showBanner = false }: ContactUsProps) {
           company: company.trim(),
           subject: subject,
           message: message.trim(),
+          honeypot: honeypot.trim(), // Include honeypot for server-side validation
+          timestamp: Date.now(), // Add timestamp for basic rate limiting
+          securityToken: securityToken, // Add security token
         }),
       });
 
@@ -321,6 +338,17 @@ export default function ContactUs({ showBanner = false }: ContactUsProps) {
                   onSubmit={handleSubmit}
                   className="space-y-5"
                 >
+                  {/* Honeypot field for spam protection - hidden from humans but visible to bots */}
+                  <input
+                    type="text"
+                    name="website_url"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    style={{ position: 'absolute', left: '-5000px', width: '1px', height: '1px', overflow: 'hidden' }}
+                    aria-hidden="true"
+                  />
                   {/* Name + Company */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">

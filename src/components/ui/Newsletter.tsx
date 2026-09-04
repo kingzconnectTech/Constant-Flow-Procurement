@@ -83,10 +83,24 @@ export default function Newsletter() {
     "idle" | "loading" | "success" | "duplicate" | "error"
   >("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const [honeypot, setHoneypot] = useState<string>(""); // Honeypot field for spam protection
+  
+  // Generate security token on component mount
+  const [securityToken] = useState(() => {
+    const timestamp = Date.now();
+    const random = Math.random().toString(36).substring(2, 15);
+    return btoa(`${timestamp}:${random}`);
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMsg("");
+
+    // Honeypot check - if filled, it's a bot
+    if (honeypot.trim() !== "") {
+      console.log("Bot detected via honeypot in newsletter");
+      return; // Silently fail for bots
+    }
 
     const validateEmail = (value: string) =>
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -107,7 +121,13 @@ export default function Newsletter() {
         const res = await fetch("/api/newsletter-signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email.trim().toLowerCase(), role }),
+          body: JSON.stringify({ 
+            email: email.trim().toLowerCase(), 
+            role,
+            honeypot: honeypot.trim(), // Include honeypot for server-side validation
+            timestamp: Date.now(), // Add timestamp for basic rate limiting
+            securityToken: securityToken, // Add security token
+          }),
         });
 
         if (res.ok) {
@@ -229,6 +249,17 @@ export default function Newsletter() {
 
                 {!submitted ? (
                   <form onSubmit={handleSubmit} className="space-y-4.5 sm:space-y-6 relative z-10">
+                    {/* Honeypot field for spam protection - hidden from humans but visible to bots */}
+                    <input
+                      type="text"
+                      name="website_url"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      style={{ position: 'absolute', left: '-5000px', width: '1px', height: '1px', overflow: 'hidden' }}
+                      aria-hidden="true"
+                    />
                     <div className="space-y-2">
                       <label
                         htmlFor="newsletter-email"
